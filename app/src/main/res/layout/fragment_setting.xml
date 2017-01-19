@@ -1,14 +1,128 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#00ffff"
-    tools:context="com.hueljk.ibeacon.ui.setting.SettingFragment">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="setting" />
 
-</FrameLayout>
+    <!-- listview，购物车里面的东西有可能比较多，需要用listview来进行显示 -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#33ccff"
+            >
+
+
+            <!-- 购物车的布局 -->
+            <TextView
+                android:id="@+id/set_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="5dp"
+                android:text="设置"
+
+
+                android:textSize="20sp"/>
+
+            <LinearLayout
+                android:id="@+id/person_ly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="fill_vertical"
+                android:orientation="vertical"
+                >
+
+                <ImageView
+                    android:id="@+id/headimg"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    android:layout_weight="1"
+                    android:src="@drawable/a"/>
+
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="27dp"
+                    android:layout_gravity="center"
+                    android:text="用户名"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/set_tx"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/mail"
+
+                />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/vip_value"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="#e6e9ea"
+                android:gravity="center"
+                android:text="我的会员值"/>
+
+            <TextView
+                android:id="@+id/my_shoucang"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_weight="1"
+                android:background="#e6e9ea"
+                android:gravity="center"
+                android:text="我的收藏"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="#e6e9ea"
+                android:gravity="center"
+                android:text="关注的品牌"/>
+
+        </LinearLayout>
+
+   <ListView
+       android:id="@+id/set_listview"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+   </ListView>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+
