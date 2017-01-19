@@ -19,12 +19,12 @@ public class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initView();
+        initView(view);
         setListener();
         setData();
     }
 
-    protected void initView() {
+    protected void initView(View view) {
 
     }
 
@@ -34,4 +34,7 @@ public class BaseFragment extends Fragment {
 
     protected void setData() {
     }
+
+
+
 }
