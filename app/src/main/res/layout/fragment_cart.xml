@@ -2,13 +2,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#45e43d"
+    android:background="#ffffff"
     tools:context="com.hueljk.ibeacon.ui.cart.CartFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="cart" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#438FCB"
+            android:orientation="horizontal"
+            >
+
+
+            <!-- 购物车的布局 -->
+            <TextView
+                android:id="@+id/cart_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="购物车"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+            <!-- 编辑的布局 -->
+            <TextView
+                android:id="@+id/edit_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/share_img"
+                android:gravity="center"
+                android:text="编辑"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+            <!-- 分享的布局 -->
+            <ImageView
+                android:id="@+id/share_img"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="#438FCB"
+                android:padding="8dp"
+                android:src="@drawable/share" />
+        </RelativeLayout>
+        <!-- listview，购物车里面的东西有可能比较多，需要用listview来进行显示 -->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/cart_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="#808080"
+                android:background="#ffffff"
+                android:dividerHeight="0.5dp"></ListView>
+
+        </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="0dp"
+        android:orientation="horizontal">
+        <!-- 全选的布局 -->
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="全选" />
+        <!-- 合计的布局 -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:paddingRight="10dp"
+            android:text="合计:￥88"
+            android:textColor="#F63A19" />
+        <!-- 去结算的布局 -->
+
+        <TextView
+            android:id="@+id/jiesuan_button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0dp"
+            android:background="#F63A19"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="结算" />
+    </LinearLayout>
+    </LinearLayout>
+
 
 </FrameLayout>
