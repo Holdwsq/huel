@@ -5,7 +5,7 @@
               android:orientation="vertical">
 
 
-    <!-- listview，购物车里面的东西有可能比较多，需要用listview来进行显示 -->
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
             >
 
 
-            <!-- 购物车的布局 -->
+
             <TextView
                 android:id="@+id/set_tx"
                 android:layout_width="wrap_content"
