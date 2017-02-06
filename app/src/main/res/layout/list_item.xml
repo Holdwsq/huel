@@ -27,7 +27,7 @@
             android:layout_margin="5dp"
             android:layout_toRightOf="@+id/pro_checkbox"
             android:scaleType="centerCrop"
-            android:src="@drawable/clothes1"/>
+            android:src="@drawable/mail"/>
 
         <!-- 商品名称的布局 -->
         <TextView
