@@ -66,7 +66,7 @@ public class CartFragment extends BaseFragment {
             }
         });
 
-        //寫listview内部item子控件的點擊事件
+        //写listview内部item子控件的点击事件
         mAdapter.setOnBoxClickListener(new CartAdapter.CallBack() {
             @Override
             public void onBoxClick(View v, int position) {

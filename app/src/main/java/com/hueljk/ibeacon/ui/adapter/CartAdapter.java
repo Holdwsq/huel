@@ -116,7 +116,7 @@ public class CartAdapter extends BaseAdapter implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         int position = (int) v.getTag();
-        Toast.makeText(mContext,"adapter 内部響應點擊事件----"+position,0).show();
+        Toast.makeText(mContext,"adapter 内部响应点击事件----"+position,0).show();
 
         //把点击事件  回调 給fragment
         mCallBack.onBoxClick(v,position);
