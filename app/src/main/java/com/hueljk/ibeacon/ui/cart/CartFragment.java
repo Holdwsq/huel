@@ -61,8 +61,16 @@ public class CartFragment extends BaseFragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getActivity(),"listview的item被点击了！",
+                Toast.makeText(getActivity(),"listview的item被点击了！ --- "+i+" -- "+l,
                 Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //寫listview内部item子控件的點擊事件
+        mAdapter.setOnBoxClickListener(new CartAdapter.CallBack() {
+            @Override
+            public void onBoxClick(View v, int position) {
+                Toast.makeText(getContext(),"外部相應點擊事件 ---- "+position,0).show();
             }
         });
     }

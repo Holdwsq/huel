@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hueljk.ibeacon.R;
 import com.hueljk.ibeacon.mode.Product;
@@ -30,19 +31,21 @@ import static com.hueljk.ibeacon.R.drawable.clothes1;
  * 修改人：${ZHANGHAO}.
  */
 
-public class CartAdapter extends BaseAdapter {
+public class CartAdapter extends BaseAdapter implements View.OnClickListener{
     private List<Product> mData = new ArrayList<>();
     private LayoutInflater mLayoutInflater;
     public CartAdapter(){
 
     }
 
+    private Context mContext;
+
     public CartAdapter(Context context,List<Product> data) {
         mLayoutInflater = LayoutInflater.from(context);
         if (data != null) {
             mData.addAll(data);
         }
-
+        mContext = context;
     }
 
     @Override
@@ -96,6 +99,10 @@ public class CartAdapter extends BaseAdapter {
 
 
         holder.mCheck.setImageResource(product.getCheck());
+        //把點擊的位置傳遞給點擊事件---i
+        holder.mCheck.setTag(i);
+        holder.mCheck.setOnClickListener(this);
+
         holder.mIcon.setImageResource(product.getIcon());
         holder.mName.setText(product.getName());
         holder.mColor.setText(product.getColor());
@@ -106,6 +113,33 @@ public class CartAdapter extends BaseAdapter {
         return convertView;
     }
 
+    @Override
+    public void onClick(View v) {
+        int position = (int) v.getTag();
+        Toast.makeText(mContext,"adapter 内部響應點擊事件----"+position,0).show();
+
+        //把点击事件  回调 給fragment
+        mCallBack.onBoxClick(v,position);
+    }
+
+    /**
+     * 回掉函數
+     * 作用：将点击事件从一个地方转移的另一个地方
+     *
+     * 1.定义接口
+     * 2.创建接口對象引用
+     * 3.在内部相應地方調用，在外部創建對象
+     */
+
+    public interface CallBack{
+        void onBoxClick(View v,int position);
+    }
+
+    private CallBack mCallBack;
+
+    public void setOnBoxClickListener(CallBack mCallBack){
+        this.mCallBack = mCallBack;
+    }
 
     private static class ViewHolder {
         private ImageView mCheck;
