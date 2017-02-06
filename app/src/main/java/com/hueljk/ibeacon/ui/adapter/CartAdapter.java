@@ -1,26 +1,18 @@
 package com.hueljk.ibeacon.ui.adapter;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hueljk.ibeacon.R;
-import com.hueljk.ibeacon.mode.Product;
+import com.hueljk.ibeacon.mode.CartPro;
 
-import java.net.URL;
-import java.net.URLStreamHandler;
-import java.net.URLStreamHandlerFactory;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.R.id.list;
-import static com.hueljk.ibeacon.R.drawable.clothes1;
 
 /**
  * 项目名称：HuelJk
@@ -31,13 +23,13 @@ import static com.hueljk.ibeacon.R.drawable.clothes1;
  */
 
 public class CartAdapter extends BaseAdapter {
-    private List<Product> mData = new ArrayList<>();
+    private List<CartPro> mData = new ArrayList<>();
     private LayoutInflater mLayoutInflater;
     public CartAdapter(){
 
     }
 
-    public CartAdapter(Context context,List<Product> data) {
+    public CartAdapter(Context context,List<CartPro> data) {
         mLayoutInflater = LayoutInflater.from(context);
         if (data != null) {
             mData.addAll(data);
@@ -50,7 +42,7 @@ public class CartAdapter extends BaseAdapter {
         return mData.size();
     }
 
-    public void update(List<Product> data) {
+    public void update(List<CartPro> data) {
         mData.clear();
 
         if (data != null) {
@@ -62,7 +54,7 @@ public class CartAdapter extends BaseAdapter {
     }
 
     @Override
-    public Product getItem(int i) {
+    public CartPro getItem(int i) {
         if (i >= 0 && i < getCount()) {
             return mData.get(i);
         }
@@ -91,7 +83,7 @@ public class CartAdapter extends BaseAdapter {
             holder.mMinus = (TextView) convertView.findViewById(R.id.pro_minus);
             holder.mPrice = (TextView) convertView.findViewById(R.id.pro_Price);
         }
-        Product product = getItem(i);
+        CartPro product = getItem(i);
 
 
 

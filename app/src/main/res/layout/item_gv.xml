@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="160dp"
+    android:layout_height="200dp"
+    android:paddingBottom="4dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="2dp"
+    android:paddingTop="4dp"
+    >
+
+    <ImageView
+        android:id="@+id/itemProImage"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/shangpin1" />
+
+    <TextView
+        android:id="@+id/itemDecText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemProImage"
+        android:maxLines="2"
+        android:text="dawerasdfsdfsdfdsdfsfs描述"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/itemNumText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemDecText"
+        android:layout_marginTop="4dp"
+        android:lines="1"
+        android:text="销售数量"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/itemPriText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemNumText"
+        android:layout_marginTop="4dp"
+        android:lines="1"
+        android:text="商品价格"
+        android:textSize="11sp"
+        android:textColor="#f52516" />
+
+    <ImageView
+        android:id="@+id/itemCartImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@id/itemNumText"
+        android:layout_below="@id/itemProImage"
+        android:src="@drawable/cart" />
+
+</RelativeLayout>
