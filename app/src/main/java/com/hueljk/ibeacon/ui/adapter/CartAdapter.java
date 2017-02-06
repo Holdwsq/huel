@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hueljk.ibeacon.R;
+import com.hueljk.ibeacon.mode.CartPro;
 import com.hueljk.ibeacon.mode.Product;
 
 import java.net.URL;
@@ -32,7 +33,7 @@ import static com.hueljk.ibeacon.R.drawable.clothes1;
  */
 
 public class CartAdapter extends BaseAdapter implements View.OnClickListener{
-    private List<Product> mData = new ArrayList<>();
+    private List<CartPro> mData = new ArrayList<>();
     private LayoutInflater mLayoutInflater;
     public CartAdapter(){
 
@@ -40,7 +41,7 @@ public class CartAdapter extends BaseAdapter implements View.OnClickListener{
 
     private Context mContext;
 
-    public CartAdapter(Context context,List<Product> data) {
+    public CartAdapter(Context context,List<CartPro> data) {
         mLayoutInflater = LayoutInflater.from(context);
         if (data != null) {
             mData.addAll(data);
@@ -53,7 +54,7 @@ public class CartAdapter extends BaseAdapter implements View.OnClickListener{
         return mData.size();
     }
 
-    public void update(List<Product> data) {
+    public void update(List<CartPro> data) {
         mData.clear();
 
         if (data != null) {
@@ -65,7 +66,7 @@ public class CartAdapter extends BaseAdapter implements View.OnClickListener{
     }
 
     @Override
-    public Product getItem(int i) {
+    public CartPro getItem(int i) {
         if (i >= 0 && i < getCount()) {
             return mData.get(i);
         }
@@ -94,29 +95,29 @@ public class CartAdapter extends BaseAdapter implements View.OnClickListener{
             holder.mMinus = (TextView) convertView.findViewById(R.id.pro_minus);
             holder.mPrice = (TextView) convertView.findViewById(R.id.pro_Price);
         }
-        Product product = getItem(i);
+        CartPro cartPro= getItem(i);
 
 
 
-        holder.mCheck.setImageResource(product.getCheck());
+        holder.mCheck.setImageResource(cartPro.getCheck());
         //把點擊的位置傳遞給點擊事件---i
         holder.mCheck.setTag(i);
         holder.mCheck.setOnClickListener(this);
 
-        holder.mIcon.setImageResource(product.getIcon());
-        holder.mName.setText(product.getName());
-        holder.mColor.setText(product.getColor());
-        holder.mCount.setText(product.getCount());
-        holder.mAdd.setText(product.getAdd());
-        holder.mMinus.setText(product.getMinus());
-        holder.mPrice.setText(product.getPrice()+"");
+        holder.mIcon.setImageResource(cartPro.getIcon());
+        holder.mName.setText(cartPro.getName());
+        holder.mColor.setText(cartPro.getColor());
+        holder.mCount.setText(cartPro.getCount());
+        holder.mAdd.setText(cartPro.getAdd());
+        holder.mMinus.setText(cartPro.getMinus());
+        holder.mPrice.setText(cartPro.getPrice()+"");
         return convertView;
     }
 
     @Override
     public void onClick(View v) {
         int position = (int) v.getTag();
-        Toast.makeText(mContext,"adapter 内部响应点击事件----"+position,0).show();
+        Toast.makeText(mContext,"adapter 内部响应点击事件----"+position,Toast.LENGTH_SHORT).show();
 
         //把点击事件  回调 給fragment
         mCallBack.onBoxClick(v,position);
