@@ -18,14 +18,14 @@
         android:layout_gravity="bottom"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:background="@color/colorAccent"
+        android:background="#33ccff"
         android:weightSum="4">
 
         <RelativeLayout
             android:id="@+id/layout_home"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/colorAccent"
+            android:background="#33ccff"
             android:layout_weight="1">
 
             <ImageView
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_centerHorizontal="true"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/home_a" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_centerHorizontal="true"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/navigation_a" />
 
 
             <TextView
@@ -79,8 +79,8 @@
                 android:id="@+id/gou_wu"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_centerHorizontal="true"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/cart_a"
+                android:layout_centerHorizontal="true" />
 
 
             <TextView
@@ -104,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_centerHorizontal="true"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/mine_b" />
 
 
             <TextView
