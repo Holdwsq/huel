@@ -26,6 +26,9 @@ import com.hueljk.ibeacon.mode.Product;
 import com.hueljk.ibeacon.mode.Result;
 import com.hueljk.ibeacon.ui.BaseFragment;
 import com.hueljk.ibeacon.ui.adapter.MyAdapter;
+import com.hueljk.ibeacon.ui.twoClo.TwoCloFragment;
+import com.hueljk.ibeacon.ui.twoFood.TwoFoodFragment;
+import com.hueljk.ibeacon.ui.twoRy.TwoRyFragment;
 import com.hueljk.ibeacon.utils.DisplayUtils;
 import com.hueljk.ibeacon.utils.JsonUtils;
 
@@ -46,7 +49,7 @@ import okhttp3.Response;
 /**
  * 首页
  */
-public class HomeFragment extends BaseFragment  {
+public class HomeFragment extends BaseFragment {
     private GridView mGridView;
     private static OkHttpClient client;
     private MyAdapter mAdapter;
@@ -72,24 +75,25 @@ public class HomeFragment extends BaseFragment  {
         super.initView(view);
         //hideSoftKeyboard();
         mGridView = (GridView) view.findViewById(R.id.product_gridView);
-        List<Product> products = new ArrayList<>();
-        for (int i = 0; i < 40; i++) {
-            Product product = new Product("", "维达抽纸", 1000, 80, R.drawable.cart);
-            products.add(product);
-        }
-        mAdapter = new MyAdapter(getContext(), products);
+
 
 
         //ImageView category_iv = (ImageView) view.findViewById(R.id.category_img);
-        shipin_tv=(TextView)view.findViewById(R.id.shipin_tv);
-        riyong_tv=(TextView)view.findViewById(R.id.riyong_tv);
-        clothes_tv=(TextView)view.findViewById(R.id.clothes_tv);
+        shipin_tv = (TextView) view.findViewById(R.id.shipin_tv);
+        riyong_tv = (TextView) view.findViewById(R.id.riyong_tv);
+        clothes_tv = (TextView) view.findViewById(R.id.clothes_tv);
 
     }
 
     @Override
     protected void setData() {
         super.setData();
+        List<Product> products = new ArrayList<>();
+        for (int i = 0; i < 40; i++) {
+            Product product = new Product("", "维达抽纸", 1000, 80, R.drawable.cart);
+            products.add(product);
+        }
+        mAdapter = new MyAdapter(getContext(), products);
 
         mGridView.setAdapter(mAdapter);
         new Thread(new Runnable() {
@@ -110,30 +114,35 @@ public class HomeFragment extends BaseFragment  {
         clothes_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"--",Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(getContext(),TwoCloActivity.class);
-                startActivity(intent);
+                Toast.makeText(getContext(), "--", Toast.LENGTH_SHORT).show();
+                mMainActivity.showFragment(TwoCloFragment.class,"Home_2_Clo");
+                //Intent intent = new Intent(getContext(), TwoCloActivity.class);
+                //startActivity(intent);
             }
         });
 
         riyong_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"--",Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(getContext(),TwoRyActivity.class);
-                startActivity(intent);
+                Toast.makeText(getContext(), "--", Toast.LENGTH_SHORT).show();
+                mMainActivity.showFragment(TwoRyFragment.class,"Home_2_Ry");
+                //Intent intent = new Intent(getContext(), TwoRyActivity.class);
+                //startActivity(intent);
             }
         });
         shipin_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"--",Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(getContext(),TwoFoodActivity.class);
-                startActivity(intent);
+                Toast.makeText(getContext(), "--", Toast.LENGTH_SHORT).show();
+                mMainActivity.showFragment(TwoFoodFragment.class,"Home_2_Ry");
+
+               // Intent intent = new Intent(getContext(), TwoFoodActivity.class);
+                //startActivity(intent);
 
             }
         });
     }
+
     public void execute() throws Exception {
 
         Request request = new Request.Builder()
