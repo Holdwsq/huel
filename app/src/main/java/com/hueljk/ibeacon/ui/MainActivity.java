@@ -174,6 +174,30 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         ft.addToBackStack(fragmentTag);
         ft.commit();
     }
+    public void returnHomeFragment(Class<? extends BaseFragment> fragmentClass,String fragmentTag){
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+
+            //通过类的class创建类的对象
+//        Intent intent = new Intent(this,MainActivity.class);
+            Fragment fragment = null;
+            try {
+                //创建类的对象：
+                //1.new + 构造方法
+                //2.通过class的newInstance创建对象
+                fragment = fragmentClass.newInstance();
+                ft.add(R.id.container,fragment,fragmentTag);
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+
+            //回退栈：可以返回到上级页面
+            ft.addToBackStack(fragmentTag);
+            ft.commit();
+
+    }
 
 }
 
