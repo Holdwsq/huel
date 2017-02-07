@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.hueljk.ibeacon.R;
 import com.hueljk.ibeacon.ui.BaseFragment;
+import com.hueljk.ibeacon.ui.navigation.NavFragment;
 
 import java.security.PublicKey;
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class SettingFragment extends BaseFragment {
     private String[] mItems = new String[]{"会员专区", "我的优惠券", "我的足迹","邀请好友","帮助与客服","商家信息",};
     private ListView mListView;
     private View mSettingFragment;
+
 
     @Nullable
     @Override
@@ -52,6 +54,17 @@ public class SettingFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Toast.makeText(getContext(),"listview被点击了，位置是"+position,Toast.LENGTH_SHORT).show();
+
+                switch (position){
+                    case 0:
+                        //跳转会员专区
+                        mMainActivity.showFragment(NavFragment.class,"MINE_2_HUIYUAN");
+                        break;
+                    case 1:
+                        mMainActivity.showFragment(NavFragment.class,"MINE_2_HUIYUAN");
+                        break;
+                    case 2:break;
+                }
 
             }
         });

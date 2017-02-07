@@ -1,5 +1,6 @@
 package com.hueljk.ibeacon.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -134,6 +135,44 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             }
 
         }
+    }
+
+    /**
+     * activity加载fragment的四个步骤
+     *
+     * 1.获取fragmentmanager：FragmentManager fg = getSupportFragmentManager();
+     * 2.开启fragment管理事务：FragmentTransaction ft = fg.beginTransaction();
+     * 3.添加、删除、展示fragment： ft.add(R.id.container, mNavFragment, "navigation");|| ft.show(fragment);
+     * 4.提交事务：ft.commit();
+     */
+
+    /**
+     * fragment局部加载和全屏加载
+     * 局部加载：就是将fragment加载到局部FramLayout之中
+     * 全屏加载：就是将fragment加载到系统提供的全屏的framlayout之中，系统提供的framlayout id是anroid.R.id.content
+     */
+    public void showFragment(Class<? extends BaseFragment> fragmentClass,String fragmentTag){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        //通过类的class创建类的对象
+//        Intent intent = new Intent(this,MainActivity.class);
+        Fragment fragment = null;
+        try {
+            //创建类的对象：
+            //1.new + 构造方法
+            //2.通过class的newInstance创建对象
+            fragment = fragmentClass.newInstance();
+            ft.add(android.R.id.content,fragment,fragmentTag);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        //回退栈：可以返回到上级页面
+        ft.addToBackStack(fragmentTag);
+        ft.commit();
     }
 
 }
