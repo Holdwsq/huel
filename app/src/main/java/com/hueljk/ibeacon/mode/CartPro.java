@@ -20,6 +20,16 @@ public class CartPro extends BaseEntity {
     private String mMinus;
     private String mCount;
 
+    public Boolean getSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(Boolean selected) {
+        isSelected = selected;
+    }
+
+    private Boolean isSelected ;
+
     public CartPro(String mId, String mName, String mUrl, float price, int icon, int check, String color, String add, String minus, String count) {
         super(mId, mName, mUrl);
         mPrice = price;

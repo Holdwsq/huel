@@ -99,7 +99,12 @@ public class CartAdapter extends BaseAdapter implements View.OnClickListener{
 
 
 
-        holder.mCheck.setImageResource(cartPro.getCheck());
+        if(cartPro.getSelected())  {
+            holder.mCheck.setImageDrawable(mContext.getResources().getDrawable(R.drawable.checkbox2));
+        } else {
+            holder.mCheck.setImageDrawable(mContext.getResources().getDrawable(R.drawable.checkbox1));
+        }
+
         //把點擊的位置傳遞給點擊事件---i
         holder.mCheck.setTag(i);
         holder.mCheck.setOnClickListener(this);
@@ -117,14 +122,12 @@ public class CartAdapter extends BaseAdapter implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         int position = (int) v.getTag();
-        Toast.makeText(mContext,"adapter 内部响应点击事件----"+position,Toast.LENGTH_SHORT).show();
-
         //把点击事件  回调 給fragment
         mCallBack.onBoxClick(v,position);
     }
 
     /**
-     * 回掉函數
+     * 回调函數
      * 作用：将点击事件从一个地方转移的另一个地方
      *
      * 1.定义接口

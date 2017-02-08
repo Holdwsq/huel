@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:src="@drawable/appicon"/>
+        android:src="@drawable/appicon"
+        />
 
     <LinearLayout
         android:id="@+id/registerLy"
