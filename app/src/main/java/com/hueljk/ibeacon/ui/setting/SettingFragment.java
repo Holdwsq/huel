@@ -71,6 +71,14 @@ public class SettingFragment extends BaseFragment {
 
             }
         });
+        mTextView  = (TextView)view.findViewById(R.id.set_tx);
+        mTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"你点击了设置",0).show();
+            }
+        });
+
 
     }
 
