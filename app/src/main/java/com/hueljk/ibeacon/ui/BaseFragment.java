@@ -39,7 +39,7 @@ public class BaseFragment extends Fragment {
 
     }
 
-    protected void setListener() {
+    protected void setListener()  {
 
     }
 

@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/lunbo_top"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#33ccff">
+
+            <ImageButton
+                android:id="@+id/home_lunbo_return"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/return_home"/>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="精品推荐"
+                android:textSize="20sp"/>
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/share"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lunbo_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/lunbo_top"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/lunbo_img1"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/lunbo_img1"/>
+
+            <TextView
+                android:id="@+id/lunbo_name1"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:layout_alignTop="@+id/lunbo_img1"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_toEndOf="@+id/lunbo_img1"
+                android:layout_toRightOf="@+id/lunbo_img1"
+                android:text="法国男士香水持久淡香 专柜正品"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/lunbi_num1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/lunbo_name1"
+                android:layout_alignStart="@+id/lunbo_name1"
+                android:layout_below="@+id/lunbo_name1"
+                android:text="月销980笔"/>
+
+            <TextView
+                android:id="@+id/lunbo_price1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/lunbo_img1"
+                android:layout_alignLeft="@+id/lunbi_num1"
+                android:layout_alignStart="@+id/lunbi_num1"
+                android:layout_gravity="bottom"
+                android:text="￥128.00"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/lunbo_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/lunbo_1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/lunbo_img2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/lunbo_img2"/>
+
+            <TextView
+                android:id="@+id/lunbo_name2"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:layout_alignTop="@+id/lunbo_img2"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_toEndOf="@+id/lunbo_img2"
+                android:layout_toRightOf="@+id/lunbo_img2"
+                android:text="欧洲站长袖气质白色衬女"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/lunbi_num2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/lunbo_name2"
+                android:layout_alignStart="@+id/lunbo_name2"
+                android:layout_below="@+id/lunbo_name2"
+                android:text="月销98笔"/>
+
+            <TextView
+                android:id="@+id/lunbo_price2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/lunbo_img2"
+                android:layout_alignLeft="@+id/lunbi_num2"
+                android:layout_alignStart="@+id/lunbi_num2"
+                android:layout_gravity="bottom"
+                android:text="￥199.00"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/lunbo_3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/lunbo_2"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/lunbo_img3"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/lunbo_img3"/>
+
+            <TextView
+                android:id="@+id/lunbo_name3"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:layout_alignTop="@+id/lunbo_img3"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_toEndOf="@+id/lunbo_img3"
+                android:layout_toRightOf="@+id/lunbo_img3"
+                android:text="通勤灰色裤女小脚直筒休闲裤七分"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/lunbi_num3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/lunbo_name3"
+                android:layout_alignStart="@+id/lunbo_name3"
+                android:layout_below="@+id/lunbo_name3"
+                android:text="月销1474笔"/>
+
+            <TextView
+                android:id="@+id/lunbo_price3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/lunbo_img3"
+                android:layout_alignLeft="@+id/lunbi_num3"
+                android:layout_alignStart="@+id/lunbi_num3"
+                android:layout_gravity="bottom"
+                android:text="￥88"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/lunbo_4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/lunbo_3"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/lunbo_img4"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/lunbo_img4"/>
+
+            <TextView
+                android:id="@+id/lunbo_name4"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:layout_alignTop="@+id/lunbo_img4"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_toEndOf="@+id/lunbo_img4"
+                android:layout_toRightOf="@+id/lunbo_img4"
+                android:text="dochan护理 面部乳液冰肌水保湿"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/lunbi_num4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/lunbo_name4"
+                android:layout_alignStart="@+id/lunbo_name4"
+                android:layout_below="@+id/lunbo_name4"
+                android:text="月销8057笔"/>
+
+            <TextView
+                android:id="@+id/lunbo_price4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/lunbo_img4"
+                android:layout_alignLeft="@+id/lunbi_num4"
+                android:layout_alignStart="@+id/lunbi_num4"
+                android:layout_gravity="bottom"
+                android:text="￥286.00"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/lunbo_5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/lunbo_4"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/lunbo_img5"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/lunbo_img5"/>
+
+            <TextView
+                android:id="@+id/lunbo_name5"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:layout_alignTop="@+id/lunbo_img5"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_toEndOf="@+id/lunbo_img5"
+                android:layout_toRightOf="@+id/lunbo_img5"
+                android:text="还给青春一个清新的背包"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/lunbi_num5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/lunbo_name5"
+                android:layout_alignStart="@+id/lunbo_name5"
+                android:layout_below="@+id/lunbo_name5"
+                android:text="月销788笔"/>
+
+            <TextView
+                android:id="@+id/lunbo_price5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/lunbo_img5"
+                android:layout_alignLeft="@+id/lunbi_num5"
+                android:layout_alignStart="@+id/lunbi_num5"
+                android:layout_gravity="bottom"
+                android:text="￥79.00"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/lunbo_6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/lunbo_5"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/lunbo_img6"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/lunbo_img1"/>
+
+            <TextView
+                android:id="@+id/lunbo_name6"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:layout_alignTop="@+id/lunbo_img6"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_toEndOf="@+id/lunbo_img6"
+                android:layout_toRightOf="@+id/lunbo_img6"
+                android:text="法国男士香水持久淡香 专柜正品"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/lunbi_num6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/lunbo_name6"
+                android:layout_alignStart="@+id/lunbo_name6"
+                android:layout_below="@+id/lunbo_name6"
+                android:text="月销980笔"/>
+
+            <TextView
+                android:id="@+id/lunbo_price6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/lunbo_img6"
+                android:layout_alignLeft="@+id/lunbi_num6"
+                android:layout_alignStart="@+id/lunbi_num6"
+                android:layout_gravity="bottom"
+                android:text="￥128.00"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</ScrollView>
+</LinearLayout>
