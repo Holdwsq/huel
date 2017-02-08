@@ -7,20 +7,20 @@
 
     <RelativeLayout
         android:id="@+id/login_layout"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:gravity="center" >
         <FrameLayout
             android:id="@+id/username_layout"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
             android:gravity="center" >
             <EditText
                 android:id="@+id/username"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
                 android:layout_marginTop="5dp"
@@ -59,14 +59,14 @@
         </FrameLayout>
         <FrameLayout
             android:id="@+id/usercode_layout"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/username_layout"
             android:layout_marginTop="6dp"
             android:gravity="center" >
             <EditText
                 android:id="@+id/password"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
             android:inputType="textPassword"
@@ -100,7 +100,7 @@
 
     <Button
         android:id="@+id/login"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/usercode_layout"
         android:layout_marginTop="30dp"
