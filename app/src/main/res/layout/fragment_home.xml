@@ -2,7 +2,8 @@
 <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                               xmlns:tools="http://schemas.android.com/tools"
                                               android:layout_width="match_parent"
-                                              android:layout_height="wrap_content">
+                                              android:layout_height="wrap_content"
+                                              android:background="@color/bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +22,7 @@
                 android:layout_width="39dp"
                 android:layout_height="45dp"
                 android:layout_weight="0.06 "
-                android:src="@drawable/category" />
+                android:src="@drawable/category"/>
 
             <EditText
                 android:id="@+id/SearchEt"
@@ -29,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.93"
                 android:drawableLeft="@drawable/search"
-                android:hint="请输入搜索内容" />
+                android:hint="请输入搜索内容"/>
 
 
             <ImageView
@@ -37,7 +38,7 @@
                 android:layout_width="39dp"
                 android:layout_height="45dp"
                 android:layout_weight="0.06"
-                android:src="@drawable/message" />
+                android:src="@drawable/message"/>
 
 
         </LinearLayout>
@@ -57,7 +58,7 @@
                     android:layout_height="85dp"
                     android:background="@color/colorAccent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/banner" />
+                    android:src="@drawable/banner"/>
 
                 <LinearLayout
                     android:id="@+id/category_ly"
@@ -74,11 +75,11 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:drawableTop="@drawable/fuzhuang"
-                        android:gravity="center"
                         android:layout_weight="1"
                         android:clickable="true"
-                        android:text="服装" />
+                        android:drawableTop="@drawable/fuzhuang"
+                        android:gravity="center"
+                        android:text="服装"/>
 
                     <TextView
                         android:id="@+id/riyong_tv"
@@ -87,11 +88,11 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:drawableTop="@drawable/jiaju"
-                        android:gravity="center"
                         android:layout_weight="1"
                         android:clickable="true"
-                        android:text="百货" />
+                        android:drawableTop="@drawable/jiaju"
+                        android:gravity="center"
+                        android:text="百货"/>
 
                     <TextView
                         android:id="@+id/shipin_tv"
@@ -100,11 +101,11 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:drawableTop="@drawable/shipin"
-                        android:gravity="center"
                         android:layout_weight="1"
                         android:clickable="true"
-                        android:text="食品" />
+                        android:drawableTop="@drawable/shipin"
+                        android:gravity="center"
+                        android:text="食品"/>
 
                     <TextView
                         android:id="@+id/shengxian_tv"
@@ -113,11 +114,11 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="10dp"
-                        android:drawableTop="@drawable/shengxian"
-                        android:gravity="center"
                         android:layout_weight="1"
                         android:clickable="true"
-                        android:text="生鲜" />
+                        android:drawableTop="@drawable/shengxian"
+                        android:gravity="center"
+                        android:text="生鲜"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -132,9 +133,9 @@
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
                         android:background="#fee1dd"
-                        android:orientation="vertical"
-                        android:layout_weight="1">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/zhipin_tv"
@@ -142,7 +143,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:gravity="center"
-                            android:text="纸品迎新年" />
+                            android:text="纸品迎新年"/>
 
                         <ImageView
                             android:id="@+id/zhipin_img"
@@ -150,14 +151,14 @@
                             android:layout_height="80dp"
                             android:layout_gravity="center"
                             android:scaleType="fitXY"
-                            android:src="@drawable/zhipin" />
+                            android:src="@drawable/zhipin"/>
 
                         <TextView
                             android:id="@+id/bk1_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="爆款直降" />
+                            android:text="爆款直降"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -166,9 +167,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
+                        android:layout_weight="1"
                         android:background="#fee1dd"
-                        android:orientation="vertical"
-                        android:layout_weight="1">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/meijiu_tv"
@@ -176,7 +177,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:gravity="center"
-                            android:text="品质美酒" />
+                            android:text="品质美酒"/>
 
                         <ImageView
                             android:id="@+id/meijiu_img"
@@ -184,7 +185,7 @@
                             android:layout_height="80dp"
                             android:layout_gravity="center"
                             android:scaleType="fitXY"
-                            android:src="@drawable/meijiu" />
+                            android:src="@drawable/meijiu"/>
 
                         <TextView
                             android:id="@+id/bk2_tv"
@@ -192,7 +193,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="3dp"
-                            android:text="爆款直降" />
+                            android:text="爆款直降"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -200,9 +201,9 @@
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
+                        android:layout_weight="1"
                         android:background="#fee1dd"
-                        android:orientation="vertical"
-                        android:layout_weight="1">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/penghua_tv"
@@ -210,7 +211,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="2dp"
-                            android:text="休闲膨化" />
+                            android:text="休闲膨化"/>
 
                         <ImageView
                             android:id="@+id/penghua_img"
@@ -218,7 +219,7 @@
                             android:layout_height="80dp"
                             android:layout_gravity="center"
                             android:scaleType="fitXY"
-                            android:src="@drawable/penghua" />
+                            android:src="@drawable/penghua"/>
 
                         <TextView
                             android:id="@+id/wuzhe_tv"
@@ -226,7 +227,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="3dp"
-                            android:text="买2免1" />
+                            android:text="买2免1"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -237,7 +238,7 @@
                     android:columnWidth="90dp"
                     android:horizontalSpacing="2dp"
                     android:numColumns="2"
-                    android:verticalSpacing="2dp" />
+                    android:verticalSpacing="2dp"/>
 
             </LinearLayout>
 
