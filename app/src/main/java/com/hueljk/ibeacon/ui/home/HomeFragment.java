@@ -146,7 +146,7 @@ public class HomeFragment extends BaseFragment {
     public void execute() throws Exception {
 
         Request request = new Request.Builder()
-                .url(UrlConstants.clothing)
+                .url(UrlConstants.goodsUrl)
                 .build();
         Call call = client.newCall(request);
         call.enqueue(new Callback() {

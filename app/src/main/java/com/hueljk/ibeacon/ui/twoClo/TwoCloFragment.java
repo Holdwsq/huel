@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.gson.reflect.TypeToken;
 import com.hueljk.ibeacon.R;
@@ -37,11 +38,12 @@ import okhttp3.Response;
 /**
  * Created by zc on 2017/2/7.
  */
-public class TwoCloFragment extends BaseFragment{
+public class TwoCloFragment extends BaseFragment implements View.OnClickListener {
     private GridView mGridView;
     private static OkHttpClient client;
     private MyAdpter_Clothes adapter;
     private ImageView home_img;
+
     static {
         client = new OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS).build();
     }
@@ -49,15 +51,34 @@ public class TwoCloFragment extends BaseFragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_two_clo, container, false);
+        //LayoutInflater他是一个打气筒工具，将布局填充的view里面
+        View v = inflater.inflate(R.layout.fragment_two_clo, container, false);
+        return v;
     }
+
+    private View menu1, menu2, menu3;
+    private View menu_line_1, menu_line_2, menu_line_3;
 
     @Override
     protected void initView(View view) {
         super.initView(view);
-        mGridView=(GridView)view.findViewById(R.id.clothes_gridView);
+        mGridView = (GridView) view.findViewById(R.id.clothes_gridView);
+        home_img = (ImageView) view.findViewById(R.id.two_cloreturn_img);
 
-        home_img=(ImageView)view.findViewById(R.id.two_cloreturn_img);
+        menu1 = view.findViewById(R.id.twoclo_menu_1);
+        menu2 = view.findViewById(R.id.twoclo_menu_2);
+        menu3 = view.findViewById(R.id.twoclo_menu_3);
+
+        menu1.setOnClickListener(this);
+        menu2.setOnClickListener(this);
+        menu3.setOnClickListener(this);
+
+        menu_line_1 = view.findViewById(R.id.menu_line_1);
+        menu_line_2 = view.findViewById(R.id.menu_line_2);
+        menu_line_3 = view.findViewById(R.id.menu_line_3);
+
+        //当前为选中状态的菜单下划线
+        mCurLine = menu_line_1;
     }
 
     @Override
@@ -66,12 +87,12 @@ public class TwoCloFragment extends BaseFragment{
         super.setData();
         List<Clothes> clothes = new ArrayList<>();
         for (int i = 0; i < 40; i++) {
-            Clothes clothes1 = new Clothes("",1000,"女式上衣");
+            Clothes clothes1 = new Clothes("", 1000, "女式上衣");
             clothes.add(clothes1);
         }
         /*MyAdpter_Clothes adapter = new MyAdpter_Clothes(this,clothes);
         mGridView.setAdapter(adapter);*/
-        adapter=new MyAdpter_Clothes(getContext(),clothes);
+        adapter = new MyAdpter_Clothes(getContext(), clothes);
         mGridView.setAdapter(adapter);
         new Thread(new Runnable() {
             @Override
@@ -91,12 +112,13 @@ public class TwoCloFragment extends BaseFragment{
         home_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mMainActivity.showFragment(HomeFragment.class,"Clo_2_Home");
-                //Intent intent=new Intent(TwoCloActivity.this,HomeFragment.class);
-                //startActivity(intent);
+
+                popSelf();
+
             }
         });
     }
+
     public void execute() throws Exception {
 
         Request request = new Request.Builder()
@@ -123,7 +145,7 @@ public class TwoCloFragment extends BaseFragment{
                         Result<List<Clothes>> listResult = JsonUtils.parse(ret, listType);
                         if (listResult.mCode == 200) {
                             List<Clothes> clothes = listResult.mData;
-                            adapter .update(clothes);
+                            adapter.update(clothes);
 
                         }
 
@@ -134,5 +156,34 @@ public class TwoCloFragment extends BaseFragment{
 
             }
         });
+    }
+
+    private View mCurLine;
+
+    @Override
+    public void onClick(View v) {
+        //参数view 是被点击的控件
+        /**
+         *  1.将当前的线隐藏掉
+         *  2.被点击的菜单的线要显示出来
+         *  3.将当前的线跟新一下
+         */
+
+        mCurLine.setVisibility(View.INVISIBLE);
+
+        switch (v.getId()) {
+            case R.id.twoclo_menu_1:
+                menu_line_1.setVisibility(View.VISIBLE);
+                mCurLine = menu_line_1;
+                break;
+            case R.id.twoclo_menu_2:
+                menu_line_2.setVisibility(View.VISIBLE);
+                mCurLine = menu_line_2;
+                break;
+            case R.id.twoclo_menu_3:
+                menu_line_3.setVisibility(View.VISIBLE);
+                mCurLine = menu_line_3;
+                break;
+        }
     }
 }

@@ -56,9 +56,7 @@ public class TwoFoodFragment extends BaseFragment{
         home_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mMainActivity.showFragment(HomeFragment.class,"Food_2_Home");
-                //Intent intent=new Intent(TwoCloActivity.this,HomeFragment.class);
-                //startActivity(intent);
+               popSelf();
             }
         });
     }

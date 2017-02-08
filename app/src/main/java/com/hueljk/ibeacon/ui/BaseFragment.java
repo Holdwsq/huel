@@ -1,6 +1,7 @@
 package com.hueljk.ibeacon.ui;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,11 +23,13 @@ public class BaseFragment extends Fragment {
      * 2.点击事件的穿透: view.setClickable(true);
      */
     protected MainActivity mMainActivity;
+    protected Context mContext;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mMainActivity = (MainActivity) getActivity();
+        mContext = getContext();
 
         //处理点击事件的穿透
         view.setClickable(true);
@@ -47,5 +50,8 @@ public class BaseFragment extends Fragment {
     }
 
 
+    protected void popSelf(){
+        getFragmentManager().popBackStackImmediate();
+    }
 
 }

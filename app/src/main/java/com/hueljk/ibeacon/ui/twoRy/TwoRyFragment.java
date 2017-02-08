@@ -58,9 +58,7 @@ public class TwoRyFragment extends BaseFragment{
         home_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mMainActivity.returnHomeFragment(HomeFragment.class,"Ry_2_Home");
-               // Intent intent = new Intent(TwoRyActivity.this, HomeFragment.class);
-                //startActivity(intent);
+             popSelf();
             }
         });
 
