@@ -9,7 +9,97 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
+        <!-- 小对勾的布局 -->
 
+        <ImageView
+            android:id="@+id/pro_checkbox"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
+
+
+        <!-- 图片布局 -->
+        <ImageView
+            android:id="@+id/pro_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@+id/pro_checkbox"
+            android:scaleType="centerCrop"
+            android:src="@drawable/mail"/>
+
+        <!-- 商品名称的布局 -->
+        <TextView
+            android:id="@+id/pro_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/pro_image"
+            android:text="女式毛衣"
+            android:textSize="18sp"/>
+        <!-- 商品颜色和价格的布局 -->
+        <TextView
+            android:id="@+id/pro_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/pro_name"
+            android:layout_below="@+id/pro_name"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="10dp"
+            android:text="颜色：红色"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/pro_Price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pro_name"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/pro_color"
+            android:text="价格：￥88"
+            android:textSize="16sp"/>
+
+        <!-- 加号 -->
+        <TextView
+            android:id="@+id/pro_add"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_below="@+id/pro_color"
+            android:layout_toRightOf="@+id/pro_image"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
+            android:text="+"/>
+        <!--  -->
+        <TextView
+            android:id="@+id/pro_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pro_Price"
+            android:layout_alignBottom="@id/pro_add"
+            android:gravity="center"
+            android:text="10"
+            android:textSize="20sp"
+            android:layout_toEndOf="@+id/pro_add"
+            android:layout_toRightOf="@+id/pro_add"/>
+
+
+        <!-- 减号-->
+        <TextView
+            android:id="@+id/pro_minus"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_toRightOf="@+id/pro_count"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:layout_centerHorizontal="true"
+            android:text="-"
+            android:layout_alignBottom="@+id/pro_count"
+            android:layout_below="@+id/pro_color"/>
 
 
     </RelativeLayout>
