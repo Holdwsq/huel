@@ -4,113 +4,114 @@
              android:layout_height="match_parent"
              tools:context="com.hueljk.ibeacon.ui.home.FreshFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/img_1"
-            android:layout_width="wrap_content"
-            android:layout_height="140dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/fresh_img_1"/>
-
-        <ImageView
-            android:id="@+id/img_2"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_toRightOf="@+id/img_1"
-            android:scaleType="fitXY"
-            android:src="@drawable/fresh_img_2"/>
-
-        <ImageView
-            android:id="@+id/img_3"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_below="@+id/img_2"
-            android:layout_toEndOf="@+id/img_1"
-            android:layout_toRightOf="@+id/img_1"
-            android:scaleType="fitXY"
-            android:src="@drawable/fresh_img_3"
-            />
-
-        <ImageView
-            android:id="@+id/img_4"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/img_1"
-            android:scaleType="fitXY"
-            android:src="@drawable/fresh_img_4"/>
-
-        <LinearLayout
-            android:id="@+id/fresh_tuijian"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/img_4"
-            android:background="#e6e9ea"
-            android:weightSum="4">
+            android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/img_5"
+                android:id="@+id/img_1"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:layout_weight="1"
+                android:layout_height="140dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/fresh_img_5"/>
+                android:src="@drawable/fresh_img_1"/>
 
             <ImageView
-                android:id="@+id/img_6"
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:layout_weight="1"
+                android:id="@+id/img_2"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_toRightOf="@+id/img_1"
                 android:scaleType="fitXY"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp"
-                android:src="@drawable/fresh_img_5"/>
+                android:src="@drawable/fresh_img_2"/>
 
             <ImageView
-                android:id="@+id/img_7"
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:layout_weight="1"
+                android:id="@+id/img_3"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/img_2"
+                android:layout_toEndOf="@+id/img_1"
+                android:layout_toRightOf="@+id/img_1"
                 android:scaleType="fitXY"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp"
-                android:src="@drawable/fresh_img_5"/>
+                android:src="@drawable/fresh_img_3"
+                />
 
             <ImageView
-                android:id="@+id/img_8"
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:layout_weight="1"
+                android:id="@+id/img_4"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/img_1"
                 android:scaleType="fitXY"
-                android:src="@drawable/fresh_img_5"/>
-        </LinearLayout>
-        <TextView
-            android:id="@+id/fresh_biaoti"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:gravity="center"
-            android:layout_below="@+id/fresh_tuijian"
-            android:text="-------  大家都在买  -------"
-            />
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/fresh_biaoti">
+                android:src="@drawable/fresh_img_4"/>
 
-        </ListView>
-    </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/fresh_tuijian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_4"
+                android:background="#e6e9ea"
+                android:weightSum="4">
 
-</ScrollView>
+                <ImageView
+                    android:id="@+id/img_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/fresh_img_5"/>
+
+                <ImageView
+                    android:id="@+id/img_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/fresh_img_5"/>
+
+                <ImageView
+                    android:id="@+id/img_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/fresh_img_5"/>
+
+                <ImageView
+                    android:id="@+id/img_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/fresh_img_5"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/fresh_biaoti"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_below="@+id/fresh_tuijian"
+                android:gravity="center"
+                android:text="-------  大家都在买  -------"
+                />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/fresh_biaoti">
+
+            </ListView>
+        </RelativeLayout>
+
+    </ScrollView>
 </FrameLayout>
