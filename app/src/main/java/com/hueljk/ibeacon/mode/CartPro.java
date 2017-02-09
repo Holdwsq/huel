@@ -30,7 +30,7 @@ public class CartPro extends BaseEntity {
 
     private Boolean isSelected ;
 
-    public CartPro(String mId, String mName, String mUrl, float price, int icon, int check, String color, String add, String minus, String count) {
+    public CartPro(int mId, String mName, String mUrl, float price, int icon, int check, String color, String add, String minus, String count) {
         super(mId, mName, mUrl);
         mPrice = price;
         mIcon = icon;

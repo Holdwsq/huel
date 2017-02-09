@@ -58,7 +58,6 @@ public class HomeFragment extends BaseFragment {
     private TextView shipin_tv;
     private TextView riyong_tv;
     private TextView clothes_tv;
-    private TextView shengxian_tv;
 
     static {
         client = new OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS).build();
@@ -84,7 +83,6 @@ public class HomeFragment extends BaseFragment {
         shipin_tv = (TextView) view.findViewById(R.id.shipin_tv);
         riyong_tv = (TextView) view.findViewById(R.id.riyong_tv);
         clothes_tv = (TextView) view.findViewById(R.id.clothes_tv);
-        shengxian_tv = (TextView)view.findViewById(R.id.shengxian_tv);
 
     }
 
@@ -144,18 +142,6 @@ public class HomeFragment extends BaseFragment {
 
             }
         });
-        shengxian_tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "--", Toast.LENGTH_SHORT).show();
-                mMainActivity.showFragment(FreshFragment.class,"Home_2_sx");
-
-                // Intent intent = new Intent(getContext(), TwoFoodActivity.class);
-                //startActivity(intent);
-
-            }
-        });
-
     }
 
     public void execute() throws Exception {

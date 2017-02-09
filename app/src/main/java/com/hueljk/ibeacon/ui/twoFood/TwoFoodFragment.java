@@ -43,7 +43,7 @@ public class TwoFoodFragment extends BaseFragment{
         super.setData();
         List<Goods> foods = new ArrayList<>();
         for (int i = 0; i < 40; i++) {
-            Goods mFoods = new Goods("","", "维达抽纸", 1000, "",80);
+            Goods mFoods = new Goods(i,"", "维达抽纸", 1000, "",80);
             foods.add(mFoods);
         }
         MyAdapter adapter = new MyAdapter(getContext(), foods);

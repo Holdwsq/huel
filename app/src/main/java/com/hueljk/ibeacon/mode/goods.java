@@ -15,7 +15,7 @@ public class Goods {
                 "sold": 900
      */
     @SerializedName("id")
-    private String mId;
+    private int mId;
     @SerializedName("name")
     private String mName;
     @SerializedName("url")
@@ -27,7 +27,7 @@ public class Goods {
     @SerializedName("sold")
     private int mSold;
 
-    public Goods(String id, String name, String purl, float price, String pdesc, int sold) {
+    public Goods(int id, String name, String purl, float price, String pdesc, int sold) {
         mId = id;
         mName = name;
         mPurl = purl;
@@ -39,11 +39,11 @@ public class Goods {
     public Goods() {
     }
 
-    public String getId() {
+    public int getId() {
         return mId;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         mId = id;
     }
 

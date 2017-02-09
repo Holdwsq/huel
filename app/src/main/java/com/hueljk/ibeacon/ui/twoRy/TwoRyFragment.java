@@ -45,7 +45,7 @@ public class TwoRyFragment extends BaseFragment{
         super.setData();
         List<Goods> rys = new ArrayList<>();
         for (int i = 0; i < 40; i++) {
-            Goods mRys = new Goods("","", "维达抽纸", 1000, "",80);
+            Goods mRys = new Goods(i,"", "维达抽纸", 1000, "",80);
             rys.add(mRys);
         }
         MyAdapter adapter = new MyAdapter(getContext(), rys);
