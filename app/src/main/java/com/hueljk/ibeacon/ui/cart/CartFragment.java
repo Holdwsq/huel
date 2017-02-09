@@ -1,6 +1,7 @@
 package com.hueljk.ibeacon.ui.cart;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -23,6 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import static com.hueljk.ibeacon.R.id.textView;
+import static com.hueljk.ibeacon.R.id.view_offset_helper;
+
 
 
 /**
@@ -34,6 +38,10 @@ public class CartFragment extends BaseFragment {
     private List<CartPro> mProducts = new ArrayList<>();
 
     private CartAdapter mAdapter;
+    private TextView medit_tx;
+    private TextView mTextView;
+    private View mImageView;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,13 +54,17 @@ public class CartFragment extends BaseFragment {
     protected void initView(View view) {
         super.initView(view);
         mListView = (ListView) view.findViewById(R.id.cart_listview);
+        medit_tx = (TextView) view.findViewById(R.id.edit_tx);
+        mImageView = (ImageView) view.findViewById(R.id.share_img);
+        mTextView = (TextView) view.findViewById(R.id.jiesuan_button);
+
     }
 
     @Override
     protected void setData() {
         super.setData();
         for (int i = 1; i < 10; i++) {
-            CartPro p = new CartPro(i + "", "女式毛衣", "url", 88, R.drawable.clothes1, R.drawable.checkbox1, "红色", "+", "-", "10");
+            CartPro p = new CartPro(i + "", "女式毛衣", "url", 88, R.drawable.clothes1, R.drawable.checkbox1, "灰色", "+", "-", "10");
             p.setSelected(false);
             mProducts.add(p);
         }
@@ -70,7 +82,6 @@ public class CartFragment extends BaseFragment {
                         Toast.LENGTH_SHORT).show();
                 switch (i) {
                     case 0:
-                        //跳转会员专区
                         mMainActivity.showFragment(NavFragment.class, "购物车商品");
                         break;
                     case 1:
@@ -95,15 +106,33 @@ public class CartFragment extends BaseFragment {
 
             }
         });
+
+
+        //编辑和分享的点击事件
+        medit_tx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "您点击了编辑", 0).show();
+
+            }
+        });
+        mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "您点击了分享", 0).show();
+
+            }
+        });
+        mTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "您点击了结算", 0).show();
+
+            }
+        });
+
     }
 }
-
-
-
-
-
-
-
 
 
 
