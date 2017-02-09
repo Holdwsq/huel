@@ -23,8 +23,10 @@ import com.hueljk.ibeacon.ui.navigation.NavFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import static com.hueljk.ibeacon.R.id.textView;
 import static com.hueljk.ibeacon.R.id.view_offset_helper;
+
 
 
 /**

@@ -37,6 +37,7 @@
             android:layout_below="@+id/sec_top1"
             android:background="#22da4a"
             android:src="@drawable/sec_top2"
+
             android:scaleType="fitXY"/>
         <ImageView
             android:id="@+id/sec_top3"
@@ -91,7 +92,7 @@
                 android:layout_height="250dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
-                android:layout_below="@+id/sec_top3"
+                android:layout_below="@+id/sec_top4"
                 android:background="#206cb4"
                 android:layout_weight="1"
                 android:src="@drawable/sec_top6"
@@ -102,7 +103,7 @@
                 android:id="@+id/sec_top7"
                 android:layout_width="50dp"
                 android:layout_height="250dp"
-                android:layout_toRightOf="@+id/sec_top4"
+                android:layout_toRightOf="@+id/sec_top6"
                 android:layout_weight="1"
                 android:background="#8c6060"
                 android:src="@drawable/sec_top7"

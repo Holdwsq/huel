@@ -41,17 +41,17 @@
                 >
 
                 <ImageView
-                    android:id="@+id/headimg"
+                    android:id="@+id/person_headimg"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="@dimen/activity_horizontal_margin"
                     android:layout_weight="1"
-                    android:src="@drawable/a"/>
+                    android:src="@drawable/head_icon"/>
 
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/person_name"
                     android:layout_width="wrap_content"
                     android:layout_height="27dp"
                     android:layout_gravity="center"
@@ -89,7 +89,7 @@
                 android:text="我的会员值"/>
 
             <TextView
-                android:id="@+id/my_shoucang"
+                android:id="@+id/my_collect"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
@@ -101,6 +101,7 @@
                 android:text="我的收藏"/>
 
             <TextView
+                android:id="@+id/my_foucs"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
