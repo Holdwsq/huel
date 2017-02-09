@@ -216,7 +216,7 @@ public class HomeFragment extends BaseFragment {
 
                         }
 
-                        // 解析json数据得到bean
+                        // 解析json数据得到beanbhjgvhjgvhvhv
 
                     }
                 });
