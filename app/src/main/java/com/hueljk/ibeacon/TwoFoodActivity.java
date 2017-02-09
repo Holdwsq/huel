@@ -8,6 +8,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.hueljk.ibeacon.mode.Goods;
 import com.hueljk.ibeacon.mode.Product;
 import com.hueljk.ibeacon.ui.adapter.MyAdapter;
 import com.hueljk.ibeacon.ui.home.HomeFragment;
@@ -23,12 +24,12 @@ public class TwoFoodActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two_food);
         mGridView = (GridView) findViewById(R.id.shipin_gridView);
-        List<Product> products = new ArrayList<>();
+        List<Goods> foods = new ArrayList<>();
         for (int i = 0; i < 40; i++) {
-            Product product = new Product("", "维达抽纸", 1000, 80, R.drawable.cart);
-            products.add(product);
+            Goods mFoods = new Goods("","", "维达抽纸", 1000, "",80);
+            foods.add(mFoods);
         }
-        MyAdapter adapter = new MyAdapter(this, products);
+        MyAdapter adapter = new MyAdapter(this, foods);
         mGridView.setAdapter(adapter);
         int height = 99 / 3 * 220;
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mGridView.getLayoutParams();

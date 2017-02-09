@@ -150,7 +150,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:scaleType="fitXY"
-                        android:src="@drawable/xiuxian" />
+                        android:src="@drawable/meijiu" />
 
 
                     <ImageView
