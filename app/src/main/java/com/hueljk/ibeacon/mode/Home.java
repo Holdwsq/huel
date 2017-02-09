@@ -1,15 +1,29 @@
 package com.hueljk.ibeacon.mode;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
  * Created by zc on 2017/1/20.
  */
 public class Home {
+    @SerializedName("banner")
     private List<BaseEntity> mBanners;
-    private List<BaseEntity> mMains;
+    @SerializedName("discount")
     private List<BaseEntity> mDiscounts;
-    private List<Product> mProducts;
+    @SerializedName("goods")
+    private List<Goods> mGoods;
+
+    public Home(List<BaseEntity> banners, List<BaseEntity> discounts, List<Goods> goods) {
+
+        mBanners = banners;
+        mDiscounts = discounts;
+        mGoods = goods;
+    }
+
+    public Home() {
+    }
 
     public List<BaseEntity> getBanners() {
         return mBanners;
@@ -17,14 +31,6 @@ public class Home {
 
     public void setBanners(List<BaseEntity> banners) {
         mBanners = banners;
-    }
-
-    public List<BaseEntity> getMains() {
-        return mMains;
-    }
-
-    public void setMains(List<BaseEntity> mains) {
-        mMains = mains;
     }
 
     public List<BaseEntity> getDiscounts() {
@@ -35,11 +41,11 @@ public class Home {
         mDiscounts = discounts;
     }
 
-    public List<Product> getProducts() {
-        return mProducts;
+    public List<Goods> getGoods() {
+        return mGoods;
     }
 
-    public void setProducts(List<Product> products) {
-        mProducts = products;
+    public void setGoods(List<Goods> goods) {
+        mGoods = goods;
     }
 }

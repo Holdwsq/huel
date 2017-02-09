@@ -10,37 +10,36 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hueljk.ibeacon.R;
-import com.hueljk.ibeacon.mode.Goods;
-import com.hueljk.ibeacon.mode.Product;
 import com.hueljk.ibeacon.constants.UrlConstants;
+import com.hueljk.ibeacon.mode.Goods;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by zc on 2017/1/16.
+ * Created by zc on 2017/2/9.
  */
-public class MyAdapter extends BaseAdapter {
+public class HomeAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
-    private List<Goods> mProducts = new ArrayList<>();
+    private List<Goods> mGoodses = new ArrayList<>();
     private Context mContext;
 
-    public MyAdapter(Context context, List<Goods> products) {
+    public HomeAdapter(Context context, List<Goods> products) {
         mInflater = LayoutInflater.from(context);
         mContext=context;
         if (products != null) {
-            mProducts.addAll(products);
+            mGoodses.addAll(products);
         }
     }
 
     @Override
     public int getCount() {
-        return mProducts.size();
+        return mGoodses.size();
     }
 
     @Override
     public Goods getItem(int position) {
-        return mProducts.get(position);
+        return mGoodses.get(position);
     }
 
     @Override
@@ -65,7 +64,7 @@ public class MyAdapter extends BaseAdapter {
             holder = (Holder) convertView.getTag();
         }
         Goods goods = getItem(position);
-       // holder.mPIconUrl.setImageResource(product.getPurl());
+        //holder.mPIconUrl.setImageResource(product.getPurl());
         Glide
                 .with(mContext)
                 .load(UrlConstants.picBaseUrl+goods.getPurl())
@@ -79,9 +78,9 @@ public class MyAdapter extends BaseAdapter {
         return convertView;
     }
     public void update(List<Goods> data) {
-        mProducts.clear();
+        mGoodses.clear();
         if (data != null) {
-            mProducts.addAll(data);
+            mGoodses.addAll(data);
         }
         notifyDataSetChanged();
     }
@@ -94,6 +93,3 @@ public class MyAdapter extends BaseAdapter {
         private ImageView mCIon;
     }
 }
-
-
-

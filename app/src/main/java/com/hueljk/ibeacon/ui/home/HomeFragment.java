@@ -20,6 +20,7 @@ import com.hueljk.ibeacon.TwoCloActivity;
 import com.hueljk.ibeacon.TwoFoodActivity;
 import com.hueljk.ibeacon.TwoRyActivity;
 import com.hueljk.ibeacon.constants.UrlConstants;
+import com.hueljk.ibeacon.mode.Goods;
 import com.hueljk.ibeacon.mode.Home;
 import com.hueljk.ibeacon.mode.CartPro;
 import com.hueljk.ibeacon.mode.Product;
@@ -88,12 +89,12 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected void setData() {
         super.setData();
-        List<Product> products = new ArrayList<>();
+        List<Goods> goods = new ArrayList<>();
         for (int i = 0; i < 40; i++) {
-            Product product = new Product("", "维达抽纸", 1000, 80, R.drawable.cart);
-            products.add(product);
+            Goods mGoods = new Goods("","", "维达抽纸", 1000, "",80);
+            goods.add(mGoods);
         }
-        mAdapter = new MyAdapter(getContext(), products);
+        mAdapter = new MyAdapter(getContext(), goods);
 
         mGridView.setAdapter(mAdapter);
         new Thread(new Runnable() {
@@ -164,13 +165,15 @@ public class HomeFragment extends BaseFragment {
 
                         //Type listType = new TypeToken<List<BaseEntity>>(){}.getType();
                         //List<BaseEntity> list = JsonUtils.parse(ret,listType);
+
                         Type listType = new TypeToken<Result<Home>>() {
                         }.getType();
                         Result<Home> listResult = JsonUtils.parse(ret, listType);
                         if (listResult.mCode == 200) {
                             Home homelist = listResult.mData;
-                            List<Product> products = homelist.getProducts();
-                            mAdapter.update(products);
+                            List<Goods> goods = homelist.getGoods();
+
+                            mAdapter.update(goods);
 
                         }
 
