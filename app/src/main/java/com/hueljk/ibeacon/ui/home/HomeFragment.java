@@ -1,7 +1,7 @@
 package com.hueljk.ibeacon.ui.home;
 
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,18 +17,16 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.reflect.TypeToken;
 import com.hueljk.ibeacon.R;
-import com.hueljk.ibeacon.TwoCloActivity;
-import com.hueljk.ibeacon.TwoFoodActivity;
-import com.hueljk.ibeacon.TwoRyActivity;
 import com.hueljk.ibeacon.constants.UrlConstants;
 import com.hueljk.ibeacon.mode.BaseEntity;
 import com.hueljk.ibeacon.mode.Goods;
 import com.hueljk.ibeacon.mode.Home;
-import com.hueljk.ibeacon.mode.CartPro;
-import com.hueljk.ibeacon.mode.Product;
 import com.hueljk.ibeacon.mode.Result;
 import com.hueljk.ibeacon.ui.BaseFragment;
 import com.hueljk.ibeacon.ui.adapter.MyAdapter;
+import com.hueljk.ibeacon.ui.home.banner.BannerImageViewUtils;
+import com.hueljk.ibeacon.ui.home.banner.CycleViewPager;
+import com.hueljk.ibeacon.ui.home.banner.ImageCycleViewListener;
 import com.hueljk.ibeacon.ui.twoClo.TwoCloFragment;
 import com.hueljk.ibeacon.ui.twoFood.TwoFoodFragment;
 import com.hueljk.ibeacon.ui.twoRy.TwoRyFragment;
@@ -64,11 +62,12 @@ public class HomeFragment extends BaseFragment {
     private ImageView homezp_img;
     private ImageView homemj_img;
     private ImageView homeph_img;
+    private Context mContext;
+    private CycleViewPager mCycleViewPager;
 
     static {
         client = new OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS).build();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,9 +81,6 @@ public class HomeFragment extends BaseFragment {
         super.initView(view);
         //hideSoftKeyboard();
         mGridView = (GridView) view.findViewById(R.id.product_gridView);
-
-
-        //ImageView category_iv = (ImageView) view.findViewById(R.id.category_img);
         shipin_tv = (TextView) view.findViewById(R.id.shipin_tv);
         riyong_tv = (TextView) view.findViewById(R.id.riyong_tv);
         clothes_tv = (TextView) view.findViewById(R.id.clothes_tv);
@@ -92,16 +88,17 @@ public class HomeFragment extends BaseFragment {
         homezp_img = (ImageView) view.findViewById(R.id.homezp_img);
         homemj_img = (ImageView) view.findViewById(R.id.homemj_img);
         homeph_img = (ImageView) view.findViewById(R.id.homeph_img);
-
-
+        mContext = getContext();
+        // 找到轮播控件
+        mCycleViewPager = (CycleViewPager) getChildFragmentManager()
+                .findFragmentById(R.id.main_fragment_banner);
+        initBanner();
     }
 
     @Override
     protected void setData() {
         super.setData();
-
         mAdapter = new MyAdapter(getContext(), null);
-
         mGridView.setAdapter(mAdapter);
         new Thread(new Runnable() {
             @Override
@@ -113,24 +110,18 @@ public class HomeFragment extends BaseFragment {
                 }
             }
         }).start();
-
         clothes_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "--", Toast.LENGTH_SHORT).show();
                 mMainActivity.showFragment(TwoCloFragment.class, "Home_2_Clo");
-                //Intent intent = new Intent(getContext(), TwoCloActivity.class);
-                //startActivity(intent);
             }
         });
-
         riyong_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "--", Toast.LENGTH_SHORT).show();
                 mMainActivity.showFragment(TwoRyFragment.class, "Home_2_Ry");
-                //Intent intent = new Intent(getContext(), TwoRyActivity.class);
-                //startActivity(intent);
             }
         });
         shipin_tv.setOnClickListener(new View.OnClickListener() {
@@ -139,9 +130,6 @@ public class HomeFragment extends BaseFragment {
                 Toast.makeText(getContext(), "--", Toast.LENGTH_SHORT).show();
                 mMainActivity.showFragment(TwoFoodFragment.class, "Home_2_Ry");
 
-                // Intent intent = new Intent(getContext(), TwoFoodActivity.class);
-                //startActivity(intent);
-
             }
         });
         shengxian_tv.setOnClickListener(new View.OnClickListener() {
@@ -149,48 +137,39 @@ public class HomeFragment extends BaseFragment {
             public void onClick(View v) {
                 Toast.makeText(getContext(), "--", Toast.LENGTH_SHORT).show();
                 mMainActivity.showFragment(FreshFragment.class, "Home_2_sx");
-
-                // Intent intent = new Intent(getContext(), TwoFoodActivity.class);
-                //startActivity(intent);
-
             }
         });
     }
 
     public void execute() throws Exception {
-
-
         Request request = new Request.Builder()
                 .url(UrlConstants.HomeUrl)
                 .build();
         Call call = client.newCall(request);
-
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e("-----", "error");
             }
-
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
                 final String ret = response.body().string();
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
-                        Log.d("---", ret);
-                        //Type listType = new TypeToken<List<BaseEntity>>(){}.getType();
-                        //List<BaseEntity> list = JsonUtils.parse(ret,listType);
+                        //Log.d("---", ret);
                         Type listType = new TypeToken<Result<Home>>() {
                         }.getType();
+                        //解析Json数据得到结果集
                         Result<Home> listResult = JsonUtils.parse(ret, listType);
                         if (listResult.mCode == 200) {
                             Home homelist = listResult.mData;
                             //更新banner
+                            List<BaseEntity> banners = homelist.getBanners();
+                            setBanner(banners);
                             //更新dicounts
                             List<BaseEntity> discounts = homelist.getDiscounts();
-                            Log.d("----", discounts.toString());
-
+                            //Log.d("----", discounts.toString());
                             Glide
                                     .with(mContext)
                                     .load(UrlConstants.BannerDisUrl + discounts.get(0).getUrl())
@@ -209,8 +188,6 @@ public class HomeFragment extends BaseFragment {
                                     .placeholder(R.drawable.shangpin1)
                                     .error(R.drawable.shangpin1)
                                     .into(homeph_img);
-
-
                             //更新goods
                             List<Goods> goods = homelist.getGoods();
                             int height = goods.size() / 2 * 230 + 80;
@@ -218,19 +195,69 @@ public class HomeFragment extends BaseFragment {
                             DisplayUtils.init(getContext());
                             params.height = DisplayUtils.dip2px(height);
                             mGridView.setLayoutParams(params);
-                            Log.d("-------", goods.size()+"");
+                            Log.d("-------", goods.size() + "");
                             Log.d("-------", goods.toString());
                             mAdapter.update(goods);
-
-
                         }
-
-                        // 解析json数据得到beanbhjgvhjgvhvhv
-
                     }
                 });
 
             }
         });
     }
+    // 由banner工厂生产出来的imageview
+    private ImageView bannerImageView;
+    private List<ImageView> mImageViews = new ArrayList<>();
+    private void initBanner() {
+        bannerImageView = BannerImageViewUtils.getImageView(mContext);
+        bannerImageView.setImageResource(R.drawable.banner);
+        mImageViews.add(bannerImageView);
+        // 设置循环，在调用setData方法前调用
+        mCycleViewPager.setCycle(false);
+        // 在加载数据前设置是否循环
+        mCycleViewPager.setData(mImageViews, null, null);
+        // 设置轮播
+        mCycleViewPager.setWheel(false);
+        // 设置圆点指示图标组居中显示，默认靠右
+        mCycleViewPager.setIndicatorCenter();
+        mImageViews.clear();
+    }
+    private void setBanner(List<BaseEntity> banners) {
+        DisplayUtils.init(mContext);
+        mImageViews.clear();
+        for (BaseEntity banner : banners) {
+            bannerImageView = BannerImageViewUtils.getImageView(mContext);
+            Glide.with(mContext).load(UrlConstants.BannerDisUrl + banner.getUrl())
+                    .placeholder(R.drawable.banner)
+                    .centerCrop()
+                    .into(bannerImageView);
+            mImageViews.add(bannerImageView);
+        }
+        //重新添加第一个view
+        bannerImageView = BannerImageViewUtils.getImageView(mContext);
+        Glide.with(mContext).load(UrlConstants.BannerDisUrl + banners.get(banners.size() - 1).getUrl()).centerCrop()
+                .into(bannerImageView);
+        mImageViews.add(0, bannerImageView);
+        //重新添加最后一个view
+        bannerImageView = BannerImageViewUtils.getImageView(mContext);
+        Glide.with(mContext).load(UrlConstants.BannerDisUrl + banners.get(0).getUrl()).centerCrop()
+                .into(bannerImageView);
+        mImageViews.add(bannerImageView);
+        // 设置循环，在调用setData方法前调用
+        mCycleViewPager.setCycle(true);
+        // 在加载数据前设置是否循环
+        mCycleViewPager.setData(mImageViews, banners, new ImageCycleViewListener() {
+            @Override
+            public void onImageClick(Object info, int position, View imageView) {
+
+            }
+        });
+        //设置轮播
+        mCycleViewPager.setWheel(true);
+        // 设置轮播时间，默认5000ms
+        mCycleViewPager.setTime(2000);
+        //设置圆点指示图标组居中显示，默认靠右
+        mCycleViewPager.setIndicatorCenter();
+    }
+
 }

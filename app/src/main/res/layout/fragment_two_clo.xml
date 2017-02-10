@@ -17,8 +17,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="#CDCDCD"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#33ccff">
 
             <ImageView
                 android:id="@+id/two_cloreturn_img"
@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/return_sc" />
+                android:src="@drawable/retrun" />
 
             <TextView
                 android:layout_width="wrap_content"
