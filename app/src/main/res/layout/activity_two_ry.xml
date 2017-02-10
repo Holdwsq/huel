@@ -40,7 +40,7 @@
                 android:layout_height="40dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/mycart"/>
+                android:src="@drawable/mycart1"/>
         </RelativeLayout>
         <ScrollView
             android:layout_width="match_parent"

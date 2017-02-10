@@ -11,7 +11,6 @@ import com.hueljk.ibeacon.R;
 import com.hueljk.ibeacon.ui.BaseFragment;
 import com.hueljk.ibeacon.ui.home.HomeFragment;
 
-import static com.hueljk.ibeacon.R.drawable.return_sc;
 
 /**
  * 项目名称：HuelJk
@@ -38,8 +37,8 @@ public class HomeSec extends BaseFragment {
         return_sc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "您好", Toast.LENGTH_SHORT);
-                mMainActivity.showFragment(HomeFragment.class, "");
+
+                popSelf();
 
             }
         });
