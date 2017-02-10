@@ -1,8 +1,6 @@
-package com.hueljk.ibeacon.ui.twoClo;
+package com.hueljk.ibeacon.ui.home.category;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.google.gson.reflect.TypeToken;
 import com.hueljk.ibeacon.R;
@@ -19,7 +16,6 @@ import com.hueljk.ibeacon.mode.Clothes;
 import com.hueljk.ibeacon.mode.Result;
 import com.hueljk.ibeacon.ui.BaseFragment;
 import com.hueljk.ibeacon.ui.adapter.MyAdpter_Clothes;
-import com.hueljk.ibeacon.ui.home.HomeFragment;
 import com.hueljk.ibeacon.utils.DisplayUtils;
 import com.hueljk.ibeacon.utils.JsonUtils;
 

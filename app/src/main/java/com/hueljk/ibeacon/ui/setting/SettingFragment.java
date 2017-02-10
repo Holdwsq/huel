@@ -58,7 +58,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         super.initView(view);
         mset_tx = (TextView) view.findViewById(R.id.set_tx);
         mperson_headimg = (ImageView) view.findViewById(R.id.person_headimg);
-        mperson_name = (TextView) view.findViewById(R.id.person_name);
+        mperson_name = (TextView) view.findViewById(R.id.user_name);
         mvip_value = (TextView) view.findViewById(R.id.vip_value);
         mmy_collect = (TextView) view.findViewById(R.id.my_collect);
         mmy_foucs = (TextView) view.findViewById(R.id.my_foucs);

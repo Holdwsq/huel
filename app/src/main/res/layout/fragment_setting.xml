@@ -51,11 +51,11 @@
 
 
                 <TextView
-                    android:id="@+id/person_name"
+                    android:id="@+id/user_name"
                     android:layout_width="wrap_content"
-                    android:layout_height="27dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="用户名"/>
+                    android:text="登录/注册"/>
             </LinearLayout>
 
             <ImageView

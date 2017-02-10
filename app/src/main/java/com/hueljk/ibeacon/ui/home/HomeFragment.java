@@ -249,6 +249,7 @@ public class HomeFragment extends BaseFragment {
         mCycleViewPager.setData(mImageViews, banners, new ImageCycleViewListener() {
             @Override
             public void onImageClick(Object info, int position, View imageView) {
+                Toast.makeText(getContext(), "--"+position, Toast.LENGTH_SHORT).show();
 
             }
         });

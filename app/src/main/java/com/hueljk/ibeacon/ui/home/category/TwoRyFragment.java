@@ -1,8 +1,6 @@
-package com.hueljk.ibeacon.ui.twoRy;
+package com.hueljk.ibeacon.ui.home.category;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +10,8 @@ import android.widget.LinearLayout;
 
 import com.hueljk.ibeacon.R;
 import com.hueljk.ibeacon.mode.Goods;
-import com.hueljk.ibeacon.mode.Product;
 import com.hueljk.ibeacon.ui.BaseFragment;
 import com.hueljk.ibeacon.ui.adapter.MyAdapter;
-import com.hueljk.ibeacon.ui.home.HomeFragment;
 import com.hueljk.ibeacon.utils.DisplayUtils;
 
 import java.util.ArrayList;
