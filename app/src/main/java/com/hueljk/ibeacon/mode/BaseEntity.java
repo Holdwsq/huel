@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class BaseEntity {
     @SerializedName("id")
-    private String mId;
+    private int mId;
     @SerializedName("name")
     private String mName;
     @SerializedName("url")
@@ -16,17 +16,17 @@ public class BaseEntity {
     public BaseEntity() {
     }
 
-    public BaseEntity(String id, String name, String url) {
+    public BaseEntity(int id, String name, String url) {
         mId = id;
         mName = name;
         mUrl = url;
     }
 
-    public String getId() {
+    public int getId() {
         return mId;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         mId = id;
     }
 

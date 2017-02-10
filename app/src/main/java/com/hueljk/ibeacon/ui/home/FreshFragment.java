@@ -8,11 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hueljk.ibeacon.R;
+import com.hueljk.ibeacon.ui.BaseFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FreshFragment extends Fragment {
+public class FreshFragment extends BaseFragment {
 
 
     public FreshFragment() {

@@ -64,7 +64,7 @@ public class CartFragment extends BaseFragment {
     protected void setData() {
         super.setData();
         for (int i = 1; i < 10; i++) {
-            CartPro p = new CartPro(i + "", "女式毛衣", "url", 88, R.drawable.clothes1, R.drawable.checkbox1, "灰色", "+", "-", "10");
+            CartPro p = new CartPro(i , "女式毛衣", "url", 88, R.drawable.clothes1, R.drawable.checkbox1, "灰色", "+", "-", "10");
             p.setSelected(false);
             mProducts.add(p);
         }
@@ -112,21 +112,21 @@ public class CartFragment extends BaseFragment {
         medit_tx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "您点击了编辑", 0).show();
+                Toast.makeText(getContext(), "您点击了编辑", Toast.LENGTH_SHORT).show();
 
             }
         });
         mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "您点击了分享", 0).show();
+                Toast.makeText(getContext(), "您点击了分享", Toast.LENGTH_SHORT).show();
 
             }
         });
         mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "您点击了结算", 0).show();
+                Toast.makeText(getContext(), "您点击了结算", Toast.LENGTH_SHORT).show();
 
             }
         });

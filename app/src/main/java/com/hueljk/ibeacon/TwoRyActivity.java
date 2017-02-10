@@ -10,6 +10,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.hueljk.ibeacon.mode.Goods;
 import com.hueljk.ibeacon.mode.Product;
 import com.hueljk.ibeacon.ui.adapter.MyAdapter;
 import com.hueljk.ibeacon.ui.home.HomeFragment;
@@ -26,12 +27,12 @@ public class TwoRyActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two_ry);
         mGridView = (GridView) findViewById(R.id.riyong_gridView);
-        List<Product> products = new ArrayList<>();
+        List<Goods> rys = new ArrayList<>();
         for (int i = 0; i < 40; i++) {
-            Product product = new Product("", "维达抽纸", 1000, 80, R.drawable.cart);
-            products.add(product);
+            Goods mRys = new Goods(i,"", "维达抽纸", 1000, "",80);
+            rys.add(mRys);
         }
-        MyAdapter adapter = new MyAdapter(this, products);
+        MyAdapter adapter = new MyAdapter(this, rys);
         mGridView.setAdapter(adapter);
         int height = 99 / 3 * 220;
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mGridView.getLayoutParams();
