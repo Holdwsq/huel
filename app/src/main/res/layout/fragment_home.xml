@@ -49,13 +49,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/banner_img"
-                android:layout_width="wrap_content"
-                android:layout_height="95dp"
-                android:background="@color/colorAccent"
-                android:scaleType="fitXY"
-                android:src="@drawable/banner"/>
+            <fragment
+                android:id="@+id/main_fragment_banner"
+                android:name="com.hueljk.ibeacon.ui.home.banner.CycleViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                tools:layout="@layout/view_cycle_viewpager_content" />
 
             <LinearLayout
                 android:id="@+id/category_ly"
@@ -76,6 +75,7 @@
                     android:clickable="true"
                     android:drawableTop="@drawable/fuzhuang"
                     android:gravity="center"
+                    android:contextClickable="true"
                     android:text="服装"/>
 
                 <TextView
