@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/return_sc"
+                android:src="@drawable/retrun"
                 />
 
             <TextView

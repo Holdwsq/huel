@@ -11,14 +11,6 @@
         android:orientation="horizontal">
         <!-- 小对勾的布局 -->
 
-        <ImageView
-            android:id="@+id/pro_checkbox"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_centerVertical="true"
-            android:focusable="false"
-            android:focusableInTouchMode="false"/>
-
 
         <!-- 图片布局 -->
         <ImageView
@@ -100,6 +92,17 @@
             android:text="-"
             android:layout_alignBottom="@+id/pro_count"
             android:layout_below="@+id/pro_color"/>
+
+        <ImageView
+            android:id="@+id/pro_checkbox"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:src="@drawable/checkbox1"
+            android:layout_below="@+id/pro_name"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
 
 
     </RelativeLayout>

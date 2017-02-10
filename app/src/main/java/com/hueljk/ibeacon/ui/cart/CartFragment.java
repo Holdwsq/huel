@@ -1,14 +1,11 @@
 package com.hueljk.ibeacon.ui.cart;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,8 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import static com.hueljk.ibeacon.R.id.textView;
-import static com.hueljk.ibeacon.R.id.view_offset_helper;
 
 
 
@@ -39,8 +34,8 @@ public class CartFragment extends BaseFragment {
 
     private CartAdapter mAdapter;
     private TextView medit_tx;
-    private TextView mTextView;
-    private View mImageView;
+    private TextView mjiesuan_button;
+    private ImageView mshare_img;
 
 
     @Override
@@ -55,8 +50,8 @@ public class CartFragment extends BaseFragment {
         super.initView(view);
         mListView = (ListView) view.findViewById(R.id.cart_listview);
         medit_tx = (TextView) view.findViewById(R.id.edit_tx);
-        mImageView = (ImageView) view.findViewById(R.id.share_img);
-        mTextView = (TextView) view.findViewById(R.id.jiesuan_button);
+        mshare_img = (ImageView) view.findViewById(R.id.share_img);
+        mjiesuan_button = (TextView) view.findViewById(R.id.jiesuan_button);
 
     }
 
@@ -116,14 +111,14 @@ public class CartFragment extends BaseFragment {
 
             }
         });
-        mImageView.setOnClickListener(new View.OnClickListener() {
+        mshare_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "您点击了分享", Toast.LENGTH_SHORT).show();
 
             }
         });
-        mTextView.setOnClickListener(new View.OnClickListener() {
+        mjiesuan_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "您点击了结算", Toast.LENGTH_SHORT).show();
