@@ -8,11 +8,12 @@ public interface UrlConstants {
 //    String baseUrl="http://192.168.43.130:8080/HuelJk";
     //String baseUrl="http://192.168.43.1:8080/HuelJk";
     //http://192.168.191.1:8080/HuelJk/Home
-    String baseUrl="http://192.168.8.3:8080/HuelJk";
-    String HomeUrl="http://192.168.8.3:8080/HuelJk/Home";
+    String baseUrl="http://192.168.8.239:8080/HuelJk";
+    String HomeUrl="http://192.168.8.239:8080/HuelJk/Home";
 
     String picBaseUrl=baseUrl+"/picture/";//此处把‘/’加在路径之后，使用时不必再加
     String BannerDisUrl=picBaseUrl+"image/";
+ //http://192.168.8.239:8080/HuelJk/picture/image/
     String goodsUrl=picBaseUrl;
     String clothing = picBaseUrl + "/clothing/";
 
