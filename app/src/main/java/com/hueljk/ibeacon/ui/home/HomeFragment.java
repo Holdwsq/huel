@@ -34,7 +34,7 @@ import com.hueljk.ibeacon.ui.home.banner.BannerNzFragment;
 import com.hueljk.ibeacon.ui.home.banner.BannerXsFragment;
 import com.hueljk.ibeacon.ui.home.banner.CycleViewPager;
 import com.hueljk.ibeacon.ui.home.banner.ImageCycleViewListener;
-import com.hueljk.ibeacon.ui.home.category.FreshFragment;
+import com.hueljk.ibeacon.ui.home.category.TwoFreshFragment;
 import com.hueljk.ibeacon.ui.home.category.TwoCloFragment;
 import com.hueljk.ibeacon.ui.home.category.TwoFoodFragment;
 import com.hueljk.ibeacon.ui.home.category.TwoRyFragment;
@@ -127,7 +127,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 mMainActivity.showFragment(TwoFoodFragment.class, "Home_2_Ry");
                 break;
             case R.id.shengxian_tv:
-                mMainActivity.showFragment(FreshFragment.class, "Home_2_sx");
+                mMainActivity.showFragment(TwoFreshFragment.class, "Home_2_sx");
                 break;
             case R.id.homemj_img:
                 mMainActivity.showFragment(TwoWineFragment.class,"Home_2_wine");

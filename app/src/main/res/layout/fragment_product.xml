@@ -14,12 +14,12 @@
         <RelativeLayout
             android:id="@+id/product_top"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:background="#33ccff">
 
             <ImageView
                 android:id="@+id/product_return"
-                android:layout_width="wrap_content"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
@@ -33,14 +33,14 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:text="商品详情"
-                android:textSize="32sp"/>
+                android:textSize="25sp"/>
 
         </RelativeLayout>
 
         <ImageView
             android:id="@+id/product_img"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="480dp"
             android:layout_below="@+id/product_top"
             android:src="@drawable/clothes_test"
             android:scaleType="fitXY"/>

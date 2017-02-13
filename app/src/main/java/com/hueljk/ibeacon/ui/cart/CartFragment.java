@@ -50,7 +50,6 @@ public class CartFragment extends BaseFragment {
         super.initView(view);
         mListView = (ListView) view.findViewById(R.id.cart_listview);
         medit_tx = (TextView) view.findViewById(R.id.edit_tx);
-        mshare_img = (ImageView) view.findViewById(R.id.share_img);
         mjiesuan_button = (TextView) view.findViewById(R.id.jiesuan_button);
 
     }
