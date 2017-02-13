@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import com.hueljk.ibeacon.R;
 import com.hueljk.ibeacon.mode.CartPro;
+import com.hueljk.ibeacon.mode.Product;
 import com.hueljk.ibeacon.ui.BaseFragment;
 import com.hueljk.ibeacon.ui.adapter.CartAdapter;
+import com.hueljk.ibeacon.ui.home.ProductFragment;
 import com.hueljk.ibeacon.ui.navigation.NavFragment;
 
 import java.util.ArrayList;
@@ -35,8 +37,6 @@ public class CartFragment extends BaseFragment {
     private CartAdapter mAdapter;
     private TextView medit_tx;
     private TextView mjiesuan_button;
-    private ImageView mshare_img;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +50,6 @@ public class CartFragment extends BaseFragment {
         super.initView(view);
         mListView = (ListView) view.findViewById(R.id.cart_listview);
         medit_tx = (TextView) view.findViewById(R.id.edit_tx);
-        mshare_img = (ImageView) view.findViewById(R.id.share_img);
         mjiesuan_button = (TextView) view.findViewById(R.id.jiesuan_button);
 
     }
@@ -77,7 +76,7 @@ public class CartFragment extends BaseFragment {
                         Toast.LENGTH_SHORT).show();
                 switch (i) {
                     case 0:
-                        mMainActivity.showFragment(NavFragment.class, "购物车商品");
+                        mMainActivity.showFragment(ProductFragment.class, "购物车商品");
                         break;
                     case 1:
                         mMainActivity.showFragment(NavFragment.class, "购物车商品");
@@ -108,13 +107,6 @@ public class CartFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "您点击了编辑", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-        mshare_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "您点击了分享", Toast.LENGTH_SHORT).show();
 
             }
         });

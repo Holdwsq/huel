@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:background="@color/bg"
-    >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+    xmlns:android="http://schemas.android.com/apk/res/android">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,7 +15,7 @@
             <ImageView
                 android:id="@+id/two_riyohome_img"
                 android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:src="@drawable/retrun"/>
 
@@ -32,15 +23,13 @@
                 android:id="@+id/two_riyong_et"
                 android:layout_width="250dp"
                 android:layout_height="48dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/two_riyohome_img"
-                />
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"/>
 
             <ImageView
                 android:id="@+id/two_riyocart_img"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:src="@drawable/mycart1"/>
@@ -69,10 +58,12 @@
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:weightSum="3"
                         android:orientation="vertical">
                         <ImageView
                             android:id="@+id/two_riyokouqi_img"
-                            android:layout_width="110dp"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
                             android:layout_height="120dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/two_riyong_kouqiang"/>
@@ -101,9 +92,10 @@
                         android:orientation="vertical">
                         <ImageView
                             android:id="@+id/two_riyopersor_img"
-                            android:layout_width="110dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="120dp"
                             android:scaleType="fitXY"
+                            android:layout_weight="1"
                             android:src="@drawable/two_riyong_gerenhuli"/>
                         <TextView
                             android:id="@+id/two_riyoperson_tx"
@@ -127,8 +119,9 @@
                         android:orientation="vertical">
                         <ImageView
                             android:id="@+id/two_riyomeiz_imag"
-                            android:layout_width="110dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="120dp"
+                            android:layout_weight="1"
                             android:scaleType="fitXY"
                             android:src="@drawable/two_riyong_meizhuang"/>
                         <TextView
@@ -165,19 +158,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:weightSum="1">
                         <ImageView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:scaleType="fitXY"
-                            android:src="@drawable/two_riyojieqi"/>
+                            android:src="@drawable/two_riyojieqi"
+                            android:layout_weight="6"/>
                         <ImageView
                             android:layout_marginTop="2dp"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:scaleType="fitXY"
-                            android:src="@drawable/two_riyowinter"/>
+                            android:src="@drawable/two_riyowinter"
+                            android:layout_weight="7.75"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -197,4 +192,4 @@
 
     </LinearLayout>
 
-</android.support.v4.widget.SwipeRefreshLayout>
+
