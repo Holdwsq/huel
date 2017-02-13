@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by zc on 2017/2/9.
  */
-public class HomeAdapter extends BaseAdapter {
+public class HomeAdapter extends BaseAdapter implements View.OnClickListener{
     private LayoutInflater mInflater;
     private List<Goods> mGoodses = new ArrayList<>();
     private Context mContext;
@@ -65,6 +65,9 @@ public class HomeAdapter extends BaseAdapter {
         }
         Goods goods = getItem(position);
         //holder.mPIconUrl.setImageResource(product.getPurl());
+        //把点击的位置传递给点击事件
+        holder.mCIon.setTag(position);
+        holder.mCIon.setOnClickListener(this);
         Glide
                 .with(mContext)
                 .load(UrlConstants.picBaseUrl+goods.getPurl())
@@ -84,6 +87,34 @@ public class HomeAdapter extends BaseAdapter {
         }
         notifyDataSetChanged();
     }
+
+    @Override
+    public void onClick(View v) {
+        int position = (int) v.getTag();
+        //把点击事件  回调 給fragment
+        mCallBack.onCartClick(v,position);
+    }
+    /**
+     * 回调函數
+     * 作用：将点击事件从一个地方转移的另一个地方
+     *
+     * 1.定义接口
+     * 2.创建接口對象引用
+     * 3.在内部相應地方調用，在外部創建對象
+     */
+
+    public interface CallBack{
+
+
+        void onCartClick(View v, int position);
+    }
+
+    private CallBack mCallBack;
+
+    public void setOnCartClickListener(CallBack mCallBack){
+        this.mCallBack = mCallBack;
+    }
+
 
     private static class Holder {
         private ImageView mPIconUrl;

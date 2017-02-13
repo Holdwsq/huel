@@ -24,7 +24,6 @@
                 android:layout_height="50dp"
                 android:background="#ffffff"
                 android:layout_marginTop="5dp"
-                android:inputType="number"
                 android:paddingRight="60dp"
                 android:maxLength="20"
                 android:paddingLeft="55dp" >

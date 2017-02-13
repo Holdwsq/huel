@@ -38,7 +38,7 @@ public class NavFragment extends BaseFragment {
         mPreferenceManager = PreferenceManager.getInstance();
 
         if(mPreferenceManager.getLoginStatus()){
-            Toast.makeText(getContext(),"11111111111",0).show();
+            Toast.makeText(getContext(),"11111111111",Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import com.hueljk.ibeacon.R;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+
 /**
  *
  */
@@ -24,6 +27,9 @@ public class BaseFragment extends Fragment {
      */
     protected MainActivity mMainActivity;
     protected Context mContext;
+
+    //okhttp使用
+    protected OkHttpClient mOkHttpClient = new OkHttpClient();
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -42,7 +48,7 @@ public class BaseFragment extends Fragment {
 
     }
 
-    protected void setListener()  {
+    protected void setListener() {
 
     }
 
@@ -50,7 +56,7 @@ public class BaseFragment extends Fragment {
     }
 
 
-    protected void popSelf(){
+    protected void popSelf() {
         getFragmentManager().popBackStackImmediate();
     }
 

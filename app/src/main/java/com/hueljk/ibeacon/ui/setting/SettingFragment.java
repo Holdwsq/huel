@@ -15,12 +15,15 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hueljk.ibeacon.R;
+import com.hueljk.ibeacon.manager.PreferenceManager;
 import com.hueljk.ibeacon.ui.BaseFragment;
 import com.hueljk.ibeacon.ui.navigation.NavFragment;
 
@@ -42,6 +45,8 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     private TextView mvip_value;
     private TextView mmy_collect;
     private TextView mmy_foucs;
+    private LinearLayout mlogin;
+    private PreferenceManager mPreferenceManager;
 
 
     @Nullable
@@ -56,18 +61,20 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     @Override
     protected void initView(View view) {
         super.initView(view);
-        mset_tx = (TextView) view.findViewById(R.id.set_tx);
+        //mset_tx = (TextView) view.findViewById(R.id.set_tx);
+        mlogin=(LinearLayout)view.findViewById(R.id.register_ly);
         mperson_headimg = (ImageView) view.findViewById(R.id.person_headimg);
         mperson_name = (TextView) view.findViewById(R.id.person_name);
         mvip_value = (TextView) view.findViewById(R.id.vip_value);
         mmy_collect = (TextView) view.findViewById(R.id.my_collect);
         mmy_foucs = (TextView) view.findViewById(R.id.my_foucs);
-        mset_tx.setOnClickListener(this);
+       // mset_tx.setOnClickListener(this);
         mperson_headimg.setOnClickListener(this);
         mperson_name.setOnClickListener(this);
         mvip_value.setOnClickListener(this);
         mmy_collect.setOnClickListener(this);
         mmy_foucs.setOnClickListener(this);
+        mlogin.setOnClickListener(this);
 
         mListView = (ListView) view.findViewById(R.id.set_listview);
         mListView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, mItems));
@@ -103,13 +110,17 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
             case R.id.set_tx:
                 Toast.makeText(getContext(), "你点击了设置", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.person_headimg:
-                Toast.makeText(getContext(), "你点击了头像", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.person_name:
-                Toast.makeText(getContext(), "你点击了用户名", Toast.LENGTH_SHORT).show();
+            case R.id.register_ly:
+                Toast.makeText(getContext(), "你点击了用户名和头像", Toast.LENGTH_SHORT).show();
                 mMainActivity.showFragment(LoginFragment.class,"setting_2_login");
                 break;
+            case R.id.person_headimg:
+                mMainActivity.showFragment(LoginFragment.class,"setting_2_login");
+                break;
+            case R.id.person_name:
+                mMainActivity.showFragment(LoginFragment.class,"setting_2_login");
+                break;
+
             case R.id.vip_value:
                 Toast.makeText(getContext(), "你点击了我的会员值", Toast.LENGTH_SHORT).show();
                 break;
@@ -121,6 +132,16 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                 break;
 
         }
+    }
+
+    @Override
+    protected void setData() {
+        super.setData();
+        mPreferenceManager = PreferenceManager.getInstance();
+        if(mPreferenceManager.getLoginStatus()){
+            mperson_name.setText(mPreferenceManager.getUserName());
+        }
+
     }
 }
 

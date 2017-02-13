@@ -20,11 +20,13 @@ import com.bumptech.glide.Glide;
 import com.google.gson.reflect.TypeToken;
 import com.hueljk.ibeacon.R;
 import com.hueljk.ibeacon.constants.UrlConstants;
+import com.hueljk.ibeacon.manager.PreferenceManager;
 import com.hueljk.ibeacon.mode.BaseEntity;
 import com.hueljk.ibeacon.mode.Goods;
 import com.hueljk.ibeacon.mode.Home;
 import com.hueljk.ibeacon.mode.Result;
 import com.hueljk.ibeacon.ui.BaseFragment;
+import com.hueljk.ibeacon.ui.adapter.HomeAdapter;
 import com.hueljk.ibeacon.ui.adapter.MyAdapter;
 import com.hueljk.ibeacon.ui.home.banner.BannerHfpFragment;
 import com.hueljk.ibeacon.ui.home.banner.BannerImageViewUtils;
@@ -39,6 +41,7 @@ import com.hueljk.ibeacon.ui.home.category.TwoRyFragment;
 import com.hueljk.ibeacon.ui.home.discount.TwoPaperFragment;
 import com.hueljk.ibeacon.ui.home.discount.TwoWineFragment;
 import com.hueljk.ibeacon.ui.home.discount.TwopuffFragment;
+import com.hueljk.ibeacon.ui.setting.LoginFragment;
 import com.hueljk.ibeacon.utils.DisplayUtils;
 import com.hueljk.ibeacon.utils.JsonUtils;
 
@@ -62,7 +65,7 @@ import okhttp3.Response;
 public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private GridView mGridView;
     private static OkHttpClient client;
-    private MyAdapter mAdapter;
+    private HomeAdapter mAdapter;
     private EditText mEditText;
     private TextView shipin_tv;
     private TextView riyong_tv;
@@ -75,6 +78,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private CycleViewPager mCycleViewPager;
     private FrameLayout mViewPagerFragmentLayout;
     private List<Goods> goods;
+    private PreferenceManager mPreferenceManager;
 
     static {
         client = new OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS).build();
@@ -105,7 +109,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         // 找到轮播控件
         mCycleViewPager = (CycleViewPager) getChildFragmentManager()
                 .findFragmentById(R.id.main_fragment_banner);
-
+        mAdapter = new HomeAdapter(getContext(), null);
+        mGridView.setAdapter(mAdapter);
         initBanner();
 
     }
@@ -168,13 +173,26 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 mMainActivity.showFragment(ProductFragment.class,"goodslist_2_detail",bundle);
             }
         });
+        mAdapter.setOnCartClickListener(new HomeAdapter.CallBack() {
+            @Override
+            public void onCartClick(View v, int position) {
+               // Toast.makeText(getContext(),"----"+position,Toast.LENGTH_SHORT).show();
+                mPreferenceManager = PreferenceManager.getInstance();
+
+                if(mPreferenceManager.getLoginStatus()){
+                    Toast.makeText(getContext(),"11111111111",Toast.LENGTH_SHORT).show();
+                }else{
+                    mMainActivity.showFragment(LoginFragment.class,"Home_2_Login");
+                }
+
+            }
+        });
     }
 
     @Override
     protected void setData() {
         super.setData();
-        mAdapter = new MyAdapter(getContext(), null);
-        mGridView.setAdapter(mAdapter);
+
         new Thread(new Runnable() {
             @Override
             public void run() {

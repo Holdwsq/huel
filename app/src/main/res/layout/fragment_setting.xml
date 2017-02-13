@@ -5,38 +5,23 @@
               android:orientation="vertical">
 
 
-
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/register_ly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#33ccff"
             >
 
-
-
-            <TextView
-                android:id="@+id/set_tx"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:layout_marginLeft="5dp"
-                android:text="设置"
-
-
-                android:textSize="20sp"/>
-
             <LinearLayout
                 android:id="@+id/person_ly"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="fill_vertical"
+                android:layout_gravity="center_horizontal"
                 android:orientation="vertical"
                 >
 
@@ -49,29 +34,17 @@
                     android:layout_weight="1"
                     android:src="@drawable/mine_a"/>
 
-
                 <TextView
                     android:id="@+id/person_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:textSize="18sp"
-                    android:text="登录/注册"/>
+                    android:text="未登录"
+                    android:textSize="18sp"/>
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/set_tx"
-                android:layout_marginRight="5dp"
-                android:src="@drawable/mail"
 
-                />
-
-
-        </RelativeLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -113,12 +86,12 @@
 
         </LinearLayout>
 
-   <ListView
-       android:id="@+id/set_listview"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/set_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-   </ListView>
+        </ListView>
 
 
     </LinearLayout>

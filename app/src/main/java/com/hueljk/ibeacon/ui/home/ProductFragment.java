@@ -43,6 +43,7 @@ public class ProductFragment extends BaseFragment{
         super.initView(view);
         mImageView = (ImageView) view.findViewById(R.id.product_return);
         mProductImg=(ImageView)view.findViewById(R.id.product_img);
+        mproduct_desc=(TextView)view.findViewById(R.id.product_desc);
         mproduct_price=(TextView) view.findViewById(R.id.product_price);
         mproduct_num=(TextView)view.findViewById(R.id.product_num);
     }
@@ -71,7 +72,7 @@ public class ProductFragment extends BaseFragment{
                     .placeholder(R.drawable.shangpin1)
                     .error(R.drawable.shangpin1)
                     .into(mProductImg);
-          // mproduct_desc.setText(mGoods.getPdesc()+"");
+           mproduct_desc.setText(mGoods.getPdesc());
            mproduct_num.setText("月销"+mGoods.getSold() + "笔");
            mproduct_price.setText("￥" + mGoods.getPrice());
 
