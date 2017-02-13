@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,9 +29,10 @@ import com.hueljk.ibeacon.ui.adapter.MyAdapter;
 import com.hueljk.ibeacon.ui.home.banner.BannerImageViewUtils;
 import com.hueljk.ibeacon.ui.home.banner.CycleViewPager;
 import com.hueljk.ibeacon.ui.home.banner.ImageCycleViewListener;
-import com.hueljk.ibeacon.ui.twoClo.TwoCloFragment;
-import com.hueljk.ibeacon.ui.twoFood.TwoFoodFragment;
-import com.hueljk.ibeacon.ui.twoRy.TwoRyFragment;
+import com.hueljk.ibeacon.ui.home.category.FreshFragment;
+import com.hueljk.ibeacon.ui.home.category.TwoCloFragment;
+import com.hueljk.ibeacon.ui.home.category.TwoFoodFragment;
+import com.hueljk.ibeacon.ui.home.category.TwoRyFragment;
 import com.hueljk.ibeacon.utils.DisplayUtils;
 import com.hueljk.ibeacon.utils.JsonUtils;
 
@@ -64,6 +67,8 @@ public class HomeFragment extends BaseFragment {
     private ImageView homeph_img;
     private Context mContext;
     private CycleViewPager mCycleViewPager;
+    private FrameLayout mViewPagerFragmentLayout;
+    private List<Goods> goods;
 
     static {
         client = new OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS).build();
@@ -88,11 +93,15 @@ public class HomeFragment extends BaseFragment {
         homezp_img = (ImageView) view.findViewById(R.id.homezp_img);
         homemj_img = (ImageView) view.findViewById(R.id.homemj_img);
         homeph_img = (ImageView) view.findViewById(R.id.homeph_img);
+
+
         mContext = getContext();
         // 找到轮播控件
         mCycleViewPager = (CycleViewPager) getChildFragmentManager()
                 .findFragmentById(R.id.main_fragment_banner);
+
         initBanner();
+
     }
 
     @Override
@@ -139,9 +148,46 @@ public class HomeFragment extends BaseFragment {
                 mMainActivity.showFragment(FreshFragment.class, "Home_2_sx");
             }
         });
+
+        /**
+         * 点击事件
+         *
+         * 1.view控件的点击事件（botton，imageview等）：View.OnClickListener()
+         * 2.列表的点击事件（item子控件的点击事件）：AdapterView.OnItemClickListener()
+         */
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //goods.get(position).getId()当前位置的商品id
+                Toast.makeText(mContext,"goods id is -- "+goods.get(position).getId(),0).show();
+
+                //跳转到详情页
+                //fragment之间的传值，需要在showFragment方法中增加一个参数
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("goodsdetail",goods.get(position));
+
+                mMainActivity.showFragment(ProductFragment.class,"goodslist_2_detail",bundle);
+            }
+        });
     }
 
     public void execute() throws Exception {
+        /**
+         * http的get形式上传参数
+         *
+         * 参数都是拼接在url后面的
+         *
+         * UrlConstants.HomeUrl
+         *
+         * name=admin,pass=admin
+         *
+         * 拼接url,?id=1&pass=admin
+         *
+         * String url = UrlConstants.HomeUrl+"?name="+name+"&pass="+pass
+         *
+         */
+
+
         Request request = new Request.Builder()
                 .url(UrlConstants.HomeUrl)
                 .build();
@@ -188,8 +234,9 @@ public class HomeFragment extends BaseFragment {
                                     .placeholder(R.drawable.shangpin1)
                                     .error(R.drawable.shangpin1)
                                     .into(homeph_img);
+
                             //更新goods
-                            List<Goods> goods = homelist.getGoods();
+                            goods = homelist.getGoods();
                             int height = goods.size() / 2 * 230 + 80;
                             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mGridView.getLayoutParams();
                             DisplayUtils.init(getContext());
@@ -249,8 +296,21 @@ public class HomeFragment extends BaseFragment {
         mCycleViewPager.setData(mImageViews, banners, new ImageCycleViewListener() {
             @Override
             public void onImageClick(Object info, int position, View imageView) {
-                Toast.makeText(getContext(), "--"+position, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "--"+position, Toast.LENGTH_SHORT).show();
+                switch (position) {
+                    case 1:
+                        Toast.makeText(getContext(), "--" + position, Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        Toast.makeText(getContext(), "--" + position, Toast.LENGTH_SHORT).show();
 
+                        break;
+                    case 3:
+                        Toast.makeText(getContext(), "--" + position, Toast.LENGTH_SHORT).show();
+
+                        break;
+
+                }
             }
         });
         //设置轮播
@@ -260,5 +320,7 @@ public class HomeFragment extends BaseFragment {
         //设置圆点指示图标组居中显示，默认靠右
         mCycleViewPager.setIndicatorCenter();
     }
+
+
 
 }

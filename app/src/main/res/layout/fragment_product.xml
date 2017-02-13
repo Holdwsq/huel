@@ -46,7 +46,7 @@
             android:scaleType="fitXY"/>
 
         <TextView
-            android:id="@+id/product_title"
+            android:id="@+id/product_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_img"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/product_title"
+            android:layout_below="@+id/product_desc"
             android:layout_marginTop="30dp"
             android:text="￥148"
             android:textColor="#FFCE0A0D"

@@ -58,7 +58,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         super.initView(view);
         mset_tx = (TextView) view.findViewById(R.id.set_tx);
         mperson_headimg = (ImageView) view.findViewById(R.id.person_headimg);
-        mperson_name = (TextView) view.findViewById(R.id.user_name);
+        mperson_name = (TextView) view.findViewById(R.id.person_name);
         mvip_value = (TextView) view.findViewById(R.id.vip_value);
         mmy_collect = (TextView) view.findViewById(R.id.my_collect);
         mmy_foucs = (TextView) view.findViewById(R.id.my_foucs);
@@ -108,6 +108,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                 break;
             case R.id.person_name:
                 Toast.makeText(getContext(), "你点击了用户名", Toast.LENGTH_SHORT).show();
+                mMainActivity.showFragment(LoginFragment.class,"setting_2_login");
                 break;
             case R.id.vip_value:
                 Toast.makeText(getContext(), "你点击了我的会员值", Toast.LENGTH_SHORT).show();
