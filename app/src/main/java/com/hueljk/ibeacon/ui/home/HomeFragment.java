@@ -26,13 +26,19 @@ import com.hueljk.ibeacon.mode.Home;
 import com.hueljk.ibeacon.mode.Result;
 import com.hueljk.ibeacon.ui.BaseFragment;
 import com.hueljk.ibeacon.ui.adapter.MyAdapter;
+import com.hueljk.ibeacon.ui.home.banner.BannerHfpFragment;
 import com.hueljk.ibeacon.ui.home.banner.BannerImageViewUtils;
+import com.hueljk.ibeacon.ui.home.banner.BannerNzFragment;
+import com.hueljk.ibeacon.ui.home.banner.BannerXsFragment;
 import com.hueljk.ibeacon.ui.home.banner.CycleViewPager;
 import com.hueljk.ibeacon.ui.home.banner.ImageCycleViewListener;
 import com.hueljk.ibeacon.ui.home.category.FreshFragment;
 import com.hueljk.ibeacon.ui.home.category.TwoCloFragment;
 import com.hueljk.ibeacon.ui.home.category.TwoFoodFragment;
 import com.hueljk.ibeacon.ui.home.category.TwoRyFragment;
+import com.hueljk.ibeacon.ui.home.discount.TwoPaperFragment;
+import com.hueljk.ibeacon.ui.home.discount.TwoWineFragment;
+import com.hueljk.ibeacon.ui.home.discount.TwopuffFragment;
 import com.hueljk.ibeacon.utils.DisplayUtils;
 import com.hueljk.ibeacon.utils.JsonUtils;
 
@@ -53,7 +59,7 @@ import okhttp3.Response;
 /**
  * 首页
  */
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private GridView mGridView;
     private static OkHttpClient client;
     private MyAdapter mAdapter;
@@ -103,6 +109,66 @@ public class HomeFragment extends BaseFragment {
         initBanner();
 
     }
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.clothes_tv:
+                mMainActivity.showFragment(TwoCloFragment.class, "Home_2_Clo");
+                break;
+            case R.id.riyong_tv:
+                mMainActivity.showFragment(TwoRyFragment.class, "Home_2_Ry");
+                break;
+            case R.id.shipin_tv:
+                mMainActivity.showFragment(TwoFoodFragment.class, "Home_2_Ry");
+                break;
+            case R.id.shengxian_tv:
+                mMainActivity.showFragment(FreshFragment.class, "Home_2_sx");
+                break;
+            case R.id.homemj_img:
+                mMainActivity.showFragment(TwoWineFragment.class,"Home_2_wine");
+                break;
+            case R.id.homezp_img:
+                mMainActivity.showFragment(TwoPaperFragment.class,"Home_2_paper");
+                break;
+            case R.id.homeph_img:
+                mMainActivity.showFragment(TwopuffFragment.class,"Home_2_puff");
+                break;
+
+        }
+
+    }
+
+    @Override
+    protected void setListener() {
+        super.setListener();
+        clothes_tv.setOnClickListener(this);
+        riyong_tv.setOnClickListener(this);
+        shipin_tv.setOnClickListener(this);
+        shengxian_tv.setOnClickListener(this);
+        homemj_img.setOnClickListener(this);
+        homezp_img.setOnClickListener(this);
+        homeph_img.setOnClickListener(this);
+        /**
+         * 点击事件
+         *
+         * 1.view控件的点击事件（botton，imageview等）：View.OnClickListener()
+         * 2.列表的点击事件（item子控件的点击事件）：AdapterView.OnItemClickListener()
+         */
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //goods.get(position).getId()当前位置的商品id
+                Toast.makeText(mContext,"goods id is -- "+goods.get(position).getId(),Toast.LENGTH_SHORT).show();
+
+                //跳转到详情页
+                //fragment之间的传值，需要在showFragment方法中增加一个参数
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("goodsdetail",goods.get(position));
+
+                mMainActivity.showFragment(ProductFragment.class,"goodslist_2_detail",bundle);
+            }
+        });
+    }
 
     @Override
     protected void setData() {
@@ -119,56 +185,7 @@ public class HomeFragment extends BaseFragment {
                 }
             }
         }).start();
-        clothes_tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "--", Toast.LENGTH_SHORT).show();
-                mMainActivity.showFragment(TwoCloFragment.class, "Home_2_Clo");
-            }
-        });
-        riyong_tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "--", Toast.LENGTH_SHORT).show();
-                mMainActivity.showFragment(TwoRyFragment.class, "Home_2_Ry");
-            }
-        });
-        shipin_tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "--", Toast.LENGTH_SHORT).show();
-                mMainActivity.showFragment(TwoFoodFragment.class, "Home_2_Ry");
 
-            }
-        });
-        shengxian_tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "--", Toast.LENGTH_SHORT).show();
-                mMainActivity.showFragment(FreshFragment.class, "Home_2_sx");
-            }
-        });
-
-        /**
-         * 点击事件
-         *
-         * 1.view控件的点击事件（botton，imageview等）：View.OnClickListener()
-         * 2.列表的点击事件（item子控件的点击事件）：AdapterView.OnItemClickListener()
-         */
-        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //goods.get(position).getId()当前位置的商品id
-                Toast.makeText(mContext,"goods id is -- "+goods.get(position).getId(),0).show();
-
-                //跳转到详情页
-                //fragment之间的传值，需要在showFragment方法中增加一个参数
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("goodsdetail",goods.get(position));
-
-                mMainActivity.showFragment(ProductFragment.class,"goodslist_2_detail",bundle);
-            }
-        });
     }
 
     public void execute() throws Exception {
@@ -300,14 +317,15 @@ public class HomeFragment extends BaseFragment {
                 switch (position) {
                     case 1:
                         Toast.makeText(getContext(), "--" + position, Toast.LENGTH_SHORT).show();
+                        mMainActivity.showFragment(BannerNzFragment.class,"Home_2_bannerNz");
                         break;
                     case 2:
                         Toast.makeText(getContext(), "--" + position, Toast.LENGTH_SHORT).show();
-
+                        mMainActivity.showFragment(BannerXsFragment.class,"Home_2_bannerXs");
                         break;
                     case 3:
                         Toast.makeText(getContext(), "--" + position, Toast.LENGTH_SHORT).show();
-
+                        mMainActivity.showFragment(BannerHfpFragment.class,"Home_2_hfp");
                         break;
 
                 }
