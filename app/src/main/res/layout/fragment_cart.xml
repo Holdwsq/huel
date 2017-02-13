@@ -37,8 +37,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@+id/share_img"
-                android:gravity="center"
                 android:clickable="true"
+                android:gravity="center"
                 android:text="编辑"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"/>
@@ -95,7 +95,7 @@
                 android:textColor="#F63A19"/>
             <!-- 去结算的布局 -->
 
-            <TextView
+            <Button
                 android:id="@+id/jiesuan_button"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"

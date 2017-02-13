@@ -22,16 +22,16 @@ import java.util.List;
  *
  */
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
-    private RelativeLayout mLayoutHome;
-    private RelativeLayout mLayoutNav;
-    private RelativeLayout mLayoutCart;
-    private RelativeLayout mLayoutSetting;
+
+
     private HomeFragment mHomeFragment;
     private NavFragment mNavFragment;
     private CartFragment mCartFragment;
     private SettingFragment mSettingFragment;
     private List<Fragment> mFragments = new ArrayList<>();
 
+    private FragmentManager fg;
+    private FragmentTransaction ft;
 
     /**
      * 保存当前的状态@param savedInstanceState
@@ -40,31 +40,39 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        fg = getSupportFragmentManager();
+
         initView();
-        setListener();
         setData();
     }
 
+    //底部菜单
+    private View mMenuLayout1;
+    private View mMenuLayout2;
+    private View mMenuLayout3;
+    private View mMenuLayout4;
+
+    //当前被选中的菜单
+    private View mSelectedMenu;
 
     /**
-     * 初始化定义
+     * 底部被选中的菜单选项，需要被记住状态
      */
     private void initView() {
-        mLayoutHome = (RelativeLayout) this.findViewById(R.id.layout_home);
-        mLayoutNav = (RelativeLayout) findViewById(R.id.layout_navigation);
-        mLayoutCart = (RelativeLayout) findViewById(R.id.layout_cart);
-        mLayoutSetting = (RelativeLayout) findViewById(R.id.layout_setting);
-    }
+        mMenuLayout1 = findViewById(R.id.layout_home);
+        mMenuLayout2 = findViewById(R.id.layout_navigation);
+        mMenuLayout3 = findViewById(R.id.layout_cart);
+        mMenuLayout4 = findViewById(R.id.layout_setting);
 
-    /**
-     * 设置监听事件
-     */
-    private void setListener() {
-        mLayoutHome.setOnClickListener(this);
-        mLayoutNav.setOnClickListener(this);
-        mLayoutCart.setOnClickListener(this);
-        mLayoutSetting.setOnClickListener(this);
+        mMenuLayout1.setOnClickListener(this);
+        mMenuLayout2.setOnClickListener(this);
+        mMenuLayout3.setOnClickListener(this);
+        mMenuLayout4.setOnClickListener(this);
 
+        //设置第一个菜单被选中
+        mMenuLayout1.setSelected(true);
+        mSelectedMenu = mMenuLayout1;
     }
 
     /**
@@ -81,8 +89,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        FragmentManager fg = getSupportFragmentManager();
-        FragmentTransaction ft = fg.beginTransaction();
+        //取消之前被选中的菜单选项的状态
+        mSelectedMenu.setSelected(false);
+        //更改当前的选中的菜单
+        view.setSelected(true);
+        mSelectedMenu = view;
+
+
+        ft = fg.beginTransaction();
         switch (view.getId()) {
             case R.id.layout_home:
                 show(ft, mHomeFragment);

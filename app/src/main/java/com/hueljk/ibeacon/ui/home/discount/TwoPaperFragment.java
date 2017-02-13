@@ -19,7 +19,6 @@ import com.hueljk.ibeacon.ui.BaseFragment;
  */
 
 public class TwoPaperFragment extends BaseFragment {
-    private ImageView mView;
 
 
     public TwoPaperFragment() {

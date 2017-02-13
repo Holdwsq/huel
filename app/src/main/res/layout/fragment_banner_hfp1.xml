@@ -17,6 +17,7 @@
 
 
             <ImageView
+                android:id="@+id/hfp_return"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentLeft="true"
@@ -99,46 +100,20 @@
                 android:layout_height="match_parent">
 
 
-            <ImageView
-                android:id="@+id/hfp1_img"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:background="#ffffff"
-                android:scaleType="fitXY"
-                android:src="@drawable/lunbo_img4"
-                >
+                <ImageView
+                    android:id="@+id/hfp1_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="1000dp"
+                    android:background="#ffffff"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/lunbo_img4"
+                    >
 
-            </ImageView>
+                </ImageView>
             </ScrollView>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="0dp"
-            android:orientation="horizontal"
-            android:weightSum="0">
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:src="@drawable/cart"/>
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="250dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="0dp"
-                android:background="#e7670c"
-                android:gravity="center"
-                android:text="加入购物车"
-                android:textSize="18sp"/>
-
-        </LinearLayout>
     </LinearLayout>
 
 
