@@ -24,7 +24,7 @@
             <ImageView
                 android:id="@+id/two_shipinhome_img"
                 android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:src="@drawable/retrun"/>
 
@@ -38,8 +38,8 @@
 
             <ImageView
                 android:id="@+id/two_shipincart_img"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:src="@drawable/mycart1"/>
@@ -93,16 +93,18 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:layout_weight="1">
 
                         <ImageView
                             android:id="@+id/two_shipinBanner_img"
-                            android:layout_width="170dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="100dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/two_banner1"
@@ -125,11 +127,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="6dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:layout_weight="1">
 
                         <ImageView
                             android:id="@+id/two_shipinBanner2_img"
-                            android:layout_width="170dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="100dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/two_banner2"

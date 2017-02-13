@@ -27,9 +27,10 @@ import com.hueljk.ibeacon.ui.adapter.MyAdapter;
 import com.hueljk.ibeacon.ui.home.banner.BannerImageViewUtils;
 import com.hueljk.ibeacon.ui.home.banner.CycleViewPager;
 import com.hueljk.ibeacon.ui.home.banner.ImageCycleViewListener;
-import com.hueljk.ibeacon.ui.twoClo.TwoCloFragment;
-import com.hueljk.ibeacon.ui.twoFood.TwoFoodFragment;
-import com.hueljk.ibeacon.ui.twoRy.TwoRyFragment;
+import com.hueljk.ibeacon.ui.home.category.FreshFragment;
+import com.hueljk.ibeacon.ui.home.category.TwoCloFragment;
+import com.hueljk.ibeacon.ui.home.category.TwoFoodFragment;
+import com.hueljk.ibeacon.ui.home.category.TwoRyFragment;
 import com.hueljk.ibeacon.utils.DisplayUtils;
 import com.hueljk.ibeacon.utils.JsonUtils;
 
