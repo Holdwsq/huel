@@ -105,8 +105,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="1000dp"
                     android:background="#ffffff"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/lunbo_img4"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/banner_smm"
                     >
 
                 </ImageView>
