@@ -11,7 +11,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleType="fitXY"
+            android:scaleType="fitStart"
             android:src="@drawable/two_puff_img"
             />
     </ScrollView>

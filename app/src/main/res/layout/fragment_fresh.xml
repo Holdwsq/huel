@@ -127,12 +127,14 @@
                 android:text="-------  大家都在买  -------"
                 />
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/fresh_biaoti">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fresh_biaoti"
+                android:adjustViewBounds="true"
+                android:src="@drawable/fresh_list">
 
-            </ListView>
+            </ImageView>
         </RelativeLayout>
 
     </ScrollView>
