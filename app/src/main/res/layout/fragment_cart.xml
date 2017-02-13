@@ -36,21 +36,15 @@
                 android:id="@+id/edit_tx"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_toLeftOf="@+id/share_img"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
                 android:gravity="center"
                 android:clickable="true"
                 android:text="编辑"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"/>
             <!-- 分享的布局 -->
-            <ImageView
-                android:id="@+id/share_img"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:background="#33ccff"
-                android:padding="8dp"
-                android:src="@drawable/share"/>
+
         </RelativeLayout>
         <!-- listview，购物车里面的东西有可能比较多，需要用listview来进行显示 -->
         <LinearLayout

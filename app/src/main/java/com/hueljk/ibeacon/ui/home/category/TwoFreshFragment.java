@@ -15,11 +15,11 @@ import com.hueljk.ibeacon.ui.BaseFragment;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FreshFragment extends BaseFragment {
+public class TwoFreshFragment extends BaseFragment {
     private ImageView mImageView;
 
 
-    public FreshFragment() {
+    public TwoFreshFragment() {
         // Required empty public constructor
     }
 
@@ -27,7 +27,7 @@ public class FreshFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fresh, container, false);
+        return inflater.inflate(R.layout.fragment_two_fresh, container, false);
     }
 
     protected void initView(View view){

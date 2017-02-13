@@ -1,176 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-   android:background="@color/bg">
+    android:background="#ffffff"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="#33ccff"
+        android:orientation="horizontal">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/two_shipinhome_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/retrun"
+            android:layout_alignBottom="@+id/two_shipincart_img"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="48dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:id="@+id/two_shipincart_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/mycart1"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="#33ccff">
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/two_shipinhome_img"
-                android:layout_width="30dp"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/retrun"/>
+                android:orientation="horizontal">
 
-            <EditText
-                android:layout_width="250dp"
-                android:layout_height="48dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/two_shipinhome_img"
-                />
+                <TextView
+                    android:id="@+id/two_huish_tx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="7dp"
+                    android:text="惠生活"
+                    android:textSize="20dp"/>
 
-            <ImageView
-                android:id="@+id/two_shipincart_img"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/mycart1"/>
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@id/two_huish_tx"
+                    android:text="小喵教会你生活"
+                    android:textSize="15dp"/>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/two_shipinMore_tx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginTop="7dp"
+                    android:text="更多>"
+                    android:textSize="17dp"/>
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/two_huish_tx"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="7dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginTop="7dp"
-                        android:text="惠生活"
-                        android:textSize="20dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/two_huish_tx"
-                        android:layout_centerInParent="true"
-                        android:text="小喵教会你生活"
-                        android:textSize="15dp"/>
-
-                    <TextView
-                        android:id="@+id/two_shipinMore_tx"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="7dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginTop="7dp"
-                        android:text="更多>"
-                        android:textSize="17dp"/>
-
-                </RelativeLayout>
+                android:orientation="horizontal"
+                android:weightSum="2">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_weight="1">
-
-                        <ImageView
-                            android:id="@+id/two_shipinBanner_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="100dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/two_banner1"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="-24dp"
-                            android:textColor="#ffffff"
-                            android:background="#00000000"
-                            android:text="7款养颜食品"
-                            android:textSize="17dp"
-                            android:textStyle="bold"
-                            />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="6dp"
-                        android:orientation="vertical"
-                        android:layout_weight="1">
-
-                        <ImageView
-                            android:id="@+id/two_shipinBanner2_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="100dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/two_banner2"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="-24dp"
-                            android:background="#00000000"
-                            android:textColor="#ffffff"
-                            android:text="7款养颜食品"
-                            android:textSize="17dp"
-                            android:textStyle="bold"
-                            />
-                    </LinearLayout>
-
-                </LinearLayout>
-                <ImageView
-                    android:id="@+id/two_shipinBanner3_img"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="4dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/two_banner3"/>
-                <GridView
-                    android:id="@+id/shipin_gridView"
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:columnWidth="90dp"
-                    android:horizontalSpacing="2dp"
-                    android:numColumns="2"
-                    android:verticalSpacing="2dp" />
+                    android:orientation="vertical"
+                   android:layout_weight="1" >
+
+                    <ImageView
+                        android:id="@+id/two_shipinBanner_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/two_banner1"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="-24dp"
+                        android:text="7款养颜食品"
+                        android:textColor="#ffffff"
+                        android:textSize="17dp"
+                        android:textStyle="bold"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/two_shipinBanner2_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/two_banner2"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="-24dp"
+                        android:background="#00000000"
+                        android:text="7款养颜食品"
+                        android:textColor="#ffffff"
+                        android:textSize="17dp"
+                        android:textStyle="bold"
+                        />
+                </LinearLayout>
+
             </LinearLayout>
-        </ScrollView>
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/two_shipinBanner3_img"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginTop="4dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/two_banner3"/>
+
+            <GridView
+                android:id="@+id/shipin_gridView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnWidth="90dp"
+                android:horizontalSpacing="2dp"
+                android:numColumns="2"
+                android:verticalSpacing="2dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
 
 
-</android.support.v4.widget.SwipeRefreshLayout>
+

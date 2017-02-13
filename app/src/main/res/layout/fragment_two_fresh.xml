@@ -2,8 +2,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:background="#ffffff"
-             tools:context="com.hueljk.ibeacon.ui.home.FreshFragment">
+             android:background="@color/bg">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,7 +15,7 @@
                 android:id="@+id/fresh_text"
                 android:layout_width="match_parent"
                 android:background="#33ccff"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
@@ -28,9 +27,12 @@
             <ImageView
                 android:id="@+id/return_sc_img"
                 android:layout_width="30dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:src="@drawable/retrun"
+                android:layout_marginBottom="5dp"
+                android:layout_alignBottom="@+id/fresh_text"
                 android:layout_alignParentLeft="true"
-                android:src="@drawable/retrun"/>
+                android:layout_alignParentStart="true"/>
 
 
             <ImageView
@@ -43,25 +45,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/fresh_img_1"/>
 
-            <ImageView
-                android:id="@+id/img_2"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_toRightOf="@+id/img_1"
-                android:scaleType="fitXY"
-                android:layout_below="@+id/fresh_text"
-                android:src="@drawable/fresh_img_2"/>
 
-            <ImageView
-                android:id="@+id/img_3"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_below="@+id/img_2"
-                android:layout_toEndOf="@+id/img_1"
-                android:layout_toRightOf="@+id/img_1"
-                android:scaleType="fitXY"
-                android:src="@drawable/fresh_img_3"
-                />
 
             <ImageView
                 android:id="@+id/img_4"
@@ -71,7 +55,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/img_1"
                 android:scaleType="fitXY"
-                android:src="@drawable/fresh_img_4"/>
+                android:src="@drawable/fresh_img_2"/>
 
             <LinearLayout
                 android:id="@+id/fresh_tuijian"
@@ -87,7 +71,7 @@
                     android:layout_height="120dp"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
-                    android:src="@drawable/fresh_img_5"/>
+                    android:src="@drawable/fresh_img_3"/>
 
                 <ImageView
                     android:id="@+id/img_6"
@@ -97,7 +81,7 @@
                     android:layout_marginRight="1dp"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
-                    android:src="@drawable/fresh_img_5"/>
+                    android:src="@drawable/fresh_img_4"/>
 
                 <ImageView
                     android:id="@+id/img_7"
@@ -115,7 +99,7 @@
                     android:layout_height="120dp"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
-                    android:src="@drawable/fresh_img_5"/>
+                    android:src="@drawable/fresh_img_6"/>
             </LinearLayout>
 
             <TextView
