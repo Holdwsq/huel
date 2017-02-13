@@ -108,6 +108,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                 break;
             case R.id.person_name:
                 Toast.makeText(getContext(), "你点击了用户名", Toast.LENGTH_SHORT).show();
+                mMainActivity.showFragment(LoginFragment.class,"setting_2_login");
                 break;
             case R.id.vip_value:
                 Toast.makeText(getContext(), "你点击了我的会员值", Toast.LENGTH_SHORT).show();

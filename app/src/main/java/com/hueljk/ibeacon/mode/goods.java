@@ -1,11 +1,16 @@
 package com.hueljk.ibeacon.mode;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by zc on 2017/2/9.
  */
-public class Goods {
+public class Goods implements Parcelable{
+    //Parcelable接口就是在不同组件之间传递对象的时候进行的序列化
+
     /*
      "id": "4",
                 "name": "草莓",
@@ -38,6 +43,27 @@ public class Goods {
 
     public Goods() {
     }
+
+    protected Goods(Parcel in) {
+        mId = in.readInt();
+        mName = in.readString();
+        mPurl = in.readString();
+        mPrice = in.readFloat();
+        mPdesc = in.readString();
+        mSold = in.readInt();
+    }
+
+    public static final Creator<Goods> CREATOR = new Creator<Goods>() {
+        @Override
+        public Goods createFromParcel(Parcel in) {
+            return new Goods(in);
+        }
+
+        @Override
+        public Goods[] newArray(int size) {
+            return new Goods[size];
+        }
+    };
 
     public int getId() {
         return mId;
@@ -85,5 +111,32 @@ public class Goods {
 
     public void setSold(int sold) {
         mSold = sold;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(mId);
+        dest.writeString(mName);
+        dest.writeString(mPurl);
+        dest.writeFloat(mPrice);
+        dest.writeString(mPdesc);
+        dest.writeInt(mSold);
+    }
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "mId=" + mId +
+                ", mName='" + mName + '\'' +
+                ", mPurl='" + mPurl + '\'' +
+                ", mPrice=" + mPrice +
+                ", mPdesc='" + mPdesc + '\'' +
+                ", mSold=" + mSold +
+                '}';
     }
 }

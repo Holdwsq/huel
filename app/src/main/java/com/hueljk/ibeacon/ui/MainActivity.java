@@ -151,7 +151,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
      * 局部加载：就是将fragment加载到局部FramLayout之中
      * 全屏加载：就是将fragment加载到系统提供的全屏的framlayout之中，系统提供的framlayout id是anroid.R.id.content
      */
-    public void showFragment(Class<? extends BaseFragment> fragmentClass,String fragmentTag){
+    public void showFragment(Class<? extends BaseFragment> fragmentClass, String fragmentTag) {
+        showFragment(fragmentClass, fragmentTag, null);
+    }
+
+    public void showFragment(Class<? extends BaseFragment> fragmentClass, String fragmentTag, Bundle bundle) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
@@ -163,7 +167,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             //1.new + 构造方法
             //2.通过class的newInstance创建对象
             fragment = fragmentClass.newInstance();
-            ft.add(android.R.id.content,fragment,fragmentTag);
+
+            //fragment之间传值通过bundle存储值，通过方法setArguments,getArguments获取传递的值
+            //intent是activity之间跳转、传值使用，bundle和intent传值一样
+            if (bundle != null) {
+                fragment.setArguments(bundle);
+            }
+
+            ft.add(android.R.id.content, fragment, fragmentTag);
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -174,7 +185,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         ft.addToBackStack(fragmentTag);
         ft.commit();
     }
-
 
 }
 
