@@ -17,10 +17,10 @@
 
         <ImageView
             android:id="@+id/category_img"
-            android:layout_width="39dp"
-            android:layout_height="45dp"
-            android:layout_weight="0.06 "
-            android:src="@drawable/category"/>
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/category"
+            android:layout_weight="0.04"/>
 
         <EditText
             android:id="@+id/SearchEt"
