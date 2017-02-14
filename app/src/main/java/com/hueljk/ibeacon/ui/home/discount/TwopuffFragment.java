@@ -37,13 +37,13 @@ public class TwopuffFragment extends BaseFragment {
 
     protected void initView(View view) {
         super.initView(view);
-//        mImageView = (ImageView) view.findViewById(R.id.two_puff_return);
-//        mImageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                popSelf();
-//            }
-//        });
+        mImageView = (ImageView) view.findViewById(R.id.two_puff_return);
+        mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popSelf();
+            }
+        });
 
 
     }

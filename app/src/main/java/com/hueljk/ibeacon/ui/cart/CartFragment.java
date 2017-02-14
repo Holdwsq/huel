@@ -35,7 +35,7 @@ public class CartFragment extends BaseFragment {
     private CartAdapter mAdapter;
     private TextView medit_tx;
     private TextView mjiesuan_button;
-    private ImageView mshare_img;
+
 
 
     @Override
