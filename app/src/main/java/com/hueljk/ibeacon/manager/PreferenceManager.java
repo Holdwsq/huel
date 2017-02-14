@@ -7,6 +7,11 @@ import android.content.SharedPreferences;
 import com.hueljk.ibeacon.App;
 
 /**
+ * 共享文件是用来存储
+ * 状态信息：是否登录、是否记住账号密码
+ * 临时信息：当前的userid、头像url、其他的基本信息
+ * 配置信息：版本号
+ *
  * @author Chuyh 创建于：2016-8-2
  */
 public class PreferenceManager {
@@ -40,13 +45,28 @@ public class PreferenceManager {
 
     public void saveLoginStatus(boolean isLoginSuccess) {
         //存储数据的三个步骤
-        editor = mSharedPreferences.edit();
-        editor.putBoolean("isLoginSuccess", isLoginSuccess);
-        editor.apply();
-    }
 
+        editor.putBoolean("isLoginSuccess", isLoginSuccess);
+        editor.commit();
+    }
     public boolean getLoginStatus() {
         return mSharedPreferences.getBoolean("isLoginSuccess", false);
     }
+    public void saveUserId(int userid){
+        editor.putInt("UserId",userid);
+        editor.commit();
+    }
+    public int getUserId(){
+        return mSharedPreferences.getInt("UserId",0);
+    }
+    public void saveUserName(String userName){
+        editor.putString("UserName",userName);
+        editor.commit();
+    }
+    public String getUserName(){
+        return mSharedPreferences.getString("UserName","未登录");
+    }
+
+
 
 }

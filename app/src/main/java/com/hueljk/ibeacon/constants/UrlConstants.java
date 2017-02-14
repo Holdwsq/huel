@@ -18,4 +18,10 @@ public interface UrlConstants {
     String goodsUrl=picBaseUrl;
     String clothing = picBaseUrl + "/clothing/";
 
+    //登录url
+    String loginUrl = baseUrl+"/Login";
+
+    //注册url
+    String registerUrl=baseUrl+"/register";
+
 }

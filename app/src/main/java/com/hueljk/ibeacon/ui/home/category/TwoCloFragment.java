@@ -136,6 +136,7 @@ public class TwoCloFragment extends BaseFragment implements View.OnClickListener
 
                         //Type listType = new TypeToken<List<BaseEntity>>(){}.getType();
                         //List<BaseEntity> list = JsonUtils.parse(ret,listType);
+                        Log.d("---------------", "run: "+ret);
                         Type listType = new TypeToken<Result<List<Clothes>>>() {
                         }.getType();
                         Result<List<Clothes>> listResult = JsonUtils.parse(ret, listType);
