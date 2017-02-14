@@ -11,29 +11,33 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:gravity="center" >
+        android:gravity="center">
+
         <FrameLayout
             android:id="@+id/username_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
-            android:gravity="center" >
+            android:gravity="center">
+
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="#ffffff"
                 android:layout_marginTop="5dp"
-                android:paddingRight="60dp"
+                android:background="#ffffff"
                 android:maxLength="20"
-                android:paddingLeft="55dp" >
+                android:paddingLeft="55dp"
+                android:paddingRight="60dp">
             </EditText>
+
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="left|center_vertical"
                 android:background="@drawable/login_user"
-                android:visibility="visible" />
+                android:visibility="visible"/>
+
             <TextView
                 android:id="@+id/contry_sn"
                 android:layout_width="40dp"
@@ -43,56 +47,61 @@
                 android:text="+62"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                android:visibility="invisible" />
+                android:visibility="invisible"/>
 
             <Button
                 android:id="@+id/bt_username_clear"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/button_clear"
                 android:layout_gravity="right|center_vertical"
+                android:background="@drawable/button_clear"
+                android:visibility="invisible"
                 />
         </FrameLayout>
+
         <FrameLayout
             android:id="@+id/usercode_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/username_layout"
             android:layout_marginTop="6dp"
-            android:gravity="center" >
+            android:gravity="center">
+
             <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
                 android:inputType="textPassword"
-                android:paddingRight="60dp"
                 android:maxLength="20"
-                android:paddingLeft="55dp" >
+                android:paddingLeft="55dp"
+                android:paddingRight="60dp">
             </EditText>
 
             <Button
                 android:id="@+id/bt_pwd_eye"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/button_eye"
                 android:layout_gravity="right|center_vertical"
+                android:background="@drawable/button_eye"
                 />
+
             <Button
                 android:id="@+id/bt_pwd_clear"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/button_clear"
                 android:layout_gravity="right|center_vertical"
                 android:layout_marginRight="40dp"
+                android:background="@drawable/button_clear"
+                android:visibility="invisible"
                 />
 
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="left|center_vertical"
-                android:background="@drawable/login_psd"
-                android:id="@+id/imageView"/>
+                android:background="@drawable/login_psd"/>
         </FrameLayout>
 
         <Button
@@ -102,9 +111,10 @@
             android:layout_below="@id/usercode_layout"
             android:layout_marginTop="30dp"
             android:background="#ff336699"
-            android:textColor="@android:color/white"
             android:gravity="center"
-            android:text="登录" />
+            android:text="登录"
+            android:textColor="@android:color/white"/>
+
         <TextView
             android:id="@+id/login_error"
             android:layout_width="wrap_content"
@@ -114,7 +124,8 @@
             android:background="#00000000"
             android:backgroundTint="@color/colorPrimary"
             android:text="忘记密码"
-            android:textSize="16sp" />
+            android:textSize="16sp"/>
+
         <TextView
             android:id="@+id/register"
             android:layout_width="wrap_content"
@@ -122,12 +133,13 @@
             android:layout_alignLeft="@id/login"
             android:layout_below="@id/login"
             android:background="#00000000"
-            android:gravity="left|center_vertical"
             android:backgroundTint="@color/colorPrimary"
+            android:gravity="left|center_vertical"
             android:text="注册"
             android:textSize="16sp"
-            android:visibility="visible" />
+            android:visibility="visible"/>
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/remember_layout000"
         android:layout_width="wrap_content"
@@ -135,7 +147,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="1dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" >
+        android:layout_marginRight="20dp">
+
         <Button
             android:id="@+id/login_text"
             android:layout_width="match_parent"
@@ -144,6 +157,6 @@
             android:gravity="center"
             android:text="Designed by Hueljk 2017"
             android:textSize="16sp"
-            android:visibility="visible" />
+            android:visibility="visible"/>
     </RelativeLayout>
 </RelativeLayout>
