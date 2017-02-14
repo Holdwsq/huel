@@ -19,7 +19,7 @@ import com.hueljk.ibeacon.ui.BaseFragment;
  */
 
 public class TwoWineFragment extends BaseFragment {
-    private ImageView mView;
+    private ImageView mImageView;
 
 
     public TwoWineFragment() {
@@ -34,6 +34,16 @@ public class TwoWineFragment extends BaseFragment {
         return inflater.inflate(R.layout.fragment_two_wine, container, false);
     }
 
+    protected void initView(View view) {
+        super.initView(view);
+        mImageView = (ImageView) view.findViewById(R.id.two_wine_return);
+        mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popSelf();
+            }
+        });
 
+    }
 }
 

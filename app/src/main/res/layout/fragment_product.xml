@@ -62,7 +62,7 @@
             android:layout_below="@+id/product_desc"
             android:layout_marginTop="30dp"
             android:text="￥148"
-            android:textColor="#FFCE0A0D"
+            android:textColor="#FF0000"
             android:textSize="28sp"/>
 
         <TextView
@@ -81,7 +81,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:text="详情 >"
-            android:textColor="#33ccff"
+            android:textColor="#ff0000"
             android:textSize="27sp"
             android:id="@+id/textView2"/>
 
@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             android:text="加入购物车"
             android:textSize="30sp"
-            android:background="#FFCE0A0D"
+            android:background="#FF7f00"
             android:layout_alignParentBottom="true"
             android:gravity="center"
             android:layout_alignTop="@+id/relativeLayout"

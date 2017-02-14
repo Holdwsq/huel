@@ -110,13 +110,7 @@ public class CartFragment extends BaseFragment {
 
             }
         });
-        mshare_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "您点击了分享", Toast.LENGTH_SHORT).show();
 
-            }
-        });
         mjiesuan_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

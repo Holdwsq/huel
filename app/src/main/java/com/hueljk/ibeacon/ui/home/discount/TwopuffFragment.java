@@ -20,7 +20,7 @@ import com.hueljk.ibeacon.ui.BaseFragment;
  */
 
 public class TwopuffFragment extends BaseFragment {
-    private ImageView mView;
+    private ImageView mImageView;
 
 
     public TwopuffFragment() {
@@ -35,6 +35,17 @@ public class TwopuffFragment extends BaseFragment {
         return inflater.inflate(R.layout.fragment_two_puff, container, false);
     }
 
+    protected void initView(View view) {
+        super.initView(view);
+//        mImageView = (ImageView) view.findViewById(R.id.two_puff_return);
+//        mImageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                popSelf();
+//            }
+//        });
 
+
+    }
 }
 
