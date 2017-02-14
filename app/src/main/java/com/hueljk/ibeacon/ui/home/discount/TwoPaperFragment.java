@@ -19,7 +19,7 @@ import com.hueljk.ibeacon.ui.BaseFragment;
  */
 
 public class TwoPaperFragment extends BaseFragment {
-
+    private ImageView mImageView;
 
     public TwoPaperFragment() {
         // Required empty public constructor
@@ -33,7 +33,17 @@ public class TwoPaperFragment extends BaseFragment {
         return inflater.inflate(R.layout.fragment_two_paper, container, false);
     }
 
+    protected void initView(View view) {
+        super.initView(view);
+        mImageView = (ImageView) view.findViewById(R.id.two_paper_return);
+        mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popSelf();
+            }
+        });
 
+    }
 }
 
 

@@ -36,7 +36,7 @@
             android:layout_width="39dp"
             android:layout_height="45dp"
             android:layout_weight="0.06"
-            android:src="@drawable/message"/>
+            android:src="@drawable/msg"/>
 
 
     </LinearLayout>

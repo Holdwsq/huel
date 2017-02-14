@@ -1,13 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/two_puff"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/bg">
+    <RelativeLayout
+        android:id="@+id/two_puff_top"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:background="#33ccff">
+
+        <ImageView
+            android:id="@+id/two_puff_return"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/retrun"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:text="源于自然，归于健康"
+            android:textSize="18sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/two_puff_top">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -16,4 +44,4 @@
             android:src="@drawable/two_puff_img"
             />
     </ScrollView>
-</LinearLayout>
+</RelativeLayout>
