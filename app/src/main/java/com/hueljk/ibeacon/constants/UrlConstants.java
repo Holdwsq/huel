@@ -14,13 +14,15 @@ public interface UrlConstants {
     String HomeUrl=baseUrl+"/Home";
     String picBaseUrl=baseUrl+"/picture/";//此处把‘/’加在路径之后，使用时不必再加
     String BannerDisUrl=picBaseUrl+"image/";
- //http://192.168.8.239:8080/HuelJk/picture/image/
+    //http://192.168.8.239:8080/HuelJk/picture/image/
     String goodsUrl=picBaseUrl;
-    String clothing = picBaseUrl + "/clothing/";
 
+    //二级页面clotingfragment中菜单栏的url
+    String twoCloUrl=baseUrl+"/Clothing";
+    //二级页面clotingfragment中图片的地址
+    String cloPicUrl = picBaseUrl + "goods/";
     //登录url
     String loginUrl = baseUrl+"/Login";
-
     //注册url
     String registerUrl=baseUrl+"/register";
 

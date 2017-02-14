@@ -27,6 +27,10 @@ import com.hueljk.ibeacon.manager.PreferenceManager;
 import com.hueljk.ibeacon.ui.BaseFragment;
 import com.hueljk.ibeacon.ui.navigation.NavFragment;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,14 +65,14 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     @Override
     protected void initView(View view) {
         super.initView(view);
-        //mset_tx = (TextView) view.findViewById(R.id.set_tx);
-        mlogin=(LinearLayout)view.findViewById(R.id.register_ly);
+        mset_tx = (TextView) view.findViewById(R.id.set_tx);
+        mlogin = (LinearLayout) view.findViewById(R.id.register_ly);
         mperson_headimg = (ImageView) view.findViewById(R.id.person_headimg);
         mperson_name = (TextView) view.findViewById(R.id.person_name);
         mvip_value = (TextView) view.findViewById(R.id.vip_value);
         mmy_collect = (TextView) view.findViewById(R.id.my_collect);
         mmy_foucs = (TextView) view.findViewById(R.id.my_foucs);
-       // mset_tx.setOnClickListener(this);
+        mset_tx.setOnClickListener(this);
         mperson_headimg.setOnClickListener(this);
         mperson_name.setOnClickListener(this);
         mvip_value.setOnClickListener(this);
@@ -108,17 +112,16 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         //参数view是当前被点击的控件
         switch (v.getId()) {
             case R.id.set_tx:
-                Toast.makeText(getContext(), "你点击了设置", Toast.LENGTH_SHORT).show();
+                mMainActivity.showFragment(PersonSettingFragment.class,"setting_2_per");
                 break;
             case R.id.register_ly:
-                Toast.makeText(getContext(), "你点击了用户名和头像", Toast.LENGTH_SHORT).show();
-                mMainActivity.showFragment(LoginFragment.class,"setting_2_login");
+                mMainActivity.showFragment(LoginFragment.class, "setting_2_login");
                 break;
             case R.id.person_headimg:
-                mMainActivity.showFragment(LoginFragment.class,"setting_2_login");
+                mMainActivity.showFragment(LoginFragment.class, "setting_2_login");
                 break;
             case R.id.person_name:
-                mMainActivity.showFragment(LoginFragment.class,"setting_2_login");
+                mMainActivity.showFragment(LoginFragment.class, "setting_2_login");
                 break;
 
             case R.id.vip_value:
@@ -138,10 +141,33 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     protected void setData() {
         super.setData();
         mPreferenceManager = PreferenceManager.getInstance();
-        if(mPreferenceManager.getLoginStatus()){
+        if (mPreferenceManager.getLoginStatus()) {
             mperson_name.setText(mPreferenceManager.getUserName());
         }
 
+    }
+
+    /**
+     * 有一个方法能够在登录成功的时候执行，在这个方法内部执行刷新、跳转操作
+     */
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void helloEventBus(String message) {
+        //mMainActivity.toHomeFragment();
+        //执行个人信息刷新操作
+        mperson_name.setText(message);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }
 

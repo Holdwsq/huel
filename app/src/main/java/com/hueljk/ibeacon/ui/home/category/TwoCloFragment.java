@@ -39,6 +39,8 @@ public class TwoCloFragment extends BaseFragment implements View.OnClickListener
     private static OkHttpClient client;
     private MyAdpter_Clothes adapter;
     private ImageView home_img;
+    List<Clothes> clothes = new ArrayList<>();
+    private String mType;
 
     static {
         client = new OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS).build();
@@ -75,21 +77,16 @@ public class TwoCloFragment extends BaseFragment implements View.OnClickListener
 
         //当前为选中状态的菜单下划线
         mCurLine = menu_line_1;
+        mType="2";
+
+        adapter = new MyAdpter_Clothes(mContext,null);
+        mGridView.setAdapter(adapter);
     }
 
     @Override
     protected void setData() {
 
         super.setData();
-        List<Clothes> clothes = new ArrayList<>();
-        for (int i = 0; i < 40; i++) {
-            Clothes clothes1 = new Clothes("", 1000, "女式上衣");
-            clothes.add(clothes1);
-        }
-        /*MyAdpter_Clothes adapter = new MyAdpter_Clothes(this,clothes);
-        mGridView.setAdapter(adapter);*/
-        adapter = new MyAdpter_Clothes(getContext(), clothes);
-        mGridView.setAdapter(adapter);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -100,56 +97,12 @@ public class TwoCloFragment extends BaseFragment implements View.OnClickListener
                 }
             }
         }).start();
-        int height = 99 / 3 * 220;
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mGridView.getLayoutParams();
-        DisplayUtils.init(getContext());
-        params.height = DisplayUtils.dip2px(height);
-        mGridView.setLayoutParams(params);
+
         home_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 popSelf();
-
-            }
-        });
-    }
-
-    public void execute() throws Exception {
-
-        Request request = new Request.Builder()
-                .url(UrlConstants.clothing)
-                .build();
-        Call call = client.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.e("tag", "error");
-            }
-
-            @Override
-            public void onResponse(Call call, final Response response) throws IOException {
-                final String ret = response.body().string();
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        //Type listType = new TypeToken<List<BaseEntity>>(){}.getType();
-                        //List<BaseEntity> list = JsonUtils.parse(ret,listType);
-                        Log.d("---------------", "run: "+ret);
-                        Type listType = new TypeToken<Result<List<Clothes>>>() {
-                        }.getType();
-                        Result<List<Clothes>> listResult = JsonUtils.parse(ret, listType);
-                        if (listResult.mCode == 200) {
-                            List<Clothes> clothes = listResult.mData;
-                            adapter.update(clothes);
-
-                        }
-
-                        // 解析json数据得到bean
-
-                    }
-                });
 
             }
         });
@@ -170,17 +123,95 @@ public class TwoCloFragment extends BaseFragment implements View.OnClickListener
 
         switch (v.getId()) {
             case R.id.twoclo_menu_1:
+                mType="2";
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            execute();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
                 menu_line_1.setVisibility(View.VISIBLE);
                 mCurLine = menu_line_1;
                 break;
             case R.id.twoclo_menu_2:
+                mType="3";
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            execute();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
                 menu_line_2.setVisibility(View.VISIBLE);
                 mCurLine = menu_line_2;
                 break;
             case R.id.twoclo_menu_3:
+                mType="4";
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            execute();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
                 menu_line_3.setVisibility(View.VISIBLE);
                 mCurLine = menu_line_3;
                 break;
         }
     }
+    public void execute() throws Exception {
+       String url=UrlConstants.twoCloUrl+"?type="+mType;
+        Log.d("clourl-------",url);
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("tag", "error");
+            }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+                final String ret = response.body().string();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.d("---------------", "run: "+ret);
+                        Type listType = new TypeToken<Result<List<Clothes>>>() {
+                        }.getType();
+                        Result<List<Clothes>> listResult = JsonUtils.parse(ret, listType);
+                        if (listResult.mCode == 200) {
+                            List<Clothes> clothes = listResult.mData;
+                            int height = clothes.size() / 2 * 220+60;
+                            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mGridView.getLayoutParams();
+                            DisplayUtils.init(getContext());
+                            params.height = DisplayUtils.dip2px(height);
+                            mGridView.setLayoutParams(params);
+                            adapter.update(clothes);
+
+                        }
+
+
+                        // 解析json数据得到bean
+
+                    }
+                });
+
+            }
+        });
+    }
+
+
 }

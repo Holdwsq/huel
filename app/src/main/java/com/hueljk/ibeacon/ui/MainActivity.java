@@ -137,8 +137,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
      * @param fragment : 被点击的tab所对应的Fragment
      */
     private void show(FragmentTransaction ft, Fragment fragment) {
-        for (Fragment e :
-                mFragments) {
+        for (Fragment e : mFragments) {
             if (fragment == null) {
                 continue;
             }
@@ -149,6 +148,18 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             }
 
         }
+    }
+
+    public void toHomeFragment(){
+        //取消之前被选中的菜单选项的状态
+        mSelectedMenu.setSelected(false);
+        //更改当前的选中的菜单
+        mMenuLayout1.setSelected(true);
+        mSelectedMenu = mMenuLayout1;
+
+        ft = fg.beginTransaction();
+        show(ft, mHomeFragment);
+        ft.commit();
     }
 
     /**

@@ -63,12 +63,12 @@ public class MyAdpter_Clothes extends BaseAdapter {
         }
         Clothes clothes=getItem(position);
         //holder.mCIonUrl.setImageResource(clothes.getCIon());
-        Glide.with(mContext).load(UrlConstants.picBaseUrl+clothes.getCIon())
+        Glide.with(mContext).load(UrlConstants.cloPicUrl+clothes.getCloUrl()).centerCrop()
                 .placeholder(R.drawable.clothes1)
                 .error(R.drawable.clothes1)
                 .into(holder.mCIonUrl);
-        holder.mCdec.setText(clothes.getCdec());
-        holder.mCPrice.setText("￥"+clothes.getCPrice());
+        holder.mCdec.setText(clothes.getCloDesc());
+        holder.mCPrice.setText("￥"+clothes.getCloPrice());
         return convertView;
     }
 

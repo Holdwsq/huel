@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+
+    android:background="@color/bg">
+    <RelativeLayout
+        android:id="@+id/per_setly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/set_return"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:src="@drawable/retrun"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="设置"
+            android:textSize="24sp"/>
+
+    </RelativeLayout>
+   <ListView
+       android:id="@+id/per_setlv"
+       android:layout_below="@+id/per_setly"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+   </ListView>
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="退出登录"
+        android:textSize="22sp"/>
+
+</RelativeLayout>

@@ -49,7 +49,7 @@
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/set_tx"
+
                 android:layout_centerVertical="true"
                 android:src="@drawable/share"
                 />

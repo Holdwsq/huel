@@ -79,6 +79,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private FrameLayout mViewPagerFragmentLayout;
     private List<Goods> goods;
     private PreferenceManager mPreferenceManager;
+    private String mSeachKeys;
 
     static {
         client = new OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS).build();
@@ -180,7 +181,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 mPreferenceManager = PreferenceManager.getInstance();
 
                 if(mPreferenceManager.getLoginStatus()){
-                    Toast.makeText(getContext(),"11111111111",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"成功加入购物车",Toast.LENGTH_SHORT).show();
                 }else{
                     mMainActivity.showFragment(LoginFragment.class,"Home_2_Login");
                 }
