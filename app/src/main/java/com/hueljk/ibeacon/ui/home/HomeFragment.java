@@ -4,6 +4,7 @@ package com.hueljk.ibeacon.ui.home;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +80,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private FrameLayout mViewPagerFragmentLayout;
     private List<Goods> goods;
     private PreferenceManager mPreferenceManager;
-    private String mSeachKeys;
+    private String mSearchKeys;
+    private EditText mSearchET;
+    private ImageView mSearchImg;
 
     static {
         client = new OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS).build();
@@ -104,8 +107,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         homezp_img = (ImageView) view.findViewById(R.id.homezp_img);
         homemj_img = (ImageView) view.findViewById(R.id.homemj_img);
         homeph_img = (ImageView) view.findViewById(R.id.homeph_img);
-
-
+        mSearchET=(EditText)view.findViewById(R.id.SearchEt);
+        mSearchImg=(ImageView)view.findViewById(R.id.search_img);
         mContext = getContext();
         // 找到轮播控件
         mCycleViewPager = (CycleViewPager) getChildFragmentManager()
@@ -114,35 +117,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         mGridView.setAdapter(mAdapter);
         initBanner();
 
-    }
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.clothes_tv:
-                mMainActivity.showFragment(TwoCloFragment.class, "Home_2_Clo");
-                break;
-            case R.id.riyong_tv:
-                mMainActivity.showFragment(TwoRyFragment.class, "Home_2_Ry");
-                break;
-            case R.id.shipin_tv:
-                mMainActivity.showFragment(TwoFoodFragment.class, "Home_2_Ry");
-                break;
-            case R.id.shengxian_tv:
-                mMainActivity.showFragment(TwoFreshFragment.class, "Home_2_sx");
-                break;
-            case R.id.homemj_img:
-                mMainActivity.showFragment(TwoWineFragment.class,"Home_2_wine");
-                break;
-            case R.id.homezp_img:
-                mMainActivity.showFragment(TwoPaperFragment.class,"Home_2_paper");
-                break;
-            case R.id.homeph_img:
-                mMainActivity.showFragment(TwopuffFragment.class,"Home_2_puff");
-                break;
-
-        }
 
     }
+
 
     @Override
     protected void setListener() {
@@ -154,6 +131,22 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         homemj_img.setOnClickListener(this);
         homezp_img.setOnClickListener(this);
         homeph_img.setOnClickListener(this);
+        mSearchImg.setOnClickListener(this);
+        mSearchET.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode==KeyEvent.KEYCODE_ENTER){
+                    Toast.makeText(getContext(),"回车搜索",Toast.LENGTH_SHORT).show();
+                    mSearchKeys=mSearchET.getText().toString();
+                    Log.d("---------","SearchKeys:"+mSearchKeys);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("searchKeys",mSearchKeys);
+                    mMainActivity.showFragment(SearchProductFragment.class,"Home_2_Search",bundle);
+                    return true;
+                }
+                return false;
+            }
+        });
         /**
          * 点击事件
          *
@@ -189,7 +182,41 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
             }
         });
     }
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.clothes_tv:
+                mMainActivity.showFragment(TwoCloFragment.class, "Home_2_Clo");
+                break;
+            case R.id.riyong_tv:
+                mMainActivity.showFragment(TwoRyFragment.class, "Home_2_Ry");
+                break;
+            case R.id.shipin_tv:
+                mMainActivity.showFragment(TwoFoodFragment.class, "Home_2_Ry");
+                break;
+            case R.id.shengxian_tv:
+                mMainActivity.showFragment(TwoFreshFragment.class, "Home_2_sx");
+                break;
+            case R.id.homemj_img:
+                mMainActivity.showFragment(TwoWineFragment.class,"Home_2_wine");
+                break;
+            case R.id.homezp_img:
+                mMainActivity.showFragment(TwoPaperFragment.class,"Home_2_paper");
+                break;
+            case R.id.homeph_img:
+                mMainActivity.showFragment(TwopuffFragment.class,"Home_2_puff");
+                break;
+            case R.id.search_img:
+                Toast.makeText(getContext(),"点击搜索",Toast.LENGTH_SHORT).show();
+                mSearchKeys=mSearchET.getText().toString();
+                Log.d("---------","SearchKeys:"+mSearchKeys);
+                Bundle bundle = new Bundle();
+                bundle.putString("searchKeys",mSearchKeys);
+                mMainActivity.showFragment(SearchProductFragment.class,"Home_2_serach",bundle);
 
+        }
+
+    }
     @Override
     protected void setData() {
         super.setData();

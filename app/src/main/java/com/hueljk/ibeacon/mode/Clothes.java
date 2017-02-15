@@ -36,7 +36,7 @@ public class Clothes {
     private String mCloUrl;
     @SerializedName("price")
     private float mCloPrice;
-    @SerializedName("desc")
+    @SerializedName("des")
     private String mCloDesc;
 
     public Clothes(int id, String name, String cloUrl, float cloPrice, String cloDesc) {

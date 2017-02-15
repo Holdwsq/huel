@@ -68,7 +68,7 @@ public class ProductFragment extends BaseFragment{
             mGoods =mBundle.getParcelable("goodsdetail");
             Glide
                     .with(mContext)
-                    .load(UrlConstants.picBaseUrl+mGoods.getPurl())
+                    .load(UrlConstants.HomePicUrl+mGoods.getPurl())
                     .placeholder(R.drawable.shangpin1)
                     .error(R.drawable.shangpin1)
                     .into(mProductImg);

@@ -70,7 +70,7 @@ public class HomeAdapter extends BaseAdapter implements View.OnClickListener{
         holder.mCIon.setOnClickListener(this);
         Glide
                 .with(mContext)
-                .load(UrlConstants.picBaseUrl+goods.getPurl())
+                .load(UrlConstants.HomePicUrl+goods.getPurl())
                 .placeholder(R.drawable.shangpin1)
                 .error(R.drawable.shangpin1)
                 .into(holder.mPIconUrl);

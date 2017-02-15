@@ -22,13 +22,28 @@
             android:src="@drawable/category"
             android:layout_weight="0.04"/>
 
-        <EditText
-            android:id="@+id/SearchEt"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.93"
-            android:drawableLeft="@drawable/search"
-            android:hint="请输入搜索内容"/>
+            android:layout_weight="0.93">
+
+            <ImageView
+                android:id="@+id/search_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingLeft="8dp"
+                android:src="@drawable/search"/>
+
+            <EditText
+                android:id="@+id/SearchEt"
+                android:layout_width="match_parent"
+                android:paddingLeft="40dp"
+                android:layout_height="wrap_content"
+                android:hint="请输入搜索内容"/>
+
+        </RelativeLayout>
+
 
 
         <ImageView

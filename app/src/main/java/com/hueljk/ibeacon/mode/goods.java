@@ -27,7 +27,7 @@ public class Goods implements Parcelable{
     private String mPurl;
     @SerializedName("price")
     private float mPrice;
-    @SerializedName("desc")
+    @SerializedName("des")
     private String mPdesc;
     @SerializedName("sold")
     private int mSold;
