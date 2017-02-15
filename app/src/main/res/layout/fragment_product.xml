@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             android:text="加入购物车"
             android:textSize="30sp"
-            android:background="#FF7f00"
+            android:background="#33ccff"
             android:layout_alignParentBottom="true"
             android:gravity="center"
             android:layout_alignTop="@+id/relativeLayout"

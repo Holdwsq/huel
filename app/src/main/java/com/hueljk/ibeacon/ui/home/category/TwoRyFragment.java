@@ -21,7 +21,7 @@ import java.util.List;
  * Created by zc on 2017/2/7.
  */
 public class TwoRyFragment extends BaseFragment{
-    private GridView mGridView;
+  //  private GridView mGridView;
     private ImageView home_img;
 
     @Override
@@ -32,11 +32,17 @@ public class TwoRyFragment extends BaseFragment{
     @Override
     protected void initView(View view) {
         super.initView(view);
-        mGridView = (GridView) view.findViewById(R.id.riyong_gridView);
+       // mGridView = (GridView) view.findViewById(R.id.riyong_gridView);
         home_img = (ImageView) view.findViewById(R.id.two_riyohome_img);
+        home_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popSelf();
+            }
+        });
     }
 
-    @Override
+  /*  @Override
     protected void setData() {
         super.setData();
         List<Goods> rys = new ArrayList<>();
@@ -51,13 +57,7 @@ public class TwoRyFragment extends BaseFragment{
         DisplayUtils.init(getContext());
 
         params.height = DisplayUtils.dip2px(height);
-        mGridView.setLayoutParams(params);
-        home_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-             popSelf();
-            }
-        });
+        mGridView.setLayoutParams(params);*/
+
 
     }
-}
