@@ -21,7 +21,6 @@ import java.util.List;
  * Created by zc on 2017/2/7.
  */
 public class TwoFoodFragment extends BaseFragment{
-    private GridView mGridView;
     private ImageView home_img;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -29,14 +28,20 @@ public class TwoFoodFragment extends BaseFragment{
     }
 
     @Override
-    protected void initView(View view) {
+   protected void initView(View view) {
         super.initView(view);
-        mGridView = (GridView) view.findViewById(R.id.shipin_gridView);
+   //     mGridView = (GridView) view.findViewById(R.id.shipin_gridView);
         home_img=(ImageView)view.findViewById(R.id.two_shipinhome_img);
+        home_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popSelf();
+            }
+        });
     }
 
-    @Override
-    protected void setData() {
+   /*  @Override
+  protected void setData() {
         super.setData();
         List<Goods> foods = new ArrayList<>();
         for (int i = 0; i < 40; i++) {
@@ -51,12 +56,7 @@ public class TwoFoodFragment extends BaseFragment{
         DisplayUtils.init(getContext());
 
         params.height = DisplayUtils.dip2px(height);
-        mGridView.setLayoutParams(params);
-        home_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               popSelf();
-            }
-        });
+        mGridView.setLayoutParams(params);*/
+
     }
-}
+
