@@ -35,7 +35,7 @@ public class BannerXsFragment extends BaseFragment {
         mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "==", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), "==", Toast.LENGTH_SHORT).show();
                 popSelf();
             }
         });

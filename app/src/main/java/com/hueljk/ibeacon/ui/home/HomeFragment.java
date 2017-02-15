@@ -134,7 +134,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         mSearchET.setDrawableLeftListener(new EditTextDrawableClick.DrawableLeftListener() {
             @Override
             public void onDrawableLeftClick(View view) {
-                Toast.makeText(getContext(),"点击搜索",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(),"点击搜索",Toast.LENGTH_SHORT).show();
                 mSearchKeys=mSearchET.getText().toString();
                 mSearchET.setText("");
                 Log.d("---------","SearchKeys:"+mSearchKeys);
@@ -149,7 +149,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if(keyCode==KeyEvent.KEYCODE_ENTER){
-                    Toast.makeText(getContext(),"回车搜索",Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(getContext(),"回车搜索",Toast.LENGTH_SHORT).show();
                     mSearchKeys=mSearchET.getText().toString();
                     Log.d("---------","SearchKeys:"+mSearchKeys);
                     Bundle bundle = new Bundle();
@@ -170,7 +170,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //goods.get(position).getId()当前位置的商品id
-                Toast.makeText(mContext,"goods id is -- "+goods.get(position).getId(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext,"goods id is -- "+goods.get(position).getId(),Toast.LENGTH_SHORT).show();
 
                 //跳转到详情页
                 //fragment之间的传值，需要在showFragment方法中增加一个参数
@@ -273,7 +273,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //Log.d("---", ret);
+                        Log.d("---", ret);
                         Type listType = new TypeToken<Result<Home>>() {
                         }.getType();
                         //解析Json数据得到结果集
@@ -285,7 +285,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                             setBanner(banners);
                             //更新dicounts
                             List<BaseEntity> discounts = homelist.getDiscounts();
-                            //Log.d("----", discounts.toString());
+                            Log.d("----", discounts.toString());
                             Glide
                                     .with(mContext)
                                     .load(UrlConstants.BannerDisUrl + discounts.get(0).getUrl())
@@ -369,15 +369,15 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 //Toast.makeText(getContext(), "--"+position, Toast.LENGTH_SHORT).show();
                 switch (position) {
                     case 1:
-                        Toast.makeText(getContext(), "--" + position, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "--" + position, Toast.LENGTH_SHORT).show();
                         mMainActivity.showFragment(BannerNzFragment.class,"Home_2_bannerNz");
                         break;
                     case 2:
-                        Toast.makeText(getContext(), "--" + position, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "--" + position, Toast.LENGTH_SHORT).show();
                         mMainActivity.showFragment(BannerXsFragment.class,"Home_2_bannerXs");
                         break;
                     case 3:
-                        Toast.makeText(getContext(), "--" + position, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "--" + position, Toast.LENGTH_SHORT).show();
                         mMainActivity.showFragment(BannerHfpFragment.class,"Home_2_hfp");
                         break;
 

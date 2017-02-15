@@ -87,7 +87,7 @@ public class ProductFragment extends BaseFragment implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.desc_tx:
-                Toast.makeText(getContext(),"ClickGid----"+mGoodsId,Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(),"ClickGid----"+mGoodsId,Toast.LENGTH_SHORT).show();
                 Bundle bundle= new Bundle();
                 bundle.putInt("ClickGid",mGoodsId);
                 mMainActivity.showFragment(ProductDescFragment.class,"pro_3_desc",bundle);

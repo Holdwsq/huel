@@ -97,7 +97,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         //取得用户输入的账号和密码
         String user = mUsernameET.getText().toString();
         String pass = mPasswordET.getText().toString();
-        if (!isInputValid()) {
+       if (isInputValid()) {
             Toast.makeText(getContext(), "请输入完整的登录信息！", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -162,7 +162,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
     private boolean isInputValid() {
         //检查用户输入的合法性，这里暂且默认用户输入合法
-        if ("" != mUsernameET.getText().toString() && "" != mPasswordET.getText().toString()) {
+        if ( mUsernameET.getText().toString().equals("")||   mPasswordET.getText().toString().equals("")) {
             return true;
         }
         return false;
