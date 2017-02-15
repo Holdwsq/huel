@@ -45,6 +45,7 @@ import com.hueljk.ibeacon.ui.home.discount.TwopuffFragment;
 import com.hueljk.ibeacon.ui.setting.LoginFragment;
 import com.hueljk.ibeacon.utils.DisplayUtils;
 import com.hueljk.ibeacon.utils.JsonUtils;
+import com.hueljk.ibeacon.wigdet.EditTextDrawableClick;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -81,8 +82,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private List<Goods> goods;
     private PreferenceManager mPreferenceManager;
     private String mSearchKeys;
-    private EditText mSearchET;
-    private ImageView mSearchImg;
+    private EditTextDrawableClick mSearchET;
 
     static {
         client = new OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS).build();
@@ -107,8 +107,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         homezp_img = (ImageView) view.findViewById(R.id.homezp_img);
         homemj_img = (ImageView) view.findViewById(R.id.homemj_img);
         homeph_img = (ImageView) view.findViewById(R.id.homeph_img);
-        mSearchET=(EditText)view.findViewById(R.id.SearchEt);
-        mSearchImg=(ImageView)view.findViewById(R.id.search_img);
+        mSearchET=(EditTextDrawableClick)view.findViewById(R.id.SearchEt);
         mContext = getContext();
         // 找到轮播控件
         mCycleViewPager = (CycleViewPager) getChildFragmentManager()
@@ -131,7 +130,21 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         homemj_img.setOnClickListener(this);
         homezp_img.setOnClickListener(this);
         homeph_img.setOnClickListener(this);
-        mSearchImg.setOnClickListener(this);
+
+        mSearchET.setDrawableLeftListener(new EditTextDrawableClick.DrawableLeftListener() {
+            @Override
+            public void onDrawableLeftClick(View view) {
+                Toast.makeText(getContext(),"点击搜索",Toast.LENGTH_SHORT).show();
+                mSearchKeys=mSearchET.getText().toString();
+                mSearchET.setText("");
+                Log.d("---------","SearchKeys:"+mSearchKeys);
+                Bundle bundle = new Bundle();
+                bundle.putString("searchKeys",mSearchKeys);
+                mMainActivity.showFragment(SearchProductFragment.class,"Home_2_serach",bundle);
+
+            }
+        });
+
         mSearchET.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -163,6 +176,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 //fragment之间的传值，需要在showFragment方法中增加一个参数
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("goodsdetail",goods.get(position));
+                bundle.putInt("goodsId",goods.get(position).getId());
 
                 mMainActivity.showFragment(ProductFragment.class,"goodslist_2_detail",bundle);
             }
@@ -206,13 +220,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
             case R.id.homeph_img:
                 mMainActivity.showFragment(TwopuffFragment.class,"Home_2_puff");
                 break;
-            case R.id.search_img:
-                Toast.makeText(getContext(),"点击搜索",Toast.LENGTH_SHORT).show();
-                mSearchKeys=mSearchET.getText().toString();
-                Log.d("---------","SearchKeys:"+mSearchKeys);
-                Bundle bundle = new Bundle();
-                bundle.putString("searchKeys",mSearchKeys);
-                mMainActivity.showFragment(SearchProductFragment.class,"Home_2_serach",bundle);
 
         }
 
