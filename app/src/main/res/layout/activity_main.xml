@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/dao_hang"
                 android:layout_centerHorizontal="true"
-                android:text="导航"
+                android:text="导购模式"
                 android:textColor="@drawable/text_color_2"/>
 
 

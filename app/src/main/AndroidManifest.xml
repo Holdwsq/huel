@@ -3,6 +3,11 @@
           package="com.hueljk.ibeacon"
     >
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -17,6 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <service android:name="com.sensoro.beacon.kit.BeaconService" >
+        </service>
+        <service android:name="com.sensoro.beacon.kit.BeaconProcessService" >
+        </service>
+        <service android:name="com.sensoro.beacon.kit.IntentProcessorService" >
+        </service>
     </application>
 
 </manifest>

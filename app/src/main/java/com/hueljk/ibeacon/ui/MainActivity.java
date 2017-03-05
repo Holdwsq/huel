@@ -1,19 +1,35 @@
 package com.hueljk.ibeacon.ui;
 
+import android.annotation.TargetApi;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothManager;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.hueljk.ibeacon.App;
 import com.hueljk.ibeacon.R;
 import com.hueljk.ibeacon.ui.cart.CartFragment;
 import com.hueljk.ibeacon.ui.home.HomeFragment;
 import com.hueljk.ibeacon.ui.navigation.NavFragment;
 import com.hueljk.ibeacon.ui.setting.SettingFragment;
+import com.sensoro.beacon.kit.Beacon;
+import com.sensoro.beacon.kit.BeaconManagerListener;
+import com.sensoro.cloud.SensoroManager;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +61,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         initView();
         setData();
+
+        if (isBlueEnable()) {
+            initIBeacon();
+        }
     }
 
     //底部菜单
@@ -150,7 +170,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         }
     }
 
-    public void toHomeFragment(){
+    public void toHomeFragment() {
         //取消之前被选中的菜单选项的状态
         mSelectedMenu.setSelected(false);
         //更改当前的选中的菜单
@@ -211,6 +231,73 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         ft.commit();
     }
 
+    /**
+     * ------------------------------------------------------------------------------------
+     */
+    App app;
+    /*
+     * Sensoro Manager
+	 */
+    SensoroManager sensoroManager;
+    BluetoothManager bluetoothManager;
+    BluetoothAdapter bluetoothAdapter;
+
+    public List<String> allBeacons = new ArrayList<>();
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+    private boolean isBlueEnable() {
+        bluetoothManager = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);
+        bluetoothAdapter = bluetoothManager.getAdapter();
+        boolean status = bluetoothAdapter.isEnabled();
+        if (!status) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setNegativeButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    startActivity(intent);
+                }
+            }).setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            }).setTitle(R.string.ask_bt_open);
+            builder.show();
+        }
+
+        return status;
+    }
+
+    private void initIBeacon() {
+        app = App.getInstance();
+
+        sensoroManager = app.sensoroManager;
+        BeaconManagerListener beaconManagerListener = new BeaconManagerListener() {
+            @Override
+            public void onUpdateBeacon(ArrayList beacons) {
+            }
+
+            @Override
+            public void onNewBeacon(Beacon beacon) {
+                //发现一个新的传感器，将sn号
+                Log.i("---------", "onUpdateBeacon: 发现一个设备" + beacon.getSerialNumber());
+                allBeacons.add(beacon.getSerialNumber());
+                EventBus.getDefault().post("");
+            }
+
+            @Override
+            public void onGoneBeacon(Beacon beacon) {
+                // 一个传感器消失
+                Log.i("---------", "onUpdateBeacon: 去除一个设备" + beacon.getSerialNumber());
+                allBeacons.remove(beacon.getSerialNumber());
+                EventBus.getDefault().post("");
+            }
+        };
+        sensoroManager.setBeaconManagerListener(beaconManagerListener);
+    }
 }
 
 
