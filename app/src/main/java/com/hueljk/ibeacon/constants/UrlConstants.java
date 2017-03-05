@@ -40,6 +40,6 @@ public interface UrlConstants {
     //导购页面url
     String GuideUrl=baseUrl+"/IbeaconServlet";
     //导购页面图片url
-    String guideImgUrl=picBaseUrl+"good/";
+    String guideImgUrl=picBaseUrl+"goods/";
 
 }

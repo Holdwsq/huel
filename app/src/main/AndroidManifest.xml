@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.hueljk.ibeacon"
     >
+
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
@@ -15,18 +16,21 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity">
+        <activity
+            android:name=".ui.MainActivity"
+            android:windowSoftInputMode="stateHidden|stateUnchanged|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <service android:name="com.sensoro.beacon.kit.BeaconService" >
+
+        <service android:name="com.sensoro.beacon.kit.BeaconService">
         </service>
-        <service android:name="com.sensoro.beacon.kit.BeaconProcessService" >
+        <service android:name="com.sensoro.beacon.kit.BeaconProcessService">
         </service>
-        <service android:name="com.sensoro.beacon.kit.IntentProcessorService" >
+        <service android:name="com.sensoro.beacon.kit.IntentProcessorService">
         </service>
     </application>
 

@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.hueljk.ibeacon.App;
 import com.hueljk.ibeacon.R;
+import com.hueljk.ibeacon.mode.NevActoin;
 import com.hueljk.ibeacon.ui.cart.CartFragment;
 import com.hueljk.ibeacon.ui.home.HomeFragment;
 import com.hueljk.ibeacon.ui.navigation.NavFragment;
@@ -285,7 +286,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 //发现一个新的传感器，将sn号
                 Log.i("---------", "onUpdateBeacon: 发现一个设备" + beacon.getSerialNumber());
                 allBeacons.add(beacon.getSerialNumber());
-                EventBus.getDefault().post("");
+                EventBus.getDefault().post(new NevActoin());
             }
 
             @Override
@@ -293,7 +294,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 // 一个传感器消失
                 Log.i("---------", "onUpdateBeacon: 去除一个设备" + beacon.getSerialNumber());
                 allBeacons.remove(beacon.getSerialNumber());
-                EventBus.getDefault().post("");
+                EventBus.getDefault().post(new NevActoin());
             }
         };
         sensoroManager.setBeaconManagerListener(beaconManagerListener);

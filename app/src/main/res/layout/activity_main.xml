@@ -1,19 +1,11 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schems.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:background="@color/bg"
-             tools:context=".MainActivity">
-
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="60dp">
-
-    </FrameLayout>
+             android:background="@color/bg">
 
     <LinearLayout
+        android:id="@+id/v"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="bottom"
@@ -118,11 +110,14 @@
                 android:layout_centerHorizontal="true"
                 android:text="我的"
                 android:textColor="@drawable/text_color_4"/>
-
-
         </RelativeLayout>
-
     </LinearLayout>
 
-</FrameLayout>
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_above="@id/v"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+</RelativeLayout>
 

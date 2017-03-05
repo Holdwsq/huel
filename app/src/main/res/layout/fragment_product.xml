@@ -40,7 +40,7 @@
         <ImageView
             android:id="@+id/product_img"
             android:layout_width="match_parent"
-            android:layout_height="480dp"
+            android:layout_height="300dp"
             android:layout_below="@+id/product_top"
             android:src="@drawable/clothes_test"
             android:scaleType="fitXY"/>
@@ -85,6 +85,7 @@
             android:textSize="27sp"
             android:id="@+id/desc_tx"/>
 
+
         <RelativeLayout
             android:id="@+id/relativeLayout"
             android:layout_width="wrap_content"
@@ -110,12 +111,11 @@
             android:layout_alignParentBottom="true"
             android:gravity="center"
             android:layout_alignTop="@+id/relativeLayout"
-            android:layout_alignRight="@+id/textView2"
-            android:layout_alignEnd="@+id/textView2"
             android:layout_alignLeft="@+id/product_num"
             android:layout_alignStart="@+id/product_num"/>
 
 
     </RelativeLayout>
+
 
 </FrameLayout>

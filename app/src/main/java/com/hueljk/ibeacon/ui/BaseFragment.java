@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.hueljk.ibeacon.R;
@@ -55,6 +57,18 @@ public class BaseFragment extends Fragment {
     protected void setData() {
     }
 
+    InputMethodManager inputMethodManager;
+
+    //隐藏虚拟键盘
+    protected void hideSoftKeyboard() {
+        if (getActivity().getWindow().getAttributes().softInputMode != WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN) {
+            if (getActivity().getCurrentFocus() != null)
+                if (inputMethodManager != null) {
+                    inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
+                            InputMethodManager.HIDE_NOT_ALWAYS);
+                }
+        }
+    }
 
     protected void popSelf() {
         getFragmentManager().popBackStackImmediate();

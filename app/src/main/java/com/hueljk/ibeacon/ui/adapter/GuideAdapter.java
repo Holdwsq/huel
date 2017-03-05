@@ -1,6 +1,7 @@
 package com.hueljk.ibeacon.ui.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,6 +77,7 @@ public class GuideAdapter extends BaseAdapter implements View.OnClickListener{
         holder.mNum.setText(goods.getSold() + "已买");
         holder.mPrice.setText("￥" + goods.getPrice());
         holder.mCIon.setImageResource(R.drawable.cart);
+        Log.i("---","导购页面图片地址:"+UrlConstants.guideImgUrl+goods.getPurl());
         return convertView;
     }
     public void update(List<Goods> data) {
