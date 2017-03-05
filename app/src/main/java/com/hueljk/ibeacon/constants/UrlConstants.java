@@ -10,7 +10,7 @@ public interface UrlConstants {
     //http://192.168.191.1:8080/HuelJk/Home
     //169.254.180.107
     //String baseUrl="http://192.168.8.239:8080/HuelJk";
-    String baseUrl="http://192.168.191.1:8080/HuelJk";
+    String baseUrl="http://192.168.10.118:8080/HuelJk";
     String HomeUrl=baseUrl+"/Home";
     //二级页面clotingfragment中菜单栏的url
     String twoCloUrl=baseUrl+"/Clothing";
@@ -37,5 +37,9 @@ public interface UrlConstants {
  //三级页面商品详情页面url
    // http://localhost:8080/HuelJk/picture/image/detail/caomei.png
     String DescImgUrl=picBaseUrl+"image/";
+    //导购页面url
+    String GuideUrl=baseUrl+"/IbeaconServlet";
+    //导购页面图片url
+    String guideImgUrl=picBaseUrl+"good/";
 
 }
