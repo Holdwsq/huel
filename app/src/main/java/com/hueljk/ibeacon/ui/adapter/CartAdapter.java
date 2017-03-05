@@ -1,7 +1,8 @@
 package com.hueljk.ibeacon.ui.adapter;
-
+import com.bumptech.glide.Glide;
 import android.content.Context;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 import com.hueljk.ibeacon.R;
 import com.hueljk.ibeacon.mode.CartPro;
 import com.hueljk.ibeacon.mode.Product;
-
+import com.hueljk.ibeacon.constants.UrlConstants;
 import java.net.URL;
 import java.net.URLStreamHandler;
 import java.net.URLStreamHandlerFactory;
@@ -32,16 +33,13 @@ import static com.hueljk.ibeacon.R.drawable.clothes1;
  * 修改人：${ZHANGHAO}.
  */
 
-public class CartAdapter extends BaseAdapter implements View.OnClickListener{
+
+public class CartAdapter extends BaseAdapter implements View.OnClickListener {
     private List<CartPro> mData = new ArrayList<>();
     private LayoutInflater mLayoutInflater;
-    public CartAdapter(){
-
-    }
-
     private Context mContext;
 
-    public CartAdapter(Context context,List<CartPro> data) {
+    public CartAdapter(Context context, List<CartPro> data) {
         mLayoutInflater = LayoutInflater.from(context);
         if (data != null) {
             mData.addAll(data);
@@ -55,22 +53,17 @@ public class CartAdapter extends BaseAdapter implements View.OnClickListener{
     }
 
     public void update(List<CartPro> data) {
-        mData.clear();
-
         if (data != null) {
+            mData.clear();
             mData.addAll(data);
+            //刷新数据
+            notifyDataSetChanged();
         }
-
-        //刷新数据
-        notifyDataSetChanged();
     }
 
     @Override
     public CartPro getItem(int i) {
-        if (i >= 0 && i < getCount()) {
-            return mData.get(i);
-        }
-        return null;
+        return mData.get(i);
     }
 
     @Override
@@ -95,11 +88,9 @@ public class CartAdapter extends BaseAdapter implements View.OnClickListener{
             holder.mMinus = (TextView) convertView.findViewById(R.id.pro_minus);
             holder.mPrice = (TextView) convertView.findViewById(R.id.pro_Price);
         }
-        CartPro cartPro= getItem(i);
+        CartPro cartPro = mData.get(i);
 
-
-
-        if(cartPro.getSelected())  {
+        if (cartPro.getSelected() != null && cartPro.getSelected()) {
             holder.mCheck.setImageDrawable(mContext.getResources().getDrawable(R.drawable.checkbox2));
         } else {
             holder.mCheck.setImageDrawable(mContext.getResources().getDrawable(R.drawable.checkbox1));
@@ -109,13 +100,18 @@ public class CartAdapter extends BaseAdapter implements View.OnClickListener{
         holder.mCheck.setTag(i);
         holder.mCheck.setOnClickListener(this);
 
-        holder.mIcon.setImageResource(cartPro.getIcon());
-        holder.mName.setText(cartPro.getName());
+        Glide
+                .with(mContext)
+                .load(UrlConstants.HomePicUrl+cartPro.getUrl())
+                .placeholder(R.drawable.shangpin1)
+                .error(R.drawable.shangpin1)
+                .into(holder.mIcon);
+        holder.mName.setText(cartPro.getDes());
         holder.mColor.setText(cartPro.getColor());
-        holder.mCount.setText(cartPro.getCount());
-        holder.mAdd.setText(cartPro.getAdd());
-        holder.mMinus.setText(cartPro.getMinus());
-        holder.mPrice.setText(cartPro.getPrice()+"");
+        holder.mCount.setText(cartPro.getNumber());
+        holder.mAdd.setText(cartPro.getmAdd());
+        holder.mMinus.setText(cartPro.getmMinus());
+        holder.mPrice.setText(cartPro.getPrice() + "");
         return convertView;
     }
 
@@ -123,25 +119,25 @@ public class CartAdapter extends BaseAdapter implements View.OnClickListener{
     public void onClick(View v) {
         int position = (int) v.getTag();
         //把点击事件  回调 給fragment
-        mCallBack.onBoxClick(v,position);
+        mCallBack.onBoxClick(v, position);
     }
 
     /**
      * 回调函數
      * 作用：将点击事件从一个地方转移的另一个地方
-     *
+     * <p>
      * 1.定义接口
      * 2.创建接口對象引用
      * 3.在内部相應地方調用，在外部創建對象
      */
 
-    public interface CallBack{
-        void onBoxClick(View v,int position);
+    public interface CallBack {
+        void onBoxClick(View v, int position);
     }
 
     private CallBack mCallBack;
 
-    public void setOnBoxClickListener(CallBack mCallBack){
+    public void setOnBoxClickListener(CallBack mCallBack) {
         this.mCallBack = mCallBack;
     }
 

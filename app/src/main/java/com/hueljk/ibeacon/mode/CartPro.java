@@ -11,14 +11,16 @@ import static android.support.v7.appcompat.R.attr.icon;
  * 修改人：${ZHANGHAO}.
  */
 
-public class CartPro extends BaseEntity {
-    private float mPrice;
-    private int mIcon;
+public class CartPro {
+    private int goodsid;
+    private String des;
+    private float price;
+    private String url;
     private int mCheck;
-    private String mColor;
+    private String color;
     private String mAdd;
     private String mMinus;
-    private String mCount;
+    private String number;
 
     public Boolean getSelected() {
         return isSelected;
@@ -30,71 +32,88 @@ public class CartPro extends BaseEntity {
 
     private Boolean isSelected ;
 
-    public CartPro(int mId, String mName, String mUrl, float price, int icon, int check, String color, String add, String minus, String count) {
-        super(mId, mName, mUrl);
-        mPrice = price;
-        mIcon = icon;
+    public CartPro(int mId, String mName, float price, String icon, int check, String color, String add, String minus, String count) {
+        goodsid = mId;
+        des = mName;
+        url = icon;
+        price = price;
         mCheck = check;
-        mColor = color;
+        color = color;
         mAdd = add;
         mMinus = minus;
-        mCount = count;
+        number = count;
+    }
+
+    public int getGoodsid() {
+        return goodsid;
+    }
+
+    public void setGoodsid(int goodsid) {
+        this.goodsid = goodsid;
+    }
+
+    public String getDes() {
+        return des;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
     }
 
     public float getPrice() {
-        return mPrice;
+        return price;
     }
 
     public void setPrice(float price) {
-        mPrice = price;
+        this.price = price;
     }
 
-    public int getIcon() {
-        return mIcon;
+    public String getUrl() {
+        return url;
     }
 
-    public void setIcon(int icon) {
-        mIcon = icon;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public int getCheck() {
+    public int getmCheck() {
         return mCheck;
     }
 
-    public void setCheck(int check) {
-        mCheck = check;
+    public void setmCheck(int mCheck) {
+        this.mCheck = mCheck;
     }
 
     public String getColor() {
-        return mColor;
+        return color;
     }
 
     public void setColor(String color) {
-        mColor = color;
+        this.color = color;
     }
 
-    public String getAdd() {
+    public String getmAdd() {
         return mAdd;
     }
 
-    public void setAdd(String add) {
-        mAdd = add;
+    public void setmAdd(String mAdd) {
+        this.mAdd = mAdd;
     }
 
-    public String getMinus() {
+    public String getmMinus() {
         return mMinus;
     }
 
-    public void setMinus(String minus) {
-        mMinus = minus;
+    public void setmMinus(String mMinus) {
+        this.mMinus = mMinus;
     }
 
-    public String getCount() {
-        return mCount;
+    public String getNumber() {
+        return number;
     }
 
-    public void setCount(String count) {
-        mCount = count;
+    public void setNumber(String number) {
+        this.number = number;
     }
 }
 
