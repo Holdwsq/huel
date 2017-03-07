@@ -141,6 +141,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                             mPreferenceManager.saveUserName(UserResult.mData.getUserName());
                             //返回一级界面
                             popSelf();
+                            //mMainActivity.toHomeFragment();
                             //发送一条消息，告诉个人中心：你需要刷新
                             EventBus.getDefault().post(UserResult.mData.getUserName());
 

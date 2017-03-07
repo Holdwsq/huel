@@ -98,6 +98,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     @Override
     protected void initView(View view) {
         super.initView(view);
+        mPreferenceManager = PreferenceManager.getInstance();
         //hideSoftKeyboard();
         mGridView = (GridView) view.findViewById(R.id.product_gridView);
         shipin_tv = (TextView) view.findViewById(R.id.shipin_tv);
@@ -185,10 +186,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
             @Override
             public void onCartClick(View v, int position) {
                // Toast.makeText(getContext(),"----"+position,Toast.LENGTH_SHORT).show();
-                mPreferenceManager = PreferenceManager.getInstance();
+
 
                 if(mPreferenceManager.getLoginStatus()){
-                    Toast.makeText(getContext(),"成功加入购物车",Toast.LENGTH_SHORT).show();
+                    addProductToCart(position);
+
                 }else{
                     mMainActivity.showFragment(LoginFragment.class,"Home_2_Login");
                 }
@@ -196,6 +198,44 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
             }
         });
     }
+
+    private void addProductToCart(int position) {
+        String addCartUrl=UrlConstants.addCartUrl+"?userid="+mPreferenceManager.getUserId()+"&goodsid="+goods.get(position).getId()+"&number="+1;
+        Log.d("-----------", "购物车: " + addCartUrl);
+        Request request = new Request.Builder()
+                .url(addCartUrl)
+                .build();
+        Call call = mOkHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("-----", "error");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String jsonStr = response.body().string();
+                mMainActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.i("---------", "addCart: " + jsonStr);
+                        Type type = new TypeToken<Result<String>>() {
+                        }.getType();
+                        //解析Json数据得到结果集
+                        Result<String> result = JsonUtils.parse(jsonStr, type);
+                        if(result.mCode==200){
+                            Toast.makeText(getContext(),"成功加入购物车",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getContext(),"加入购物车失败！",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+            }
+        });
+
+    }
+
     @Override
     public void onClick(View v) {
         switch(v.getId()){

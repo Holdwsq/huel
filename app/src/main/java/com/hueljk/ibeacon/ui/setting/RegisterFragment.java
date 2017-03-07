@@ -123,7 +123,8 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
                         //解析，提示注册成功或失败，跳转登录或者个人中心
                         if(result.mCode==200){
                             Toast.makeText(getContext(),"注册成功！",Toast.LENGTH_SHORT).show();
-                            mMainActivity.showFragment(LoginFragment.class,"register_2_login");
+                            //mMainActivity.showFragment(LoginFragment.class,"register_2_login");
+                            popSelf();
                             mPreferenceManager.saveUserId(result.mData.intValue());
                         }else if(result.mCode == -1){
                             Toast.makeText(getContext(),"用户名已存在！",Toast.LENGTH_SHORT).show();

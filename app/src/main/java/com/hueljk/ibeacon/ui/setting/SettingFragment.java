@@ -159,7 +159,8 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void helloEventBus(String message) {
-        mMainActivity.toHomeFragment();
+        //回到主页面
+        //mMainActivity.toHomeFragment();
         //执行个人信息刷新操作
         mperson_name.setText(message);
     }
