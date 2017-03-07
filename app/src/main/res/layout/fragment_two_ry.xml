@@ -185,7 +185,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="6"
                         android:scaleType="fitXY"
-                        android:src="@drawable/two_riyojieqi"/>
+                        android:src="@drawable/two_riyojieqi"
+                        android:id="@+id/imageView2" />
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -193,7 +194,8 @@
                         android:layout_marginTop="2dp"
                         android:layout_weight="7.75"
                         android:scaleType="fitXY"
-                        android:src="@drawable/two_riyowinter"/>
+                        android:src="@drawable/two_riyowinter"
+                        android:id="@+id/imageView3" />
                 </LinearLayout>
 
             </LinearLayout>

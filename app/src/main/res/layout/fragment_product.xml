@@ -5,10 +5,13 @@
              android:background="@color/bg"
              tools:context="com.hueljk.ibeacon.ui.home.ProductFragment">
 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
 
         <RelativeLayout
@@ -40,7 +43,7 @@
         <ImageView
             android:id="@+id/product_img"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="480dp"
             android:layout_below="@+id/product_top"
             android:src="@drawable/clothes_test"
             android:scaleType="fitXY"/>
@@ -116,6 +119,7 @@
 
 
     </RelativeLayout>
+    </ScrollView>
 
 
 </FrameLayout>

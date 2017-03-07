@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/bg"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,8 +12,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            >
+            android:layout_height="55dp">
 
 
             <ImageView
@@ -32,14 +31,13 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="fill_vertical"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="商品详情"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
 
             </LinearLayout>
@@ -51,8 +49,7 @@
                 android:layout_alignParentRight="true"
 
                 android:layout_centerVertical="true"
-                android:src="@drawable/share"
-                />
+                android:src="@drawable/share" />
 
 
         </RelativeLayout>
@@ -71,7 +68,7 @@
                 android:layout_weight="1"
                 android:background="#e6e9ea"
                 android:gravity="center"
-                android:text="图文说明"/>
+                android:text="图文说明" />
 
             <TextView
                 android:id="@+id/tx_canshu"
@@ -83,12 +80,12 @@
                 android:layout_weight="1.01"
                 android:background="#e6e9ea"
                 android:gravity="center"
-                android:text="商品参数"/>
+                android:text="商品参数" />
 
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
@@ -100,18 +97,147 @@
                 android:layout_height="match_parent">
 
 
-                <ImageView
-                    android:id="@+id/hfp1_img"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1000dp"
-                    android:background="#ffffff"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/banner_smm"
-                    >
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff">
 
-                </ImageView>
+
+                    <ImageView
+                        android:id="@+id/smm_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/smm_img1"
+                        android:adjustViewBounds="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+                    <ImageView
+                        android:id="@+id/smm_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/smm_img2"
+                        android:adjustViewBounds="true"
+                        android:layout_below="@+id/smm_1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        />
+                    <ImageView
+                        android:id="@+id/smm_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/smm_img3"
+                    android:adjustViewBounds="true"
+                        android:layout_below="@+id/smm_2"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        />
+                    <ImageView
+                        android:id="@+id/smm_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/smm_img4"
+                        android:adjustViewBounds="true"
+                        android:layout_below="@+id/smm_3"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        />
+                    <ImageView
+                        android:id="@+id/smm_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/smm_img5"
+                        android:adjustViewBounds="true"
+                        android:layout_below="@+id/smm_4"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        />
+                    <ImageView
+                        android:id="@+id/smm_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/smm_img6"
+                        android:adjustViewBounds="true"
+                        android:layout_below="@+id/smm_5"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        />
+                    <ImageView
+                        android:id="@+id/smm_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/smm_img7"
+                        android:adjustViewBounds="true"
+                        android:layout_below="@+id/smm_6"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        />
+                    <ImageView
+                        android:id="@+id/smm_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/smm_img8"
+                        android:adjustViewBounds="true"
+                        android:layout_below="@+id/smm_7"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        />
+                    <ImageView
+                        android:id="@+id/smm_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/smm_img9"
+                        android:adjustViewBounds="true"
+                        android:layout_below="@+id/smm_8"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        />
+                    <ImageView
+                        android:id="@+id/smm_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/smm_img10"
+                        android:adjustViewBounds="true"
+                        android:layout_below="@+id/smm_9"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        />
+
+                    <ImageView
+                        android:id="@+id/smm_11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/smm_img11"
+                        android:adjustViewBounds="true"
+                        android:layout_below="@+id/smm_10"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+
+                </RelativeLayout>
             </ScrollView>
-        </LinearLayout>
+        </RelativeLayout>
 
 
     </LinearLayout>
