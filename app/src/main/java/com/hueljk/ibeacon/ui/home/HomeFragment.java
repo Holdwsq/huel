@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -14,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,6 +70,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private GridView mGridView;
     private static OkHttpClient client;
     private HomeAdapter mAdapter;
+    private ImageView mCategoryImage;
     private EditText mEditText;
     private TextView shipin_tv;
     private TextView riyong_tv;
@@ -100,6 +103,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         super.initView(view);
         mPreferenceManager = PreferenceManager.getInstance();
         //hideSoftKeyboard();
+        mCategoryImage=(ImageView)view.findViewById(R.id.category_img);
         mGridView = (GridView) view.findViewById(R.id.product_gridView);
         shipin_tv = (TextView) view.findViewById(R.id.shipin_tv);
         riyong_tv = (TextView) view.findViewById(R.id.riyong_tv);
@@ -124,6 +128,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     @Override
     protected void setListener() {
         super.setListener();
+        mCategoryImage.setOnClickListener(this);
         clothes_tv.setOnClickListener(this);
         riyong_tv.setOnClickListener(this);
         shipin_tv.setOnClickListener(this);
@@ -239,6 +244,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch(v.getId()){
+            case R.id.category_img:
+                showPopupMenu(mCategoryImage);
+                //Toast.makeText(getContext(),"类别选择",Toast.LENGTH_LONG).show();
+                break;
             case R.id.clothes_tv:
                 mMainActivity.showFragment(TwoCloFragment.class, "Home_2_Clo");
                 break;
@@ -264,6 +273,28 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         }
 
     }
+
+    private void showPopupMenu(View view) {
+        //View当前PopupMenu显示的相对View的位置
+        PopupMenu popupMenu = new PopupMenu(getContext(),view);
+        //menu布局
+        popupMenu.getMenuInflater().inflate(R.menu.menu_home,popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                return false;
+            }
+        });
+        popupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
+            @Override
+            public void onDismiss(PopupMenu menu) {
+
+            }
+        });
+        popupMenu.show();
+
+    }
+
     @Override
     protected void setData() {
         super.setData();
@@ -313,7 +344,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.d("---", ret);
+                        Log.i("---", ret);
                         Type listType = new TypeToken<Result<Home>>() {
                         }.getType();
                         //解析Json数据得到结果集

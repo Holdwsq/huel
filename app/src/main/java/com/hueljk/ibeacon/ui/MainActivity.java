@@ -244,8 +244,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     BluetoothManager bluetoothManager;
     BluetoothAdapter bluetoothAdapter;
 
-    public List<String> allBeacons = new ArrayList<>();
-
+    //public List<String> allBeacons = new ArrayList<>();
+    public String BeaconNumber;
+    public double BeaconDistance;
+    public double MinBeaconDistance=10.0;
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     private boolean isBlueEnable() {
         bluetoothManager = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);
@@ -285,8 +287,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             @Override
             public void onNewBeacon(Beacon beacon) {
                 //发现一个新的传感器，将sn号
-                Log.i("---------", "onUpdateBeacon: 发现一个设备" + beacon.getSerialNumber());
-                allBeacons.add(beacon.getSerialNumber());
+                Log.i("---------", "onUpdateBeacon: 发现一个设备" + beacon.getSerialNumber()+" Distance:"+beacon.getAccuracy());
+               // allBeacons.add(beacon.getSerialNumber());
+                BeaconDistance=beacon.getAccuracy();
+                if(BeaconDistance < MinBeaconDistance){
+                    MinBeaconDistance = BeaconDistance;
+                    BeaconNumber = beacon.getSerialNumber();
+                }
                 EventBus.getDefault().post(new NevActoin());
             }
 
@@ -294,7 +301,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             public void onGoneBeacon(Beacon beacon) {
                 // 一个传感器消失
                 Log.i("---------", "onUpdateBeacon: 去除一个设备" + beacon.getSerialNumber());
-                allBeacons.remove(beacon.getSerialNumber());
+                //allBeacons.remove(beacon.getSerialNumber());
                 EventBus.getDefault().post(new NevActoin());
             }
         };

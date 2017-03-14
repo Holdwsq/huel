@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/category_clo"
+        android:title="服装">
+    </item>
+    <item
+        android:id="@+id/category_riyo"
+        android:title="百货">
+    </item>
+    <item
+        android:id="@+id/category_sp"
+        android:title="食品">
+    </item>
+    <item
+        android:id="@+id/category_sx"
+        android:title="生鲜">
+    </item>
+
+
+
+</menu>

@@ -57,7 +57,10 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
     private GridView mListView;
     private List<Goods> goods;
     private PreferenceManager mPreferenceManager;
-    public List<String> bs = new ArrayList<>();
+   // public List<String> bs = new ArrayList<>();
+    //private List<Double> ds= new ArrayList<>();
+    public String Bn;
+    public Double Bd;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,10 +86,11 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
         mListView.setAdapter(mAdapter);
 
         //初次进入该fragment拿到当前的所有ibeacon的sn信息
-        bs = mMainActivity.allBeacons;
+        Bn = mMainActivity.BeaconNumber;
+        Bd=mMainActivity.MinBeaconDistance;
 
-        if (bs.size() > 0) {
-            Log.i("++++++++", "第一次拿到的数据: " + bs.toString());
+        if (Bn != null) {
+            Log.i("++++++++", "第一次拿到的数据: " +Bn);
             getGoodsFromServer();
         } else {
             //告诉用户当前没有导购商品
@@ -98,8 +102,10 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(NevActoin messageEvent) {
-        bs = mMainActivity.allBeacons;
-        Log.i("++++++++", "刷新后的数据：" + bs.toString());
+       // bs = mMainActivity.allBeacons;
+        Bn=mMainActivity.BeaconNumber;
+       // Log.i("++++++++", "刷新后的数据：" + bs.toString());
+        Log.i("++++++++", "刷新后的数据：" + Bn);
         getGoodsFromServer();
     }
 
@@ -155,12 +161,13 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
      */
     private void getGoodsFromServer() {
         //url?sn=a&sn=b&sn=c
-        StringBuffer guideUrl = new StringBuffer();
+        /*StringBuffer guideUrl = new StringBuffer();
         guideUrl.append(UrlConstants.GuideUrl + "?");
         for (String s : bs) {
             guideUrl.append("sn=" + s + "&");
         }
-        guideUrl.deleteCharAt(guideUrl.lastIndexOf("&"));
+        guideUrl.deleteCharAt(guideUrl.lastIndexOf("&"));*/
+        String guideUrl=UrlConstants.GuideUrl+"?sn="+Bn;
         Log.i("===", "getGoodsFromServer: " + guideUrl.toString());
         Request request = new Request.Builder().url(guideUrl.toString()).build();
         Call call = mOkHttpClient.newCall(request);
