@@ -10,7 +10,7 @@ public interface UrlConstants {
     //http://192.168.191.1:8080/HuelJk/Home
     //169.254.180.107
     //String baseUrl="http://192.168.8.239:8080/HuelJk";
-    String baseUrl="http://192.168.43.130:8080/HuelJk";
+    String baseUrl="http://192.168.191.1:8080/HuelJk";
     String HomeUrl=baseUrl+"/Home";
     //二级页面clotingfragment中菜单栏的url
     String twoCloUrl=baseUrl+"/Clothing";
@@ -43,6 +43,8 @@ public interface UrlConstants {
     String GuideUrl=baseUrl+"/IbeaconServlet";
     //导购页面图片url
     String guideImgUrl=picBaseUrl+"goods/";
-
-
+    //修改购物车中的信息url
+    String AlterCartUrl = baseUrl+"/AlterCart";
+    //获取商品详情的url
+    String detailMainUrl = baseUrl+"/DetailMain";
 }

@@ -74,12 +74,15 @@
             android:orientation="horizontal">
             <!-- 全选的布局 -->
             <CheckBox
+                android:id="@+id/allslecet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="全选"/>
+                android:text="全选"
+                android:checked="false" />
             <!-- 合计的布局 -->
             <TextView
+                android:id="@+id/total_price"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

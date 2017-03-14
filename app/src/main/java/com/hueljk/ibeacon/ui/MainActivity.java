@@ -129,16 +129,17 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     ft.add(R.id.container, mNavFragment, "navigation");
                 }
                 show(ft, mNavFragment);
-
                 break;
             case R.id.layout_cart:
                 if (mCartFragment == null) {
                     mCartFragment = new CartFragment();
                     mFragments.add(mCartFragment);
                     ft.add(R.id.container, mCartFragment, "cart");
-                }
-                show(ft, mCartFragment);
 
+                }
+
+                show(ft, mCartFragment);
+                mCartFragment = null;//每次展示完将该Fragment设置为空，这样每次点击会重新加载该Fragment
                 break;
             case R.id.layout_setting:
 

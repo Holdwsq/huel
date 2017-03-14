@@ -109,8 +109,10 @@ public class CartAdapter extends BaseAdapter implements View.OnClickListener {
         holder.mName.setText(cartPro.getDes());
         holder.mColor.setText(cartPro.getColor());
         holder.mCount.setText(cartPro.getNumber());
-        holder.mAdd.setText(cartPro.getmAdd());
-        holder.mMinus.setText(cartPro.getmMinus());
+        holder.mAdd.setTag(i);
+        holder.mAdd.setOnClickListener(this);
+        holder.mMinus.setTag(i);
+        holder.mMinus.setOnClickListener(this);
         holder.mPrice.setText(cartPro.getPrice() + "");
         return convertView;
     }

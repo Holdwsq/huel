@@ -21,15 +21,6 @@ public class CartPro {
     private String mAdd;
     private String mMinus;
     private String number;
-
-    public Boolean getSelected() {
-        return isSelected;
-    }
-
-    public void setSelected(Boolean selected) {
-        isSelected = selected;
-    }
-
     private Boolean isSelected ;
 
     public CartPro(int mId, String mName, float price, String icon, int check, String color, String add, String minus, String count) {
@@ -42,6 +33,7 @@ public class CartPro {
         mAdd = add;
         mMinus = minus;
         number = count;
+        isSelected=false;
     }
 
     public int getGoodsid() {
@@ -114,6 +106,14 @@ public class CartPro {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public Boolean getSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(Boolean selected) {
+        isSelected = selected;
     }
 }
 
