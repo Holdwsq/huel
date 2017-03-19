@@ -10,8 +10,13 @@ import java.util.List;
 public class Desc {
     @SerializedName("mImage")
     private List<DescImg> mDescImgs;
-    @SerializedName("mGoods")
-    private DescPrameter mDescPrameters;
+    @SerializedName("mVideo")
+    private Video mVideo;
+
+    public Desc(Video video, List<DescImg> descImgs) {
+        mVideo = video;
+        mDescImgs = descImgs;
+    }
 
     //用来控制列表数据的长度
     private int length;
@@ -24,10 +29,6 @@ public class Desc {
         this.length = length;
     }
 
-    public Desc(List<DescImg> descImgs, DescPrameter descPrameters) {
-        mDescImgs = descImgs;
-        mDescPrameters = descPrameters;
-    }
 
     public Desc() {
     }
@@ -40,11 +41,11 @@ public class Desc {
         mDescImgs = descImgs;
     }
 
-    public DescPrameter getDescPrameters() {
-        return mDescPrameters;
+    public Video getVideo() {
+        return mVideo;
     }
 
-    public void setDescPrameters(DescPrameter descPrameters) {
-        mDescPrameters = descPrameters;
+    public void setVideo(Video video) {
+        mVideo = video;
     }
 }

@@ -9,8 +9,8 @@ public interface UrlConstants {
     //String baseUrl="http://192.168.43.1:8080/HuelJk";
     //http://192.168.191.1:8080/HuelJk/Home
     //169.254.180.107
-    //String baseUrl="http://192.168.8.239:8080/HuelJk";
-    String baseUrl="http://192.168.191.1:8080/HuelJk";
+   // String baseUrl="http://192.168.43.130:8080/HuelJk";
+   String baseUrl="http://115.60.255.66:8088/HuelJk";
     String HomeUrl=baseUrl+"/Home";
     //二级页面clotingfragment中菜单栏的url
     String twoCloUrl=baseUrl+"/Clothing";
@@ -35,10 +35,13 @@ public interface UrlConstants {
    //二级搜索页面图片地址
    String SearchPicUrl = picBaseUrl + "goods/";
    //三级页面商品详情页面url  http://localhost:8080/HuelJk/Detail
-   String DescUrl= baseUrl+"/Detail";
+   //String DescUrl= baseUrl+"/Detail";
+    String DescUrl="http://192.168.43.130:8080/HuelJk/Detail";
  //三级页面商品详情页面url
    // http://localhost:8080/HuelJk/picture/image/detail/caomei.png
     String DescImgUrl=picBaseUrl+"image/";
+    //详情页面视频地址   String videoUrl2 ="http://192.168.43.130:8080/HuelJk/video/HLA.mp4";
+    String DescVideoUrl="http://192.168.43.130:8080/HuelJk";
     //导购页面url
     String GuideUrl=baseUrl+"/IbeaconServlet";
     //导购页面图片url

@@ -1,13 +1,18 @@
 package com.hueljk.ibeacon.ui.adapter;
 
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.hueljk.ibeacon.R;
@@ -60,8 +65,9 @@ public class DescAdapter extends BaseAdapter implements View.OnClickListener {
             convertView = mInflater.inflate(R.layout.item_desc, parent, false);
             holder = new Holder();
             holder.mDescImg = (ImageView) convertView.findViewById(R.id.desc_img);
-            holder.mDescName = (TextView) convertView.findViewById(R.id.desc_name);
-            holder.mDescTx = (TextView) convertView.findViewById(R.id.desc_tx);
+            //holder.mDescName = (TextView) convertView.findViewById(R.id.desc_name);
+           // holder.mDescTx = (TextView) convertView.findViewById(R.id.desc_tx);
+            holder.mVideoView=(VideoView)convertView.findViewById(R.id.videoView);
             convertView.setTag(holder);
         } else {
             holder = (Holder) convertView.getTag();
@@ -69,15 +75,31 @@ public class DescAdapter extends BaseAdapter implements View.OnClickListener {
 
         if (mType == 1) {
             holder.mDescImg.setVisibility(View.VISIBLE);
+            holder.mVideoView.pause();
             Glide.with(mContext).load(UrlConstants.DescImgUrl + mDesc.getDescImgs().get(position).getUrl())
                     .centerCrop()
                     .placeholder(R.drawable.caomeii)
                     .error(R.drawable.caomeii)
                     .into(holder.mDescImg);
-            Log.d("-----","descUrl:"+UrlConstants.DescImgUrl +mDesc.getDescImgs().get(position).getUrl());
+            Log.i("-----","descUrl:"+UrlConstants.DescImgUrl +mDesc.getDescImgs().get(position).getUrl());
         } else {
             holder.mDescImg.setVisibility(View.GONE);
-            switch (position) {
+            //String videoUrl2 ="http://192.168.43.130:8080/HuelJk/video/HLA.mp4";
+            String videoUrl2=UrlConstants.DescVideoUrl+"/"+mDesc.getVideo().getVideoUrl();
+            Log.i("---","视频地址:"+videoUrl2);
+            Uri uri = Uri.parse( videoUrl2 );
+            //设置视频控制器
+            holder.mVideoView.setMediaController(new MediaController(mContext));
+
+            //播放完成回调
+            holder.mVideoView.setOnCompletionListener( new MyPlayerOnCompletionListener());
+
+            //设置视频路径
+            holder.mVideoView.setVideoURI(uri);
+
+            //开始播放视频
+            holder.mVideoView.start();
+            /*switch (position) {
                 case 0:
                     holder.mDescName.setText("SIZE");
                     holder.mDescTx.setText(mDesc.getDescPrameters().getSize());
@@ -86,7 +108,7 @@ public class DescAdapter extends BaseAdapter implements View.OnClickListener {
                     holder.mDescName.setText("庫存");
                     holder.mDescTx.setText(mDesc.getDescPrameters().getStock() + "");
                     break;
-            }
+            }*/
         }
 
         return convertView;
@@ -108,7 +130,7 @@ public class DescAdapter extends BaseAdapter implements View.OnClickListener {
         if (type == 1) {
             mDesc.setLength(mDesc.getDescImgs().size());
         } else {
-            mDesc.setLength(2);
+            mDesc.setLength(1);
         }
         notifyDataSetChanged();
     }
@@ -120,7 +142,15 @@ public class DescAdapter extends BaseAdapter implements View.OnClickListener {
 
     private class Holder {
         private ImageView mDescImg;
-        private TextView mDescName;
-        private TextView mDescTx;
+        //private TextView mDescName;
+        //private TextView mDescTx;
+        private VideoView mVideoView;
+    }
+
+    private class MyPlayerOnCompletionListener implements MediaPlayer.OnCompletionListener {
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+            Toast.makeText(mContext, "播放完成了", Toast.LENGTH_SHORT).show();
+        }
     }
 }

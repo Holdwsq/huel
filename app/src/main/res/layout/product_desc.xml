@@ -69,13 +69,13 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/desc_canshu"
+                    android:id="@+id/desc_video"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_gravity="center_vertical"
                     android:background="#e6e9ea"
                     android:gravity="center"
-                    android:text="商品参数"/>
+                    android:text="视频展示"/>
                 <View
                     android:id="@+id/desc_line_2"
                     android:layout_width="match_parent"

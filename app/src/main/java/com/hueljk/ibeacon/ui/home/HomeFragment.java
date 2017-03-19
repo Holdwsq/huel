@@ -184,7 +184,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 bundle.putParcelable("goodsdetail",goods.get(position));
                 bundle.putInt("goodsId",goods.get(position).getId());
 
-                mMainActivity.showFragment(ProductFragment.class,"goodslist_2_detail",bundle);
+                mMainActivity.showFragment(ProductDescFragment.class,"goodslist_2_detail",bundle);
             }
         });
         mAdapter.setOnCartClickListener(new HomeAdapter.CallBack() {
@@ -378,7 +378,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
 
                             //更新goods
                             goods = homelist.getGoods();
-                            int height = goods.size() / 2 * 230 + 80;
+                            int height = goods.size() / 2 * 230 + 150;
                             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mGridView.getLayoutParams();
                             DisplayUtils.init(getContext());
                             params.height = DisplayUtils.dip2px(height);

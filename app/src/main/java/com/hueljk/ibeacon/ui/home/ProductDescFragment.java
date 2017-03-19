@@ -84,7 +84,7 @@ public class ProductDescFragment extends BaseFragment implements View.OnClickLis
         super.setData();
         mBundle = getArguments();
         if (mBundle != null) {
-            mGoodId = mBundle.getInt("ClickGid");
+            mGoodId = mBundle.getInt("goodsId");
         }
         //去服务器获取数据
         show();
@@ -130,7 +130,7 @@ public class ProductDescFragment extends BaseFragment implements View.OnClickLis
                 mMainActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.d("------------", "descrun:" + jsonStr);
+                        Log.i("------------", "descrun:" + jsonStr);
                         Type type = new TypeToken<Result<Desc>>() {
                         }.getType();
                         Result<Desc> DescResult = JsonUtils.parse(jsonStr, type);
@@ -138,7 +138,7 @@ public class ProductDescFragment extends BaseFragment implements View.OnClickLis
                             mDesc = DescResult.mData;
 
 
-                            Log.d("---------", "run: " + mDesc.toString());
+                            Log.i("---------", "run: " + mDesc.toString());
                             mDesc.setLength(mDesc.getDescImgs().size());
                             mAdapter.update(mDesc, 1);
                         }

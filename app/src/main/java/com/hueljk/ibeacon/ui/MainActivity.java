@@ -24,6 +24,7 @@ import com.hueljk.ibeacon.R;
 import com.hueljk.ibeacon.mode.NevActoin;
 import com.hueljk.ibeacon.ui.cart.CartFragment;
 import com.hueljk.ibeacon.ui.home.HomeFragment;
+import com.hueljk.ibeacon.ui.navigation.GuideFragment;
 import com.hueljk.ibeacon.ui.navigation.NavFragment;
 import com.hueljk.ibeacon.ui.setting.SettingFragment;
 import com.sensoro.beacon.kit.Beacon;
@@ -43,6 +44,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private HomeFragment mHomeFragment;
     private NavFragment mNavFragment;
+    //private GuideFragment mGuideFragment;
     private CartFragment mCartFragment;
     private SettingFragment mSettingFragment;
     private List<Fragment> mFragments = new ArrayList<>();
@@ -82,7 +84,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
      */
     private void initView() {
         mMenuLayout1 = findViewById(R.id.layout_home);
-        mMenuLayout2 = findViewById(R.id.layout_navigation);
+       mMenuLayout2 = findViewById(R.id.layout_navigation);
+
         mMenuLayout3 = findViewById(R.id.layout_cart);
         mMenuLayout4 = findViewById(R.id.layout_setting);
 
@@ -126,7 +129,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 if (mNavFragment == null) {
                     mNavFragment = new NavFragment();
                     mFragments.add(mNavFragment);
-                    ft.add(R.id.container, mNavFragment, "navigation");
+                    ft.add(R.id.container, mNavFragment, "mGuideFragment");
                 }
                 show(ft, mNavFragment);
                 break;

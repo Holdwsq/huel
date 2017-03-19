@@ -43,7 +43,7 @@
         <ImageView
             android:id="@+id/product_img"
             android:layout_width="match_parent"
-            android:layout_height="480dp"
+            android:layout_height="380dp"
             android:layout_below="@+id/product_top"
             android:src="@drawable/clothes_test"
             android:scaleType="fitXY"/>
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_img"
             android:text="中国风复古拼接连衣裙"
-            android:textSize="28sp"/>
+            android:textSize="25sp"/>
 
         <TextView
             android:id="@+id/product_price"
@@ -66,7 +66,7 @@
             android:layout_marginTop="30dp"
             android:text="￥148"
             android:textColor="#FF0000"
-            android:textSize="28sp"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/product_num"
@@ -85,7 +85,7 @@
             android:layout_alignParentRight="true"
             android:text="详情 >"
             android:textColor="#ff0000"
-            android:textSize="27sp"
+            android:textSize="22sp"
             android:id="@+id/desc_tx"/>
 
 
@@ -95,13 +95,7 @@
             android:layout_height="50dp"
             android:layout_alignParentBottom="true">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:src="@drawable/collect_1"/>
+
 
         </RelativeLayout>
 
@@ -109,7 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="加入购物车"
-            android:textSize="30sp"
+            android:textSize="22sp"
             android:background="#33ccff"
             android:layout_alignParentBottom="true"
             android:gravity="center"
