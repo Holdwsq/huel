@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.sensoro.cloud.SensoroManager;
 
+import cn.jpush.android.api.JPushInterface;
+
 
 /**
  * Created by Chuyh on 2017/2/9.
@@ -17,7 +19,10 @@ public class App extends Application {
 
     @Override
     public void onCreate() {
+        Log.d("Jpush", "[ExampleApplication] onCreate");
         initSensoro();
+        JPushInterface.init(this);
+        JPushInterface.setDebugMode(true);
         super.onCreate();
         instance = this;
     }
