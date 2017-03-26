@@ -76,8 +76,8 @@ public class GuideFragment extends BaseFragment {
         mDescTX=(TextView)view.findViewById(R.id.desc_tx);
 
         //初次进入该fragment拿到当前的所有ibeacon的sn信息
-        Bn = mMainActivity.BeaconNumber;
-        Bd=mMainActivity.MinBeaconDistance;
+       // Bn = mMainActivity.BeaconNumber;
+        //Bd=mMainActivity.MinBeaconDistance;
 
         if (Bn != null) {
             Log.i("++++++++", "第一次拿到的数据: " +Bn);
@@ -99,7 +99,7 @@ public class GuideFragment extends BaseFragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(NevActoin messageEvent) {
         // bs = mMainActivity.allBeacons;
-        Bn=mMainActivity.BeaconNumber;
+       // Bn=mMainActivity.BeaconNumber;
         // Log.i("++++++++", "刷新后的数据：" + bs.toString());
         Log.i("++++++++", "刷新后的数据：" + Bn);
         getGoodsFromServer();

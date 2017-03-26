@@ -19,6 +19,10 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.brtbeacon.sdk.BRTBeacon;
+import com.brtbeacon.sdk.BRTBeaconManager;
+import com.brtbeacon.sdk.BRTThrowable;
+import com.brtbeacon.sdk.callback.BRTBeaconManagerListener;
 import com.hueljk.ibeacon.App;
 import com.hueljk.ibeacon.R;
 import com.hueljk.ibeacon.mode.NevActoin;
@@ -27,9 +31,6 @@ import com.hueljk.ibeacon.ui.home.HomeFragment;
 import com.hueljk.ibeacon.ui.navigation.GuideFragment;
 import com.hueljk.ibeacon.ui.navigation.NavFragment;
 import com.hueljk.ibeacon.ui.setting.SettingFragment;
-import com.sensoro.beacon.kit.Beacon;
-import com.sensoro.beacon.kit.BeaconManagerListener;
-import com.sensoro.cloud.SensoroManager;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -64,10 +65,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         initView();
         setData();
+        beaconManager = BRTBeaconManager.getInstance(this);
 
-        if (isBlueEnable()) {
+        checkBluetoothValid();
+
+      /*  if (isBlueEnable()) {
             initIBeacon();
-        }
+        }*/
     }
 
     //底部菜单
@@ -239,11 +243,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     /**
      * ------------------------------------------------------------------------------------
      */
-    App app;
+   //App app;
     /*
      * Sensoro Manager
 	 */
-    SensoroManager sensoroManager;
+   /* SensoroManager sensoroManager;
     BluetoothManager bluetoothManager;
     BluetoothAdapter bluetoothAdapter;
 
@@ -285,12 +289,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         BeaconManagerListener beaconManagerListener = new BeaconManagerListener() {
             @Override
             public void onUpdateBeacon(ArrayList beacons) {
+
             }
 
             @Override
             public void onNewBeacon(Beacon beacon) {
                 //发现一个新的传感器，将sn号
-                Log.i("---------", "onUpdateBeacon: 发现一个设备" + beacon.getSerialNumber()+" Distance:"+beacon.getAccuracy());
+                Log.i("---------", "onUpdateBeacon: 发现一个设备" + beacon.getSerialNumber()+" 距离:"+beacon.getAccuracy());
                // allBeacons.add(beacon.getSerialNumber());
                 BeaconDistance=beacon.getAccuracy();
                 if(BeaconDistance < MinBeaconDistance){
@@ -303,13 +308,95 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             @Override
             public void onGoneBeacon(Beacon beacon) {
                 // 一个传感器消失
-                Log.i("---------", "onUpdateBeacon: 去除一个设备" + beacon.getSerialNumber());
+                Log.i("---------", "onUpdateBeacon: 去除一个设备" + beacon.getSerialNumber()+" 距离:"+beacon.getAccuracy());
                 //allBeacons.remove(beacon.getSerialNumber());
                 EventBus.getDefault().post(new NevActoin());
             }
         };
         sensoroManager.setBeaconManagerListener(beaconManagerListener);
+    }*/
+    private List<BRTBeacon> beaconList = new ArrayList<BRTBeacon>();
+    private BRTBeaconManager beaconManager = null;
+    public String BeaconNumber;
+    public double BeaconRssi;
+    public double MaxBeaconRssi=0.0;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        beaconManager.setBRTBeaconManagerListener(scanListener);
+        beaconManager.startRanging();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        beaconManager.stopRanging();
+        beaconManager.setBRTBeaconManagerListener(null);
+    }
+
+    private void checkBluetoothValid() {
+        final BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+        if(adapter == null) {
+            android.app.AlertDialog dialog = new android.app.AlertDialog.Builder(this).setTitle("错误").setMessage("你的设备不具备蓝牙功能!").create();
+            dialog.show();
+            return;
+        }
+
+        if(!adapter.isEnabled()) {
+            android.app.AlertDialog dialog = new android.app.AlertDialog.Builder(this).setTitle("提示")
+                    .setMessage("蓝牙设备未打开,请开启此功能后重试!")
+                    .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent mIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                            startActivityForResult(mIntent, 1);
+                        }
+                    })
+                    .create();
+            dialog.show();
+        }
+    }
+    private BRTBeaconManagerListener scanListener = new BRTBeaconManagerListener() {
+
+        @Override
+        public void onUpdateBeacon(final ArrayList<BRTBeacon> arg0) {
+
+            runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    beaconList.clear();
+                    beaconList.addAll(arg0);
+                }
+            });
+
+        }
+
+        @Override
+        public void onNewBeacon(BRTBeacon arg0) {
+            Log.i("---------", "onUpdateBeacon: 发现一个设备" +arg0.getUuid()+"   信号强度："+arg0.getRssi());
+            BeaconRssi=-1 * arg0.getRssi();
+            if(BeaconRssi >= MaxBeaconRssi){
+                MaxBeaconRssi = BeaconRssi;
+                BeaconNumber = arg0.getUuid();
+            }
+            EventBus.getDefault().post(new NevActoin());
+        }
+
+        @Override
+        public void onGoneBeacon(BRTBeacon arg0) {
+            Log.i("---------", "onUpdateBeacon: 去除一个设备" +arg0.getUuid()+"   信号强度："+arg0.getRssi());
+
+        }
+
+        @Override
+        public void onError(BRTThrowable arg0) {
+
+        }
+    };
+
+
+
 }
 
 

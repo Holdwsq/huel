@@ -86,7 +86,7 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
 
         //初次进入该fragment拿到当前的所有ibeacon的sn信息
         Bn = mMainActivity.BeaconNumber;
-        Bd=mMainActivity.MinBeaconDistance;
+        Bd=mMainActivity.MaxBeaconRssi;
 
         if (Bn != null) {
             Log.i("++++++++", "第一次拿到的数据: " +Bn);
@@ -102,8 +102,8 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(NevActoin messageEvent) {
        // bs = mMainActivity.allBeacons;
-        Bn=mMainActivity.BeaconNumber;
-       // Log.i("++++++++", "刷新后的数据：" + bs.toString());
+       Bn=mMainActivity.BeaconNumber;
+       //Log.i("++++++++", "刷新后的数据：" + bs.toString());
         Log.i("++++++++", "刷新后的数据：" + Bn);
         getGoodsFromServer();
     }
@@ -140,6 +140,7 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
                 mPreferenceManager = PreferenceManager.getInstance();
 
                 if (mPreferenceManager.getLoginStatus()) {
+                    addProductToCart(position);
                     Toast.makeText(getContext(), "成功加入购物车", Toast.LENGTH_SHORT).show();
                 } else {
                     mMainActivity.showFragment(LoginFragment.class, "Home_2_Login");
@@ -147,7 +148,42 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
             }
         });
     }
+    private void addProductToCart(int position) {
+        String addCartUrl=UrlConstants.addCartUrl+"?userid="+mPreferenceManager.getUserId()+"&goodsid="+goods.get(position).getId()+"&number="+1;
+        Log.d("-----------", "购物车: " + addCartUrl);
+        Request request = new Request.Builder()
+                .url(addCartUrl)
+                .build();
+        Call call = mOkHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("-----", "error");
+            }
 
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String jsonStr = response.body().string();
+                mMainActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.i("---------", "addCart: " + jsonStr);
+                        Type type = new TypeToken<Result<String>>() {
+                        }.getType();
+                        //解析Json数据得到结果集
+                        Result<String> result = JsonUtils.parse(jsonStr, type);
+                        if(result.mCode==200){
+                            Toast.makeText(getContext(),"成功加入购物车",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getContext(),"加入购物车失败！",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+            }
+        });
+
+    }
 
     @Override
     public void onDestroy() {

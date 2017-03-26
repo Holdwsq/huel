@@ -113,7 +113,7 @@ public class ProductDescFragment extends BaseFragment implements View.OnClickLis
 
     private void show() {
         String url = UrlConstants.DescUrl + "?goodsid=" + mGoodId;
-        Log.d("-----------", "Desc:" + url);
+        Log.i("-----------", "Desc:" + url);
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -130,7 +130,7 @@ public class ProductDescFragment extends BaseFragment implements View.OnClickLis
                 mMainActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.i("------------", "descrun:" + jsonStr);
+                        Log.d("------------", "descrun:" + jsonStr);
                         Type type = new TypeToken<Result<Desc>>() {
                         }.getType();
                         Result<Desc> DescResult = JsonUtils.parse(jsonStr, type);
@@ -138,7 +138,7 @@ public class ProductDescFragment extends BaseFragment implements View.OnClickLis
                             mDesc = DescResult.mData;
 
 
-                            Log.i("---------", "run: " + mDesc.toString());
+                            Log.d("---------", "run: " + mDesc.toString());
                             mDesc.setLength(mDesc.getDescImgs().size());
                             mAdapter.update(mDesc, 1);
                         }
