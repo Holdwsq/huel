@@ -10,7 +10,7 @@ public interface UrlConstants {
     //http://192.168.191.1:8080/HuelJk/Home
     //169.254.180.107
    // String baseUrl="http://192.168.43.130:8080/HuelJk";
-   String baseUrl="http://115.60.255.66:8088/HuelJk";
+    String baseUrl="http://172.23.147.2:8080/HuelJk";
     String HomeUrl=baseUrl+"/Home";
     //二级页面clotingfragment中菜单栏的url
     String twoCloUrl=baseUrl+"/Clothing";

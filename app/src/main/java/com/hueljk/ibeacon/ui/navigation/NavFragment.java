@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -60,8 +61,9 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
     private PreferenceManager mPreferenceManager;
    // public List<String> bs = new ArrayList<>();
     //private List<Double> ds= new ArrayList<>();
-    public String Bn;
+    public Integer Bn;
     public Double Bd;
+    private Button RefreshButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,6 +75,7 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
     protected void initView(View view) {
         super.initView(view);
         mListView = (ListView) view.findViewById(R.id.guide_gridView);
+        RefreshButton=(Button)view.findViewById(R.id.btn_refresh);
         TextView emptyView = new TextView(mContext);
         emptyView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
         emptyView.setText("请您先打开蓝牙，或者进入导购范围内！");
@@ -202,7 +205,7 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
             guideUrl.append("sn=" + s + "&");
         }
         guideUrl.deleteCharAt(guideUrl.lastIndexOf("&"));*/
-        String guideUrl=UrlConstants.GuideUrl+"?sn="+Bn;
+        String guideUrl=UrlConstants.GuideUrl+"?sn="+Bn.toString();
         Log.i("===", "getGoodsFromServer: " + guideUrl.toString());
         Request request = new Request.Builder().url(guideUrl.toString()).build();
         Call call = mOkHttpClient.newCall(request);
@@ -239,7 +242,13 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
+            case R.id.btn_refresh: {
+                Bn=mMainActivity.BeaconNumber;
+                //Log.i("++++++++", "刷新后的数据：" + bs.toString());
+                Log.i("++++++++", "刷新后的数据：" + Bn);
+                getGoodsFromServer();
+                break;
+            }
         }
 
     }

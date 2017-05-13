@@ -31,10 +31,15 @@ import com.hueljk.ibeacon.ui.home.HomeFragment;
 import com.hueljk.ibeacon.ui.navigation.GuideFragment;
 import com.hueljk.ibeacon.ui.navigation.NavFragment;
 import com.hueljk.ibeacon.ui.setting.SettingFragment;
+import com.hueljk.ibeacon.utils.PermissionUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -66,7 +71,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         initView();
         setData();
         beaconManager = BRTBeaconManager.getInstance(this);
-
+        PermissionUtil.addPermission(this);
         checkBluetoothValid();
 
       /*  if (isBlueEnable()) {
@@ -316,8 +321,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         sensoroManager.setBeaconManagerListener(beaconManagerListener);
     }*/
     private List<BRTBeacon> beaconList = new ArrayList<BRTBeacon>();
+    private LinkedList<Integer> RssiList = new LinkedList<Integer>();
     private BRTBeaconManager beaconManager = null;
-    public String BeaconNumber;
+    public Integer BeaconNumber;
     public double BeaconRssi;
     public double MaxBeaconRssi=0.0;
     @Override
@@ -361,12 +367,19 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         @Override
         public void onUpdateBeacon(final ArrayList<BRTBeacon> arg0) {
 
+
             runOnUiThread(new Runnable() {
 
                 @Override
                 public void run() {
                     beaconList.clear();
                     beaconList.addAll(arg0);
+                    if(beaconList.size()!=0)
+                    {
+                        BeaconNumber = beaconList.get(0).getMinor();
+                        EventBus.getDefault().post(new NevActoin());
+                    }
+
                 }
             });
 
@@ -374,19 +387,38 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         @Override
         public void onNewBeacon(BRTBeacon arg0) {
-            Log.i("---------", "onUpdateBeacon: 发现一个设备" +arg0.getUuid()+"   信号强度："+arg0.getRssi());
-            BeaconRssi=-1 * arg0.getRssi();
-            if(BeaconRssi >= MaxBeaconRssi){
-                MaxBeaconRssi = BeaconRssi;
-                BeaconNumber = arg0.getUuid();
-            }
-            EventBus.getDefault().post(new NevActoin());
+            Log.i("---------", "onUpdateBeacon: 发现一个设备:" +arg0.getMinor()+"   信号强度："+arg0.getRssi());
+            BeaconNumber = arg0.getMinor();
+            Log.i("-----------","BeaconNumber is "+BeaconNumber);
+            Collections.sort(beaconList, new Comparator<BRTBeacon>() {
+                @Override
+                public int compare(BRTBeacon lhs, BRTBeacon rhs) {
+                    if(lhs.getRssi()<rhs.getRssi()){
+                        return 1;
+                    }
+                    if(lhs.getRssi()==rhs.getRssi()){
+                        return 0;
+                    }
+                    return -1;
+                }
+            });
         }
 
         @Override
         public void onGoneBeacon(BRTBeacon arg0) {
-            Log.i("---------", "onUpdateBeacon: 去除一个设备" +arg0.getUuid()+"   信号强度："+arg0.getRssi());
-
+            Log.i("---------", "onUpdateBeacon: 去除一个设备" +arg0.getMinor()+"   信号强度："+arg0.getRssi());
+            Collections.sort(beaconList, new Comparator<BRTBeacon>() {
+                @Override
+                public int compare(BRTBeacon lhs, BRTBeacon rhs) {
+                    if(lhs.getRssi()<rhs.getRssi()){
+                        return 1;
+                    }
+                    if(lhs.getRssi()==rhs.getRssi()){
+                        return 0;
+                    }
+                    return -1;
+                }
+            });
         }
 
         @Override
@@ -394,8 +426,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         }
     };
-
-
 
 }
 
