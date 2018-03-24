@@ -2,99 +2,105 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/bg"
-              android:orientation="vertical">
-
-
+              android:background="#f2f4f8"
+              android:orientation="vertical"
+              android:weightSum="1">
     <LinearLayout
         android:id="@+id/register_ly"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="#33ccff"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.25"
+        android:background="@color/bg"
         android:orientation="vertical">
 
         <RelativeLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-
+            android:layout_marginTop="3dp"
             >
             <TextView
                 android:id="@+id/set_tx"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="设置"/>
+                android:textSize="17sp"
+                android:layout_marginStart="5dp"
+                android:text="设置"
+                />
 
-                <ImageView
-                    android:id="@+id/person_headimg"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/mine_a"/>
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/person_headimg"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/logo"/>
+        </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/person_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="未登录"
-                    android:textSize="20sp"/>
-
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/person_name"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="未登录"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_buttom"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:layout_gravity="center_vertical"
+        android:background="#FFFFFF"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/vip_value"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:weightSum="3">
+            android:layout_weight="1"
+            android:background="#ffff"
+            android:gravity="center"
+            android:text="超赞"
+            android:textSize="@dimen/menu_size"/>
 
-            <TextView
-                android:id="@+id/vip_value"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="#e6e9ea"
-                android:gravity="center"
-                android:text="我的会员值"/>
+        <TextView
+            android:id="@+id/my_collect"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="#ffff"
+            android:gravity="center"
+            android:text="关注数"
+            android:textSize="@dimen/menu_size"/>
 
-            <TextView
-                android:id="@+id/my_collect"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp"
-                android:layout_weight="1"
-                android:background="#e6e9ea"
-                android:gravity="center"
-                android:text="我的收藏"/>
-
-            <TextView
-                android:id="@+id/my_foucs"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="#e6e9ea"
-                android:gravity="center"
-                android:text="关注的品牌"/>
-
-        </LinearLayout>
-
-        <ListView
-            android:id="@+id/set_listview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </ListView>
-
+        <TextView
+            android:id="@+id/my_foucs"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="#ffff"
+            android:gravity="center"
+            android:text="粉丝数"
+            android:textSize="@dimen/menu_size"/>
 
     </LinearLayout>
+
+    <ListView
+        android:layout_marginTop="15dp"
+        android:id="@+id/set_listview"
+        android:layout_width="match_parent"
+        android:background="#FFFF"
+        android:layout_height="0dp"
+        android:layout_weight="0.7">
+    </ListView>
+</LinearLayout>
 
 
 

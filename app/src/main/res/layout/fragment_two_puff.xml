@@ -1,47 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/two_puff"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/bg">
+                android:id="@+id/two_papers"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg">
+
     <RelativeLayout
-        android:id="@+id/two_puff_top"
+        android:id="@+id/two_paper_top"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:background="#33ccff">
+        android:layout_height="@dimen/title_height"
+        android:background="@color/titleBgColor"
+        >
 
         <ImageView
-            android:id="@+id/two_puff_return"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/retrun"
-            android:layout_centerVertical="true"
+            android:id="@+id/relax_return"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="@dimen/activity_horizontal_margin"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/retrun"/>
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="45sp"
+            android:layout_alignTop="@+id/two_cloreturn_img"
+            android:layout_centerHorizontal="true"
             android:gravity="center_vertical"
-            android:text="源于自然，归于健康"
-            android:textSize="18sp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"/>
+            android:text="分享快乐，让快乐更简单"
+            android:textSize="@dimen/title_size"/>
 
     </RelativeLayout>
-
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/two_puff_top">
-
-        <ImageView
-            android:layout_width="wrap_content"
+        android:layout_below="@+id/two_paper_top"
+       >
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:src="@drawable/two_puff_img"
-            />
+            android:orientation="vertical"
+            android:background="#e1f1f0">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/relax"/>
+            <com.hueljk.ibeacon.utils.MyGridView
+                android:layout_marginTop="650px"
+                android:id="@+id/relax_gridview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="2"
+                android:horizontalSpacing="5dp"
+                android:verticalSpacing="5dp"
+                android:background="#e1f1f0">
+            </com.hueljk.ibeacon.utils.MyGridView>
+        </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

@@ -1,33 +1,43 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/bg"
               android:orientation="vertical">
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/title_height"
+        android:id="@+id/kjkj"
+        android:background="@color/titleBgColor"
         >
-
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:text="导购模式"
-            android:textSize="18sp"/>
+            android:text="导 购 模 式"
+            android:textSize="@dimen/title_size"
+            android:layout_centerInParent="true"
+            />
     </RelativeLayout>
 
     <ListView
         android:id="@+id/guide_gridView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/bg"
+        android:layout_below="@+id/kjkj"
         android:layout_weight="1"/>
+
     <Button
-        android:id="@+id/btn_refresh"
+        android:id="@+id/one"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:text="刷  新" />
-
-</LinearLayout>
+        android:background="@drawable/buttonhu"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:text="呼叫服务员"
+        android:textColor="#2f2f30"
+        android:textSize="16sp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>

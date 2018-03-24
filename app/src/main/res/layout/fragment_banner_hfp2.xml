@@ -12,13 +12,13 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="@dimen/title_height"
             >
 
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_alignParentLeft="true"
                 android:layout_margin="@dimen/activity_horizontal_margin"
                 android:src="@drawable/retrun"
@@ -38,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="商品详情"
-                    android:textSize="20sp"/>
+                    android:textSize="@dimen/title_size"/>
 
 
             </LinearLayout>

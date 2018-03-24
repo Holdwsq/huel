@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/WelcomeLy"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3">
+   <RelativeLayout
+       android:id="@+id/ShopGuideLy"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1"
+       android:background="#9199c4">
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerInParent="true"
+           android:text="导购系统"
+           android:textSize="20sp"
+           android:textColor="#FFFFFF"/>
+   </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/ShopLy"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#AEAABA">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="商城系统"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/SettingLy"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#F0CAC9">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="个人中心"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"/>
+    </RelativeLayout>
+
+
+</LinearLayout>

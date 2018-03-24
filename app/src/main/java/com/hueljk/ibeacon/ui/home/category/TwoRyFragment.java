@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by zc on 2017/2/7.
  */
-public class TwoRyFragment extends BaseFragment{
+public class TwoRyFragment extends BaseFragment implements View.OnClickListener{
   //  private GridView mGridView;
     private ImageView home_img;
 
@@ -33,13 +33,23 @@ public class TwoRyFragment extends BaseFragment{
     protected void initView(View view) {
         super.initView(view);
        // mGridView = (GridView) view.findViewById(R.id.riyong_gridView);
-        home_img = (ImageView) view.findViewById(R.id.two_riyohome_img);
+        home_img = (ImageView) view.findViewById(R.id.ry_return);
         home_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 popSelf();
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.ry_return:
+                popSelf();
+                break;
+        }
+
     }
 
   /*  @Override

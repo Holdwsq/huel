@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/item_goods_vmargin"
+        android:layout_marginStart="@dimen/item_goods_hmargin"
+        android:layout_marginEnd="@dimen/item_goods_hmargin"
+        >
+
+        <com.hueljk.ibeacon.view.RoundImageView
+            android:id="@+id/userPortrait"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/fuzhuang" />
+
+        <LinearLayout
+            android:id="@+id/userInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/userPortrait"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/publishName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="2dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="4dp"
+                android:textSize="15sp"
+                tools:ignore="SmallSp"
+                android:text="茉莉花茶"
+                android:textColor="@android:color/black" />
+            <TextView
+                android:id="@+id/publishTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="2dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="4dp"
+                android:textSize="15sp"
+                tools:ignore="SmallSp"
+                android:text="2018-03-08 发布"
+                android:textColor="#939090" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:paddingBottom="2dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="10dp"
+            android:textSize="15sp"
+            tools:ignore="SmallSp"
+            android:text="￥ 699"
+            android:textColor="#ff3434" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/imageRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffff"
+        android:clipChildren="false"
+        android:layout_marginStart="@dimen/item_goods_hmargin"
+        android:layout_marginTop="@dimen/item_goods_vmargin"
+        android:clipToPadding="false" />
+
+    <TextView
+        android:id="@+id/goodsDesc"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/item_goods_hmargin"
+        android:layout_marginEnd="@dimen/item_goods_hmargin"
+        android:layout_marginTop="@dimen/item_goods_vmargin"
+        android:layout_height="wrap_content"
+        tools:text="斯凯奇。 只有，43.44红色，绿色，108包邮。 不舒 服白送"/>
+    <TextView
+        android:id="@+id/schoolName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/item_goods_hmargin"
+        android:textColor="#03baf7"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_marginEnd="@dimen/item_goods_hmargin"
+        android:layout_marginTop="@dimen/item_goods_vmargin"
+        android:background="@drawable/shool_info"
+        tools:text="来自 河南财经政法大学"/>
+</LinearLayout>

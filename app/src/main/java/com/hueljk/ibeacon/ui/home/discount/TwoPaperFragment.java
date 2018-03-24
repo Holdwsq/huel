@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.hueljk.ibeacon.R;
 import com.hueljk.ibeacon.ui.BaseFragment;
+import com.hueljk.ibeacon.ui.adapter.ImageAdapter;
 
 /**
  * 项目名称：huel
@@ -20,7 +23,8 @@ import com.hueljk.ibeacon.ui.BaseFragment;
 
 public class TwoPaperFragment extends BaseFragment {
     private ImageView mImageView;
-
+    private GridView paperGridview;
+    private Integer []images = {R.drawable.paper1,R.drawable.paper2,R.drawable.paper3,R.drawable.paper4};
     public TwoPaperFragment() {
         // Required empty public constructor
     }
@@ -42,7 +46,14 @@ public class TwoPaperFragment extends BaseFragment {
                 popSelf();
             }
         });
-
+        paperGridview = (GridView)view.findViewById(R.id.paper_gridview);
+        paperGridview.setAdapter(new ImageAdapter(mContext,images));
+        paperGridview.setOnItemClickListener(new AdapterView.OnItemClickListener(){//监听事件
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                Toast.makeText(getActivity(), ""+position,Toast.LENGTH_SHORT).show();//显示信息;
+            }
+        });
     }
 }
 

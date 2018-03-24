@@ -45,12 +45,12 @@ public class ProductFragment extends BaseFragment implements View.OnClickListene
 
     protected void initView(View view) {
         super.initView(view);
-        mImageView = (ImageView) view.findViewById(R.id.product_return);
-        mProductImg=(ImageView)view.findViewById(R.id.product_img);
-        mproduct_desc=(TextView)view.findViewById(R.id.product_desc);
-        mproduct_price=(TextView) view.findViewById(R.id.product_price);
-        mproduct_num=(TextView)view.findViewById(R.id.product_num);
-        mDescTX=(TextView)view.findViewById(R.id.desc_tx);
+        mImageView = view.findViewById(R.id.product_return);
+        mProductImg= view.findViewById(R.id.product_img);
+        mproduct_desc= view.findViewById(R.id.product_desc);
+        mproduct_price= view.findViewById(R.id.product_price);
+        mproduct_num= view.findViewById(R.id.product_num);
+        mDescTX= view.findViewById(R.id.desc_tx);
     }
 
     @Override

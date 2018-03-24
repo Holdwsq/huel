@@ -4,13 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.hueljk.ibeacon.R;
 import com.hueljk.ibeacon.mode.Goods;
 import com.hueljk.ibeacon.ui.BaseFragment;
+import com.hueljk.ibeacon.ui.adapter.ImageAdapter;
 import com.hueljk.ibeacon.ui.adapter.MyAdapter;
 import com.hueljk.ibeacon.utils.DisplayUtils;
 
@@ -22,6 +25,9 @@ import java.util.List;
  */
 public class TwoFoodFragment extends BaseFragment{
     private ImageView home_img;
+    private GridView gridView;
+    private Integer[]img={R.drawable.foodp1,R.drawable.foodp2,R.drawable.foodp3
+                            ,R.drawable.foodp4,R.drawable.foodp5,R.drawable.foodp6};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_two_food, container, false);
@@ -36,6 +42,14 @@ public class TwoFoodFragment extends BaseFragment{
             @Override
             public void onClick(View v) {
                 popSelf();
+            }
+        });
+        gridView = (GridView)view.findViewById(R.id.food_gridview);
+        gridView.setAdapter(new ImageAdapter(mContext,img));
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener(){//监听事件
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                Toast.makeText(getActivity(), ""+position,Toast.LENGTH_SHORT).show();//显示信息;
             }
         });
     }

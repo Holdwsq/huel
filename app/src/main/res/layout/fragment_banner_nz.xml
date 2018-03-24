@@ -1,134 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/bg"
+              android:orientation="vertical">
 
-              android:background="@color/bg">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/sec_top1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:text="限 时 抢 购"
+            android:textSize="@dimen/title_size"
+            />
+
+        <ImageView
+            android:id="@+id/nz_return"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/retrun"/>
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="wrap_content"
+        >
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="wrap_content"
+            android:background="#ffe4c4">
             <ImageView
-                android:id="@+id/return_sc"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/retrun"/>
-
-            <TextView
-                android:id="@+id/sec_top1"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:gravity="center"
-                android:text="情人节约会装-男装主会场"
-                android:textSize="20dp"
-                />
-
-            <ImageView
-                android:id="@+id/nz_return"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentLeft="true"
-                android:src="@drawable/retrun"/>
-
-            <ImageView
-                android:id="@+id/sec_top2"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/sec_top1"
-                android:background="#22da4a"
-                android:scaleType="fitXY"
-
-                android:src="@drawable/sec_top2"/>
-
-            <ImageView
-                android:id="@+id/sec_top3"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/sec_top2"
-                android:scaleType="fitXY"
-                android:src="@drawable/sec_top3"
-                />
-
-            <LinearLayout
-                android:id="@+id/sec_lin"
+                android:id="@+id/aaa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/sec_top3"
-                android:weightSum="2">
-
-                <ImageView
-                    android:id="@+id/sec_top4"
-                    android:layout_width="50dp"
-                    android:layout_height="250dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/sec_top3"
-                    android:layout_weight="1"
-                    android:background="#206cb4"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sec_top4"
-                    />
-
-                <ImageView
-                    android:id="@+id/sec_top5"
-                    android:layout_width="50dp"
-                    android:layout_height="250dp"
-                    android:layout_toRightOf="@+id/sec_top4"
-                    android:layout_weight="1"
-                    android:background="#8c6060"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sec_top5"
-                    />
-
-
-            </LinearLayout>
-
-            <LinearLayout
+                android:adjustViewBounds="true"
+                android:src="@drawable/aaa"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_below="@+id/aaa"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:id="@+id/aaa1"
+                android:src="@drawable/aaa1"/>
+            <ImageView
+                android:id="@+id/aaa2"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/aaa1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/sec_lin"
-                android:weightSum="2">
-
-                <ImageView
-                    android:id="@+id/sec_top6"
-                    android:layout_width="50dp"
-                    android:layout_height="250dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/sec_top4"
-                    android:layout_weight="1"
-                    android:background="#206cb4"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sec_top6"
-                    />
-
-                <ImageView
-                    android:id="@+id/sec_top7"
-                    android:layout_width="50dp"
-                    android:layout_height="250dp"
-                    android:layout_toRightOf="@+id/sec_top6"
-                    android:layout_weight="1"
-                    android:background="#8c6060"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sec_top7"
-                    />
-
-
-            </LinearLayout>
-
+                android:adjustViewBounds="true"
+                android:src="@drawable/aaa2"
+                />
+            <ImageView
+                android:id="@+id/aaa3"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/aaa2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/aaa3"
+                />
+            <ImageView
+                android:id="@+id/aaa4"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/aaa3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/aaa4"
+                />
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>

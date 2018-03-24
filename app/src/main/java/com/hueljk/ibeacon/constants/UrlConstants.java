@@ -1,23 +1,21 @@
 package com.hueljk.ibeacon.constants;
-
 /**
  * Created by zc on 2017/1/19.
  */
 public interface UrlConstants {
-   // String baseUrl="http://192.168.191.1:8080/HuelJk";
-   //String baseUrl="http://192.168.43.130:8080/HuelJk";
-    //String baseUrl="http://192.168.43.1:8080/HuelJk";
-    //http://192.168.191.1:8080/HuelJk/Home
-    //169.254.180.107
-   // String baseUrl="http://192.168.43.130:8080/HuelJk";
-    String baseUrl="http://172.23.147.2:8080/HuelJk";
-    String HomeUrl=baseUrl+"/Home";
+    /**
+     * 服务基础地址
+     */
+    String baseUrl = "http://192.168.43.227:8080/xgms/api";
+
+    String HomeUrl=baseUrl + "/pub/home";
+    String goodsListUrl = baseUrl + "/pub/goods";
     //二级页面clotingfragment中菜单栏的url
     String twoCloUrl=baseUrl+"/Clothing";
     //登录url
     String loginUrl = baseUrl+"/Login";
     //注册url
-    String registerUrl=baseUrl+"/register";
+    String registerUrl=baseUrl+"/pub/account/register";
     //二级搜索页面url
     String SearchUrl = baseUrl+"/Search";
     String picBaseUrl=baseUrl+"/picture/";//此处把‘/’加在路径之后，使用时不必再加
@@ -50,4 +48,9 @@ public interface UrlConstants {
     String AlterCartUrl = baseUrl+"/AlterCart";
     //获取商品详情的url
     String detailMainUrl = baseUrl+"/DetailMain";
+
+    /**
+     * 测试服务器的连接
+     */
+    String testRequest = baseUrl + "/pub/testRequest";
 }

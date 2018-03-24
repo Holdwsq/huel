@@ -1,48 +1,53 @@
 package com.hueljk.ibeacon.mode;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
- * Created by zc on 2017/1/19.
+ * 通用实体
+ * Created by wsq on 2017/1/19.
  */
 public class BaseEntity {
-    @SerializedName("id")
-    private int mId;
-    @SerializedName("name")
-    private String mName;
-    @SerializedName("url")
-    private String mUrl;
+    /**
+     * 通用id
+     */
+    private int id;
+    /**
+     * 实体名称
+     */
+    private String name;
+    /**
+     * 实体路径
+     */
+    private String url;
 
     public BaseEntity() {
     }
 
     public BaseEntity(int id, String name, String url) {
-        mId = id;
-        mName = name;
-        mUrl = url;
+        this.id = id;
+        this.name = name;
+        this.url = url;
     }
 
     public int getId() {
-        return mId;
+        return id;
     }
 
     public void setId(int id) {
-        mId = id;
+        this.id = id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
     public String getUrl() {
-        return mUrl;
+        return url;
     }
 
     public void setUrl(String url) {
-        mUrl = url;
+        this.url = url;
     }
 }

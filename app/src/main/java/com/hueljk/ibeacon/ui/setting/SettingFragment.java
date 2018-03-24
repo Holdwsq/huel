@@ -40,7 +40,7 @@ import java.util.Set;
  * 我的个人中心
  */
 public class SettingFragment extends BaseFragment implements View.OnClickListener {
-    private String[] mItems = new String[]{"会员专区", "我的优惠券", "我的足迹", "邀请好友", "帮助与客服", "商家信息",};
+    private String[] mItems = new String[]{"我发布的", "我卖出的", "我买到的", "我收藏的", "反馈信息", "设置",};
     private ListView mListView;
     private View mSettingFragment;
     private TextView mset_tx;
@@ -65,13 +65,13 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     @Override
     protected void initView(View view) {
         super.initView(view);
-        mset_tx = (TextView) view.findViewById(R.id.set_tx);
-        mlogin = (LinearLayout) view.findViewById(R.id.register_ly);
-        mperson_headimg = (ImageView) view.findViewById(R.id.person_headimg);
-        mperson_name = (TextView) view.findViewById(R.id.person_name);
-        mvip_value = (TextView) view.findViewById(R.id.vip_value);
-        mmy_collect = (TextView) view.findViewById(R.id.my_collect);
-        mmy_foucs = (TextView) view.findViewById(R.id.my_foucs);
+        mset_tx = view.findViewById(R.id.set_tx);
+        mlogin = view.findViewById(R.id.register_ly);
+        mperson_headimg = view.findViewById(R.id.person_headimg);
+        mperson_name = view.findViewById(R.id.person_name);
+        mvip_value = view.findViewById(R.id.vip_value);
+        mmy_collect = view.findViewById(R.id.my_collect);
+        mmy_foucs = view.findViewById(R.id.my_foucs);
         mset_tx.setOnClickListener(this);
         mperson_headimg.setOnClickListener(this);
         mperson_name.setOnClickListener(this);
@@ -80,22 +80,17 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         mmy_foucs.setOnClickListener(this);
         mlogin.setOnClickListener(this);
 
-        mListView = (ListView) view.findViewById(R.id.set_listview);
-        mListView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, mItems));
-//listview 点击事件
+        mListView = view.findViewById(R.id.set_listview);
+        mListView.setAdapter(new ArrayAdapter<>(getContext(), R.layout.array_adapter, mItems));
+
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Toast.makeText(getContext(), "listview被点击了，位置是" + position, Toast.LENGTH_SHORT).show();
-
                 switch (position) {
                     case 0:
-                        //跳转会员专区
-                        mMainActivity.showFragment(NavFragment.class, "MINE_2_HUIYUAN");
                         break;
                     case 1:
-                        mMainActivity.showFragment(NavFragment.class, "MINE_2_HUIYUAN");
                         break;
                     case 2:
                         break;

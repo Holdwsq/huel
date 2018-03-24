@@ -1,51 +1,47 @@
 package com.hueljk.ibeacon.mode;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 
 /**
- * Created by zc on 2017/1/20.
+ * Home 信息
+ * Created by wsq on 2017/1/20.
  */
 public class Home {
-    @SerializedName("banner")
-    private List<BaseEntity> mBanners;
-    @SerializedName("discount")
-    private List<BaseEntity> mDiscounts;
-    @SerializedName("goods")
-    private List<Goods> mGoods;
+    private List<BaseEntity> homeBanners;
+    private List<BaseEntity> homeDiscounts;
+    private PageData<GoodsInfo> pageData;
 
-    public Home(List<BaseEntity> banners, List<BaseEntity> discounts, List<Goods> goods) {
-
-        mBanners = banners;
-        mDiscounts = discounts;
-        mGoods = goods;
+    public Home(List<BaseEntity> banners, List<BaseEntity> discounts, PageData<GoodsInfo> pageData) {
+        super();
+        homeBanners = banners;
+        homeDiscounts = discounts;
+        pageData = pageData;
+    }
+    public Home(){
+        super();
     }
 
-    public Home() {
+    public List<BaseEntity> getHomeBanners() {
+        return homeBanners;
     }
 
-    public List<BaseEntity> getBanners() {
-        return mBanners;
+    public void setHomeBanners(List<BaseEntity> homeBanners) {
+        this.homeBanners = homeBanners;
     }
 
-    public void setBanners(List<BaseEntity> banners) {
-        mBanners = banners;
+    public List<BaseEntity> getHomeDiscounts() {
+        return homeDiscounts;
     }
 
-    public List<BaseEntity> getDiscounts() {
-        return mDiscounts;
+    public void setHomeDiscounts(List<BaseEntity> homeDiscounts) {
+        this.homeDiscounts = homeDiscounts;
     }
 
-    public void setDiscounts(List<BaseEntity> discounts) {
-        mDiscounts = discounts;
+    public PageData<GoodsInfo> getPageData() {
+        return pageData;
     }
 
-    public List<Goods> getGoods() {
-        return mGoods;
-    }
-
-    public void setGoods(List<Goods> goods) {
-        mGoods = goods;
+    public void setPageData(PageData<GoodsInfo> pageData) {
+        this.pageData = pageData;
     }
 }

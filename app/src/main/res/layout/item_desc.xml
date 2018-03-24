@@ -6,10 +6,11 @@
     <ImageView
         android:id="@+id/desc_img"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="400dp"
         android:scaleType="fitXY"
         android:src="@drawable/caomeii"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

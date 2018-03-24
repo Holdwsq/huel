@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HuelJk</string>
+    <string name="app_name">遇见</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -7,4 +7,5 @@
     <string name="yes">是</string>
     <string name="no">否</string>
     <string name="ask_bt_open">是否打开蓝牙</string>
+    <string name="aboutmsg">  Copyright 2016-2017,软件版权属于河南米特科技有限公司所有。</string>
 </resources>

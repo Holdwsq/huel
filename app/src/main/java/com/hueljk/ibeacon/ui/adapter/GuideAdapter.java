@@ -50,13 +50,13 @@ public class GuideAdapter extends BaseAdapter implements View.OnClickListener{
     public View getView(int position, View convertView, ViewGroup parent) {
         Holder holder;
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.item_guide, parent, false);
+            convertView = mInflater.inflate(R.layout.item_shopguide, parent, false);
             holder = new Holder();
-            holder.mPIconUrl = (ImageView) convertView.findViewById(R.id.guideProImage);
-            holder.mPdec = (TextView) convertView.findViewById(R.id.guideDecText);
-            holder.mNum = (TextView) convertView.findViewById(R.id.guideNumText);
-            holder.mPrice = (TextView) convertView.findViewById(R.id.guidePriText);
-            holder.mCIon = (ImageView) convertView.findViewById(R.id.guideCartImage);
+            holder.mPIconUrl = (ImageView) convertView.findViewById(R.id.shopGuideProImage);
+            holder.mName = (TextView) convertView.findViewById(R.id.ShopGuideNameText);
+            holder.mPdec = (TextView) convertView.findViewById(R.id.ShopGuideDecText);
+            holder.mPrice = (TextView) convertView.findViewById(R.id.ShopGuidePriText);
+            holder.mCart = (TextView) convertView.findViewById(R.id.guideCartText);
             convertView.setTag(holder);
             //使用setTag把查找的view缓存起来方便多次重用
         } else {
@@ -65,18 +65,18 @@ public class GuideAdapter extends BaseAdapter implements View.OnClickListener{
         Goods goods = getItem(position);
         //holder.mPIconUrl.setImageResource(product.getPurl());
         //把点击的位置传递给点击事件
-        holder.mCIon.setTag(position);
-        holder.mCIon.setOnClickListener(this);
+        holder.mCart.setTag(position);
+        holder.mCart.setOnClickListener(this);
         Glide
                 .with(mContext)
                 .load(UrlConstants.guideImgUrl+goods.getPurl())
                 .placeholder(R.drawable.shangpin1)
                 .error(R.drawable.shangpin1)
                 .into(holder.mPIconUrl);
+        holder.mName.setText(goods.getName());
         holder.mPdec.setText(goods.getPdesc());
-        holder.mNum.setText(goods.getSold() + "已买");
         holder.mPrice.setText("￥" + goods.getPrice());
-        holder.mCIon.setImageResource(R.drawable.cart);
+        //holder.mCart.setImageResource(R.drawable.cart);
         Log.i("---","导购页面图片地址:"+UrlConstants.guideImgUrl+goods.getPurl());
         return convertView;
     }
@@ -118,9 +118,9 @@ public class GuideAdapter extends BaseAdapter implements View.OnClickListener{
 
     private static class Holder {
         private ImageView mPIconUrl;
+        private TextView mName;
         private TextView mPdec;
-        private TextView mNum;
         private TextView mPrice;
-        private ImageView mCIon;
+        private TextView mCart;
     }
 }

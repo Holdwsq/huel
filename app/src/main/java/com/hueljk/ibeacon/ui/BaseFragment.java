@@ -36,7 +36,7 @@ public class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mMainActivity = (MainActivity) getActivity();
+        mMainActivity = (MainActivity)getActivity();
         mContext = getContext();
 
         //处理点击事件的穿透

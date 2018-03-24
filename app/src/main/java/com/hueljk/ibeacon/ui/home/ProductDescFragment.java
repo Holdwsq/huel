@@ -3,6 +3,8 @@ package com.hueljk.ibeacon.ui.home;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,22 +12,32 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.google.gson.reflect.TypeToken;
 import com.hueljk.ibeacon.R;
 import com.hueljk.ibeacon.constants.UrlConstants;
 import com.hueljk.ibeacon.mode.Desc;
 import com.hueljk.ibeacon.mode.DescImg;
 import com.hueljk.ibeacon.mode.DescPrameter;
+import com.hueljk.ibeacon.mode.GoodsCommentBean;
+import com.hueljk.ibeacon.mode.GoodsInfo;
 import com.hueljk.ibeacon.mode.Result;
 import com.hueljk.ibeacon.ui.BaseFragment;
+import com.hueljk.ibeacon.ui.adapter.CommentAdapter;
 import com.hueljk.ibeacon.ui.adapter.DescAdapter;
+import com.hueljk.ibeacon.ui.adapter.GoodsAdapter;
+import com.hueljk.ibeacon.ui.adapter.ImageDetailAdapter;
 import com.hueljk.ibeacon.utils.JsonUtils;
+import com.hueljk.ibeacon.view.SpacesItemDecoration;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import okhttp3.Call;
@@ -34,22 +46,31 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by zc on 2017/2/14.
+ * 商品详情Fragment
+ * Created by wsq on 2017/2/14.
  */
 public class ProductDescFragment extends BaseFragment implements View.OnClickListener {
-    private View mDescMenu1, mDescMenu2;
-    private View mDescLine1, mDescLine2;
+    /**
+     * 返回按钮
+     */
     private ImageView mDescReturnImg;
-    private View mCurLine;
+    /**
+     * bundle 跳转
+     */
     private Bundle mBundle;
-    private int mGoodId;
-    private Desc mDesc;
-    List<DescImg> descImgs = new ArrayList<>();
-    private DescPrameter descPrameters;
-
-    private ListView mListView;
-    private DescAdapter mAdapter;
-
+    /**
+     * 商品id
+     */
+    private String mGoodId;
+    private TextView userName, userName2;
+    private TextView timeTx;
+    private ImageView userPortrait, userPortrait2;
+    private TextView price;
+    private TextView desc;
+    private RecyclerView imageRecycler;
+    private RecyclerView commentRecycler;
+    private ImageDetailAdapter imageDetailAdapter;
+    private CommentAdapter commentAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.product_desc, container, false);
@@ -58,25 +79,49 @@ public class ProductDescFragment extends BaseFragment implements View.OnClickLis
     @Override
     protected void initView(View view) {
         super.initView(view);
-        mDescReturnImg = (ImageView) view.findViewById(R.id.desc_return);
-        mDescMenu1 = view.findViewById(R.id.desc_menu1);
-        mDescMenu2 = view.findViewById(R.id.desc_menu2);
-        mDescLine1 = view.findViewById(R.id.desc_line_1);
-        mDescLine2 = view.findViewById(R.id.desc_line_2);
-        mCurLine = mDescLine1;
+        mDescReturnImg = view.findViewById(R.id.desc_return);
+        userName = view.findViewById(R.id.publishName_detail);
+        userName2 = view.findViewById(R.id.username_de2);
+        timeTx = view.findViewById(R.id.publishInfo_detail);
+        userPortrait = view.findViewById(R.id.userPortrait_detail);
+        userPortrait2 = view.findViewById(R.id.userPortrait2);
+        price = view.findViewById(R.id.price_detail);
+        desc = view.findViewById(R.id.desc_detail);
+        imageRecycler = view.findViewById(R.id.imageRecycler_detail);
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getContext());
+        mLinearLayoutManager.setSmoothScrollbarEnabled(true);
+        mLinearLayoutManager.setAutoMeasureEnabled(true);
+        imageRecycler.setLayoutManager(mLinearLayoutManager);
+        imageRecycler.setHasFixedSize(true);
+        imageRecycler.setNestedScrollingEnabled(false);
+        imageRecycler.addItemDecoration(new SpacesItemDecoration(10));
+        imageDetailAdapter = new ImageDetailAdapter();
+        List<String> list = new ArrayList<>();
+        List<GoodsCommentBean> list2 = new ArrayList<>();
+        initData(list, list2);
+        imageDetailAdapter.setData(list);
+        imageRecycler.setAdapter(imageDetailAdapter);
+        commentRecycler = view.findViewById(R.id.commentRecycler_detail);
+        commentRecycler.setLayoutManager(mLinearLayoutManager);
+        commentRecycler.setHasFixedSize(true);
+        commentRecycler.setNestedScrollingEnabled(false);
+        commentAdapter = new CommentAdapter();
+        commentAdapter.setData(list2);
+        commentRecycler.setAdapter(commentAdapter);
 
-        mListView = (ListView) view.findViewById(R.id.desc_lv);
+    }
 
-        mAdapter = new DescAdapter(mContext, null);
-        mListView.setAdapter(mAdapter);
+    private void initData(List<String> list, List<GoodsCommentBean> list2) {
+        String fileUrls = "[\"http://p5khs9up1.bkt.clouddn.com/a23c3d9d16a04f0cb39e03146075da3c.jpg\", \"http://p5khs9up1.bkt.clouddn.com/fc15f8826de24ac8a2fac546371dc0ee.jpg\"]";
+        List<String> fileList = JSON.parseObject(fileUrls, new TypeReference<List<String>>() {});
+        list.addAll(fileList);
+
     }
 
     @Override
     protected void setListener() {
         super.setListener();
         mDescReturnImg.setOnClickListener(this);
-        mDescMenu1.setOnClickListener(this);
-        mDescMenu2.setOnClickListener(this);
     }
 
     @Override
@@ -84,32 +129,12 @@ public class ProductDescFragment extends BaseFragment implements View.OnClickLis
         super.setData();
         mBundle = getArguments();
         if (mBundle != null) {
-            mGoodId = mBundle.getInt("goodsId");
+            mGoodId = mBundle.getString("goodsId");
         }
         //去服务器获取数据
         show();
     }
 
-    @Override
-    public void onClick(View v) {
-        mCurLine.setVisibility(View.INVISIBLE);
-        switch (v.getId()) {
-            case R.id.desc_menu1:
-                mDescLine1.setVisibility(View.VISIBLE);
-                mAdapter.setType(1);
-                mCurLine = mDescLine1;
-                break;
-            case R.id.desc_menu2:
-                mDescLine2.setVisibility(View.VISIBLE);
-                mAdapter.setType(2);
-                mCurLine = mDescLine2;
-                break;
-            case R.id.desc_return:
-                popSelf();
-                break;
-
-        }
-    }
 
     private void show() {
         String url = UrlConstants.DescUrl + "?goodsid=" + mGoodId;
@@ -130,7 +155,7 @@ public class ProductDescFragment extends BaseFragment implements View.OnClickLis
                 mMainActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.d("------------", "descrun:" + jsonStr);
+                        /*Log.d("------------", "descrun:" + jsonStr);
                         Type type = new TypeToken<Result<Desc>>() {
                         }.getType();
                         Result<Desc> DescResult = JsonUtils.parse(jsonStr, type);
@@ -141,11 +166,16 @@ public class ProductDescFragment extends BaseFragment implements View.OnClickLis
                             Log.d("---------", "run: " + mDesc.toString());
                             mDesc.setLength(mDesc.getDescImgs().size());
                             mAdapter.update(mDesc, 1);
-                        }
+                        }*/
 
                     }
                 });
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }

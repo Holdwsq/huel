@@ -1,5 +1,7 @@
 package com.hueljk.ibeacon.ui.setting;
 
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +28,7 @@ import com.hueljk.ibeacon.ui.home.HomeFragment;
 import com.hueljk.ibeacon.utils.JsonUtils;
 
 import org.greenrobot.eventbus.EventBus;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -38,18 +42,24 @@ import okhttp3.Response;
 /**
  * Created by zc on 2017/2/13.
  */
-public class LoginFragment extends BaseFragment implements View.OnClickListener {
-    private TextView mRegister;
+public class LoginFragment extends BaseFragment  implements View.OnClickListener {
+    private Button mRegister;
     private EditText mUsernameET;
     private EditText mPasswordET;
+    private TextView mLoginTextView;
+    private TextView mRegisterTextView;
     private Button mLoginButton;
-    private Button mUsernameClearBT;
-    private Button mPasswdClearBT;
-    private Button mEyeBT;
+    private ImageView mUsernameClearBT;
+    private ImageView mPasswdClearBT;
+    //private Button mEyeBT;
     private PreferenceManager mPreferenceManager;
     private TextWatcher mUsernameWatcher;
     private TextWatcher mPasswordWatcher;
-
+    private Drawable mNameClearDrawable;
+    private Drawable mPassClearDrawable;
+    private ImageView mLoginReturn;
+    private View.OnFocusChangeListener usernameEtFouce;
+    private View.OnFocusChangeListener passwordEtFouce;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,14 +69,17 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     @Override
     protected void initView(View view) {
         super.initView(view);
-        mRegister = (TextView) view.findViewById(R.id.register);
-        mUsernameET = (EditText) view.findViewById(R.id.username);
-        mPasswordET = (EditText) view.findViewById(R.id.password);
-        mLoginButton = (Button) view.findViewById(R.id.login);
-        mUsernameClearBT=(Button)view.findViewById(R.id.bt_username_clear);
-        mPasswdClearBT=(Button)view.findViewById(R.id.bt_pwd_clear);
-        mEyeBT=(Button)view.findViewById(R.id.bt_pwd_eye);
-
+        //mRegister = (Button) view.findViewById(R.id.registerInlogin);
+        mUsernameET = view.findViewById(R.id.login_username);
+        mLoginReturn= view.findViewById(R.id.login_return);
+        mPasswordET = view.findViewById(R.id.login_password);
+        mLoginTextView = view.findViewById(R.id.login_tx);
+        mRegisterTextView = view.findViewById(R.id.register_tx);
+        mNameClearDrawable=mUsernameET.getCompoundDrawables()[2];
+        mPassClearDrawable=mPasswordET.getCompoundDrawables()[2];
+        mUsernameClearBT= view.findViewById(R.id.bt_username_clear);
+        mPasswdClearBT= view.findViewById(R.id.bt_pwd_clear);
+        // mEyeBT=(Button)view.findViewById(R.id.bt_pwd_eye);
 
 
     }
@@ -74,16 +87,20 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     @Override
     protected void setListener() {
         super.setListener();
-        mRegister.setOnClickListener(this);
-        mLoginButton.setOnClickListener(this);
+       /* mRegister.setOnClickListener(this);
+        mLoginButton.setOnClickListener(this);*/
         mUsernameClearBT.setOnClickListener(this);
         mPasswdClearBT.setOnClickListener(this);
-        mEyeBT.setOnClickListener(this);
+        // mEyeBT.setOnClickListener(this);
+        mLoginTextView.setOnClickListener(this);
+        mRegisterTextView.setOnClickListener(this);
         initWatcher();
+        initListener();
         mUsernameET.addTextChangedListener(mUsernameWatcher);
         mPasswordET.addTextChangedListener(mPasswordWatcher);
-
-
+        mLoginReturn.setOnClickListener(this);
+        mUsernameET.setOnFocusChangeListener(usernameEtFouce);
+        mPasswordET.setOnFocusChangeListener(passwordEtFouce);
 
     }
 
@@ -97,7 +114,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         //取得用户输入的账号和密码
         String user = mUsernameET.getText().toString();
         String pass = mPasswordET.getText().toString();
-       if (isInputValid()) {
+        if (isInputValid()) {
             Toast.makeText(getContext(), "请输入完整的登录信息！", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -160,36 +177,67 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         });
     }
 
-
+    private void initListener(){
+        usernameEtFouce = new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    if(!"".equals(mUsernameET.getText().toString())){
+                        mUsernameClearBT.setVisibility(View.VISIBLE);
+                    }
+                }else{
+                    mUsernameClearBT.setVisibility(View.INVISIBLE);
+                }
+            }
+        };
+        passwordEtFouce = new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    if(!"".equals(mPasswordET.getText().toString())){
+                        mPasswdClearBT.setVisibility(View.VISIBLE);
+                    }
+                }else{
+                    mPasswdClearBT.setVisibility(View.INVISIBLE);
+                }
+            }
+        };
+    }
     private boolean isInputValid() {
         //检查用户输入的合法性，这里暂且默认用户输入合法
-        if ( mUsernameET.getText().toString().equals("")||   mPasswordET.getText().toString().equals("")) {
-            return true;
-        }
-        return false;
+        return mUsernameET.getText().toString().equals("") || mPasswordET.getText().toString().equals("");
 
     }
+
     private void initWatcher() {
         mUsernameWatcher = new TextWatcher() {
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-            public void beforeTextChanged(CharSequence s, int start, int count,int after) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
             public void afterTextChanged(Editable s) {
-                mPasswordET.setText("");
-                if(s.toString().length()>0){
+                if (s.toString().length() > 0) {
                     mUsernameClearBT.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     mUsernameClearBT.setVisibility(View.INVISIBLE);
                 }
             }
         };
 
         mPasswordWatcher = new TextWatcher() {
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-            public void beforeTextChanged(CharSequence s, int start, int count,int after) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
             public void afterTextChanged(Editable s) {
-                if(s.toString().length()>0){
+                if (s.toString().length() > 0) {
                     mPasswdClearBT.setVisibility(View.VISIBLE);
-                }else{
+                    mUsernameClearBT.setVisibility(View.INVISIBLE);
+                } else {
                     mPasswdClearBT.setVisibility(View.INVISIBLE);
                 }
             }
@@ -200,30 +248,34 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.login:
+            case R.id.login_tx:
                 login();
                 break;
-            case R.id.register:
+            case R.id.register_tx:
+
                 mMainActivity.showFragment(RegisterFragment.class, "Login_2_register");
                 break;
+            case R.id.login_return:
+                popSelf();
+                break;
             case R.id.bt_username_clear:
-                Toast.makeText(getContext(),"UsernameClear",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "UsernameClear", Toast.LENGTH_SHORT).show();
                 mUsernameET.setText("");
                 mPasswordET.setText("");
                 break;
             case R.id.bt_pwd_clear:
-                Toast.makeText(getContext(),"PwdClear",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "PwdClear", Toast.LENGTH_SHORT).show();
                 mPasswordET.setText("");
                 break;
-            case R.id.bt_pwd_eye:
-                Toast.makeText(getContext(),"PwdEye",Toast.LENGTH_SHORT).show();
-                if(mPasswordET.getInputType()==(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD)){
-                    mPasswordET.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_NORMAL);
-                }else{
-                    mPasswordET.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+           /* case R.id.bt_pwd_eye:
+                Toast.makeText(getContext(), "PwdEye", Toast.LENGTH_SHORT).show();
+                if (mPasswordET.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+                    mPasswordET.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
+                } else {
+                    mPasswordET.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 }
 
-                break;
+                break;*/
         }
     }
 }

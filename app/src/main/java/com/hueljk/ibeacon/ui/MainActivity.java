@@ -93,7 +93,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
      */
     private void initView() {
         mMenuLayout1 = findViewById(R.id.layout_home);
-       mMenuLayout2 = findViewById(R.id.layout_navigation);
+        mMenuLayout2 = findViewById(R.id.layout_navigation);
 
         mMenuLayout3 = findViewById(R.id.layout_cart);
         mMenuLayout4 = findViewById(R.id.layout_setting);
@@ -117,7 +117,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         FragmentTransaction ft = fg.beginTransaction();
         ft.add(R.id.container, mHomeFragment, "home");
         ft.commit();
-
     }
 
     @Override
@@ -248,7 +247,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     /**
      * ------------------------------------------------------------------------------------
      */
-   //App app;
+    //App app;
     /*
      * Sensoro Manager
 	 */

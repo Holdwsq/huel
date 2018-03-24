@@ -3,17 +3,19 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
 
-    android:background="@color/bg">
+    android:background="@color/set_bg">
     <RelativeLayout
         android:id="@+id/per_setly"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/title_height"
+        android:background="@color/titleBgColor">
         <ImageView
             android:id="@+id/set_return"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_alignParentLeft="true"
             android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_centerVertical="true"
             android:src="@drawable/retrun"
 
             />
@@ -22,22 +24,28 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="设置"
-            android:textSize="24sp"/>
+            android:typeface="serif"
+            android:background="@color/bg"
+            android:textSize="@dimen/title_size"/>
 
     </RelativeLayout>
    <ListView
        android:id="@+id/per_setlv"
+       android:background="@color/bg"
        android:layout_below="@+id/per_setly"
        android:layout_width="match_parent"
        android:layout_height="wrap_content">
 
    </ListView>
-    <Button
+    <TextView
         android:id="@+id/logout_button"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/per_setlv"
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
         android:layout_height="50dp"
         android:text="退出登录"
-        android:textSize="22sp"/>
+        android:background="@color/bg"
+        android:gravity="center"
+        android:textSize="15sp"/>
 
 </RelativeLayout>

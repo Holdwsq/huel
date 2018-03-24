@@ -7,11 +7,12 @@
     <RelativeLayout
         android:id="@+id/search_proLy"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/title_height"
+        android:background="@color/titleBgColor">
         <ImageView
             android:id="@+id/search_return"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_alignParentLeft="true"
             android:layout_margin="@dimen/activity_horizontal_margin"
             android:src="@drawable/retrun"
@@ -22,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="相关好物"
-            android:textSize="24sp"/>
+            android:textSize="@dimen/title_size"/>
 
     </RelativeLayout>
     <GridView

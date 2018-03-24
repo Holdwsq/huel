@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hueljk.ibeacon.R;
@@ -23,7 +24,7 @@ import org.greenrobot.eventbus.EventBus;
  */
 public class PersonSettingFragment extends BaseFragment implements View.OnClickListener{
     private String[] mItems = new String[]{"个人信息", "修改用户名", "修改密码", "关于", "消息通知", "通用",};
-  private Button mLogoutButton;
+  private TextView mLogoutButton;
     private PreferenceManager mPreferenceManager;
     private ImageView mSetReturn;
     private ListView mPerListView;
@@ -36,7 +37,7 @@ public class PersonSettingFragment extends BaseFragment implements View.OnClickL
     @Override
     protected void initView(View view) {
         super.initView(view);
-        mLogoutButton=(Button)view.findViewById(R.id.logout_button);
+        mLogoutButton=(TextView) view.findViewById(R.id.logout_button);
         mSetReturn=(ImageView)view.findViewById(R.id.set_return);
         mPerListView=(ListView)view.findViewById(R.id.per_setlv);
         mPreferenceManager = PreferenceManager.getInstance();
@@ -62,7 +63,7 @@ public class PersonSettingFragment extends BaseFragment implements View.OnClickL
                         Toast.makeText(getContext(), "listview被点击了，位置是" + position, Toast.LENGTH_SHORT).show();
                         break;
                     case 3:
-                        Toast.makeText(getContext(), "listview被点击了，位置是" + position, Toast.LENGTH_SHORT).show();
+                        mMainActivity.showFragment(AboutFrament.class,"about_2_per");
                         break;
                     case 4:
                         Toast.makeText(getContext(), "listview被点击了，位置是" + position, Toast.LENGTH_SHORT).show();
@@ -98,7 +99,7 @@ public class PersonSettingFragment extends BaseFragment implements View.OnClickL
     @Override
     protected void setData() {
         super.setData();
-        mPerListView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, mItems));
+        mPerListView.setAdapter(new ArrayAdapter<String>(getContext(), R.layout.array_adapter, mItems));
         if(mPreferenceManager.getLoginStatus()){
             mLogoutButton.setVisibility(View.VISIBLE);
         }else {

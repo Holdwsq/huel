@@ -56,6 +56,10 @@ public class PreferenceManager {
         editor.putInt("UserId",userid);
         editor.commit();
     }
+    public void saveSessionId(String sessionId){
+        editor.putString("SessionId", sessionId);
+        editor.commit();
+    }
     public int getUserId(){
         return mSharedPreferences.getInt("UserId",0);
     }

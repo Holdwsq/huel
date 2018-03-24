@@ -55,7 +55,6 @@ import okhttp3.Response;
  */
 public class NavFragment extends BaseFragment implements View.OnClickListener {
     private GuideAdapter mAdapter;
-    private ImageView mGuideReturnImg;
     private ListView mListView;
     private List<Goods> goods;
     private PreferenceManager mPreferenceManager;
@@ -63,7 +62,6 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
     //private List<Double> ds= new ArrayList<>();
     public Integer Bn;
     public Double Bd;
-    private Button RefreshButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,7 +73,6 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
     protected void initView(View view) {
         super.initView(view);
         mListView = (ListView) view.findViewById(R.id.guide_gridView);
-        RefreshButton=(Button)view.findViewById(R.id.btn_refresh);
         TextView emptyView = new TextView(mContext);
         emptyView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
         emptyView.setText("请您先打开蓝牙，或者进入导购范围内！");
@@ -228,8 +225,10 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
                         Result<List<Goods>> result = JsonUtils.parse(ret, type);
                         if (result.mCode == 200) {
                             goods = result.mData;
-                            Log.d("-------", goods.size() + "");
+                            Log.i("-------", goods.size() + "");
                             mAdapter.update(goods);
+                        }else{
+                            Log.i("-------", goods.size() + "");
                         }
                     }
                 });
@@ -242,14 +241,8 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_refresh: {
-                Bn=mMainActivity.BeaconNumber;
-                //Log.i("++++++++", "刷新后的数据：" + bs.toString());
-                Log.i("++++++++", "刷新后的数据：" + Bn);
-                getGoodsFromServer();
-                break;
+
             }
         }
 
-    }
 }

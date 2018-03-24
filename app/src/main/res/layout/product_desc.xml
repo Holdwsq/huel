@@ -1,94 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/bg"
               android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            >
-            <ImageView
-                android:id="@+id/desc_return"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentLeft="true"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:src="@drawable/retrun"
-                />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="fill_vertical"
-                android:orientation="vertical"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="商品详情"
-                    android:textSize="20sp"/>
-            </LinearLayout>
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/share"
-                />
-        </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="#ffff"
+        android:layout_height="@dimen/title_height"
+        >
+        <ImageView
+            android:id="@+id/desc_return"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:src="@drawable/retrun"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商品详情"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/title_size"/>
+    </RelativeLayout>
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:id="@+id/desc_menu1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/bg">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#ffff"
+                >
+                <com.hueljk.ibeacon.view.RoundImageView
+                    android:layout_marginTop="@dimen/item_goods_vmargin"
+                    android:layout_marginStart="@dimen/item_goods_hmargin"
+                    android:id="@+id/userPortrait_detail"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/fuzhuang" />
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/item_goods_vmargin"
+                    android:id="@+id/userInfo_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/userPortrait_detail"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/publishName_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingBottom="2dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="4dp"
+                        android:textSize="15sp"
+                        tools:ignore="SmallSp"
+                        android:text="茉莉花茶"
+                        android:textColor="@android:color/black" />
+                    <TextView
+                        android:id="@+id/publishInfo_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingBottom="2dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="4dp"
+                        android:textSize="15sp"
+                        tools:ignore="SmallSp"
+                        android:text="2018-03-08 发布于河南财经政法大学"
+                        android:textColor="#939090" />
+                </LinearLayout>
                 <TextView
-                    android:id="@+id/desc_tuwen"
+                    android:layout_marginStart="@dimen/item_goods_hmargin"
+                    android:layout_marginEnd="@dimen/item_goods_hmargin"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_gravity="center_vertical"
-                    android:background="#e6e9ea"
-                    android:gravity="center"
-                    android:text="图文说明"/>
-                <View
-                    android:id="@+id/desc_line_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:background="#f00"/>
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/userInfo_detail"
+                    android:background="@drawable/border_buttom"
+                    />
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/price_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/item_goods_vmargin"
+                android:layout_marginStart="@dimen/item_goods_hmargin"
+                android:textSize="20sp"
+                tools:ignore="SmallSp"
+                android:text="￥ 699"
+                android:textColor="#ff3434" />
+            <TextView
+                android:id="@+id/desc_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/item_goods_vmargin"
+                android:layout_marginStart="@dimen/item_goods_hmargin"
+                android:layout_marginEnd="@dimen/item_goods_hmargin"
+                android:textSize="15sp"
+                android:lineSpacingExtra="5dp"
+                tools:ignore="SmallSp"
+                android:text="skechers 斯凯奇男鞋 保真 保真， 假可退40/3 41/3 42/3 44/2 44/1 量少 不议价"
+                android:textColor="#181818" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/imageRecycler_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffff"
+                android:clipChildren="false"
+                android:layout_marginTop="@dimen/item_goods_vmargin"
+                android:clipToPadding="false" />
             <LinearLayout
-                android:id="@+id/desc_menu2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/desc_video"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f5f5f5"
+                >
+
+                <RelativeLayout
+                    android:id="@+id/userInfo_relative"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_gravity="center_vertical"
-                    android:background="#e6e9ea"
-                    android:gravity="center"
-                    android:text="视频展示"/>
-                <View
-                    android:id="@+id/desc_line_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:background="#f00"
-                    android:visibility="invisible"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/bg">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/item_goods_vmargin"
+                        android:layout_marginStart="@dimen/item_goods_hmargin"
+                        android:layout_marginEnd="80dp"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="@dimen/item_goods_vmargin">
+
+                        <TextView
+                            android:id="@+id/username_de2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="苿莉花茶" />
+
+                        <TextView
+                            android:id="@+id/use_show"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#2d2c2c"
+                            android:text="来到闲购199天，卖出过166件商品。现为河南财经政法大学大二学生。90后狮子座女生。喜欢美食..." />
+                    </LinearLayout>
+
+                    <com.hueljk.ibeacon.view.RoundImageView
+                        android:id="@+id/userPortrait2"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/item_goods_hmargin"
+                        android:layout_centerInParent="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/fuzhuang"/>
+                </RelativeLayout>
             </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="留言·100"
+                android:layout_marginTop="@dimen/item_goods_vmargin"
+                android:layout_marginStart="@dimen/item_goods_hmargin"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/commentRecycler_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffff"
+                android:clipChildren="false"
+                android:layout_marginTop="@dimen/item_goods_vmargin"
+                android:clipToPadding="false" />
         </LinearLayout>
-      <ListView
-          android:id="@+id/desc_lv"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent">
-
-      </ListView>
-
-    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

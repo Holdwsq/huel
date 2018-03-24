@@ -13,10 +13,9 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:background="@color/titleBgColor"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#33ccff"
-            android:orientation="horizontal"
+            android:layout_height="@dimen/title_height"
             >
 
 
@@ -29,8 +28,7 @@
                 android:clickable="true"
                 android:gravity="center"
                 android:text="购物车"
-                android:textColor="#ffffff"
-                android:textSize="20sp"/>
+                android:textSize="@dimen/title_size"/>
             <!-- 编辑的布局 -->
             <TextView
                 android:id="@+id/edit_tx"
@@ -41,8 +39,7 @@
                 android:gravity="center"
                 android:clickable="true"
                 android:text="编辑"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"/>
+                android:textSize="15sp"/>
             <!-- 分享的布局 -->
 
         </RelativeLayout>
@@ -89,7 +86,7 @@
                 android:gravity="right"
                 android:paddingRight="10dp"
                 android:text="合计:￥88"
-                android:textColor="#F63A19"/>
+                android:textColor="#df525a"/>
             <!-- 去结算的布局 -->
 
             <TextView
@@ -97,7 +94,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="0dp"
-                android:background="#F63A19"
+                android:background="#df525a"
                 android:gravity="center"
                 android:padding="16dp"
                 android:text="结算"/>
