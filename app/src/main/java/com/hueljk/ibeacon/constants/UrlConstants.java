@@ -9,6 +9,7 @@ public interface UrlConstants {
     String baseUrl = "http://192.168.43.227:8080/xgms/api";
 
     String HomeUrl=baseUrl + "/pub/home";
+    String publishGoodsUrl = baseUrl + "/pri/goods";
     String goodsListUrl = baseUrl + "/pub/goods";
     //二级页面clotingfragment中菜单栏的url
     String twoCloUrl=baseUrl+"/Clothing";

@@ -14,6 +14,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +63,18 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
     //private List<Double> ds= new ArrayList<>();
     public Integer Bn;
     public Double Bd;
+    /**
+     * 发布闲置旧物
+     */
+    private RelativeLayout publishOld;
+    /**
+     * 发布租房信息
+     */
+    private RelativeLayout publishRent;
+    /**
+     * 发布任务
+     */
+    private RelativeLayout publishTask;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,37 +85,24 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
     @Override
     protected void initView(View view) {
         super.initView(view);
-        mListView = (ListView) view.findViewById(R.id.guide_gridView);
-        TextView emptyView = new TextView(mContext);
+        /*TextView emptyView = new TextView(mContext);
         emptyView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
         emptyView.setText("请您先打开蓝牙，或者进入导购范围内！");
         emptyView.setGravity(Gravity.CENTER_HORIZONTAL| Gravity.CENTER_VERTICAL);
-        emptyView.setVisibility(View.GONE);
-        ((ViewGroup)mListView.getParent()).addView(emptyView);
-        mListView.setEmptyView(emptyView);
-
-        mAdapter = new GuideAdapter(mContext, null);
-        mListView.setAdapter(mAdapter);
-
-        //初次进入该fragment拿到当前的所有ibeacon的sn信息
-        Bn = mMainActivity.BeaconNumber;
-        Bd=mMainActivity.MaxBeaconRssi;
-
-        if (Bn != null) {
-            Log.i("++++++++", "第一次拿到的数据: " +Bn);
-            getGoodsFromServer();
-        } else {
-            //告诉用户当前没有导购商品
-            Log.i("++++++++", "initView: 附近没有导购商品");
-            //Toast.makeText(mContext, "附近没有导购商品", Toast.LENGTH_SHORT).show();
-        }
+        emptyView.setVisibility(View.GONE);*/
+        publishOld = view.findViewById(R.id.oldBook_relative);
+        publishOld.setOnClickListener(this);
+        publishRent = view.findViewById(R.id.house_relative);
+        publishRent.setOnClickListener(this);
+        publishTask = view.findViewById(R.id.task_relative);
+        publishTask.setOnClickListener(this);
         EventBus.getDefault().register(this);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(NevActoin messageEvent) {
        // bs = mMainActivity.allBeacons;
-       Bn=mMainActivity.BeaconNumber;
+//       Bn=mMainActivity.BeaconNumber;
        //Log.i("++++++++", "刷新后的数据：" + bs.toString());
         Log.i("++++++++", "刷新后的数据：" + Bn);
         getGoodsFromServer();
@@ -118,7 +118,7 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
          * 1.view控件的点击事件（botton，imageview等）：View.OnClickListener()
          * 2.列表的点击事件（item子控件的点击事件）：AdapterView.OnItemClickListener()
          */
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /* mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //goods.get(position).getId()当前位置的商品id
@@ -132,8 +132,8 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
 
                 mMainActivity.showFragment(ProductDescFragment.class, "goodslist_2_detail", bundle);
             }
-        });
-        mAdapter.setOnCartClickListener(new GuideAdapter.CallBack() {
+        });*/
+        /*mAdapter.setOnCartClickListener(new GuideAdapter.CallBack() {
             @Override
             public void onCartClick(View v, int position) {
                 // Toast.makeText(getContext(),"----"+position,Toast.LENGTH_SHORT).show();
@@ -146,7 +146,7 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
                     mMainActivity.showFragment(LoginFragment.class, "Home_2_Login");
                 }
             }
-        });
+        });*/
     }
     private void addProductToCart(int position) {
         String addCartUrl=UrlConstants.addCartUrl+"?userid="+mPreferenceManager.getUserId()+"&goodsid="+goods.get(position).getId()+"&number="+1;
@@ -241,8 +241,21 @@ public class NavFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
-            }
+            case R.id.oldBook_relative:
+                // 发布旧物闲置
+                Toast.makeText(getContext(), "发布旧物闲置", Toast.LENGTH_SHORT).show();
+                mMainActivity.showFragment(PublishOldFragment.class,"publish_old", null);
+                break;
+            case R.id.house_relative:
+                Toast.makeText(getContext(), "发布租房信息", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.task_relative:
+                Toast.makeText(getContext(), "发布校园任务", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                Toast.makeText(getContext(), "暂时不作处理", Toast.LENGTH_SHORT).show();
+                break;
+        }
         }
 
 }

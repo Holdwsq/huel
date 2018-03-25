@@ -43,7 +43,7 @@
                 >
                 <com.hueljk.ibeacon.view.RoundImageView
                     android:layout_marginTop="@dimen/item_goods_vmargin"
-                    android:layout_marginStart="@dimen/item_goods_hmargin"
+                    android:layout_marginStart="10dp"
                     android:id="@+id/userPortrait_detail"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
@@ -86,8 +86,8 @@
                         android:textColor="#939090" />
                 </LinearLayout>
                 <TextView
-                    android:layout_marginStart="@dimen/item_goods_hmargin"
-                    android:layout_marginEnd="@dimen/item_goods_hmargin"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/userInfo_detail"
@@ -99,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/item_goods_vmargin"
-                android:layout_marginStart="@dimen/item_goods_hmargin"
+                android:layout_marginStart="10dp"
                 android:textSize="20sp"
                 tools:ignore="SmallSp"
                 android:text="￥ 699"
@@ -108,9 +108,9 @@
                 android:id="@+id/desc_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/item_goods_vmargin"
-                android:layout_marginStart="@dimen/item_goods_hmargin"
-                android:layout_marginEnd="@dimen/item_goods_hmargin"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:textSize="15sp"
                 android:lineSpacingExtra="5dp"
                 tools:ignore="SmallSp"
@@ -141,7 +141,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/item_goods_vmargin"
-                        android:layout_marginStart="@dimen/item_goods_hmargin"
+                        android:layout_marginStart="10dp"
                         android:layout_marginEnd="80dp"
                         android:orientation="vertical"
                         android:layout_marginBottom="@dimen/item_goods_vmargin">
@@ -183,7 +183,7 @@
                 android:id="@+id/commentRecycler_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#ffff"
+                android:background="#ececec"
                 android:clipChildren="false"
                 android:layout_marginTop="@dimen/item_goods_vmargin"
                 android:clipToPadding="false" />

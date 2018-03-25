@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/bg"
+              android:background="#0affffff"
               android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,31 +13,97 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="导 购 模 式"
+            android:text="发 布 闲 置"
             android:textSize="@dimen/title_size"
             android:layout_centerInParent="true"
             />
     </RelativeLayout>
-
-    <ListView
-        android:id="@+id/guide_gridView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/bg"
-        android:layout_below="@+id/kjkj"
-        android:layout_weight="1"/>
-
-    <Button
-        android:id="@+id/one"
+    <ImageView
+        android:layout_width="210dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/publish_c"/>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/buttonhu"
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="25dp"
-        android:text="呼叫服务员"
-        android:textColor="#2f2f30"
-        android:textSize="16sp"
-        android:layout_marginBottom="5dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="120dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:weightSum="3"
+        android:layout_alignParentBottom="true">
+        <RelativeLayout
+            android:id="@+id/oldBook_relative"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/old_book"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="1dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/publish_entry_with_photo"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/old_book"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:text="发布闲置"
+                android:textSize="14sp"
+                android:textColor="@drawable/text_color_4"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/house_relative"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/house"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="1dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/publish_entry_rent"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/house"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:text="发布租房"
+                android:textSize="14sp"
+                android:textColor="@drawable/text_color_4"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/task_relative"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/task"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="1dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/publish_entry_server"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/task"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:text="发布任务"
+                android:textSize="14sp"
+                android:textColor="@drawable/text_color_4"/>
+        </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>

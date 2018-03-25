@@ -46,10 +46,17 @@ public class BaseFragment extends Fragment {
         setData();
     }
 
+    /**
+     * 初始化视图
+     * @param view
+     */
     protected void initView(View view) {
 
     }
 
+    /**
+     * 设置组件监听器
+     */
     protected void setListener() {
 
     }

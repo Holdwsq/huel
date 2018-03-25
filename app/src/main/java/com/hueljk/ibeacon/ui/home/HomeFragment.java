@@ -139,7 +139,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         recyclerView.setLayoutManager(mLinearLayoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.addItemDecoration(new SpacesItemDecoration(40));
+        recyclerView.addItemDecoration(new SpacesItemDecoration(30));
         adapter = new GoodsAdapter();
         List<GoodsInfo> list = initData();
         adapter.setData(list);

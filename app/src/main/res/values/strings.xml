@@ -8,4 +8,6 @@
     <string name="no">否</string>
     <string name="ask_bt_open">是否打开蓝牙</string>
     <string name="aboutmsg">  Copyright 2016-2017,软件版权属于河南米特科技有限公司所有。</string>
+    <string name="error_gif">x or y bound size should be at least %1$dpx and file size should be no more than %2$sM</string>
+    <string name="permission_request_denied">Permission request denied</string>
 </resources>

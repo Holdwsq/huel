@@ -87,6 +87,7 @@
         android:layout_marginStart="@dimen/item_goods_hmargin"
         android:layout_marginEnd="@dimen/item_goods_hmargin"
         android:layout_marginTop="@dimen/item_goods_vmargin"
+        android:lineSpacingExtra="5dp"
         android:layout_height="wrap_content"
         tools:text="斯凯奇。 只有，43.44红色，绿色，108包邮。 不舒 服白送"/>
     <TextView
@@ -95,8 +96,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/item_goods_hmargin"
         android:textColor="#03baf7"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
+        android:paddingTop="13dp"
+        android:paddingBottom="13dp"
         android:layout_marginEnd="@dimen/item_goods_hmargin"
         android:layout_marginTop="@dimen/item_goods_vmargin"
         android:background="@drawable/shool_info"

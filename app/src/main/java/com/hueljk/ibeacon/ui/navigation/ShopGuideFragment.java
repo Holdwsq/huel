@@ -73,7 +73,7 @@ public class ShopGuideFragment extends BaseFragment implements View.OnClickListe
     @Override
     protected void initView(View view) {
         super.initView(view);
-        mListView = (ListView) view.findViewById(R.id.guide_gridView);
+//        mListView = (ListView) view.findViewById(R.id.guide_gridView);
         TextView emptyView = new TextView(mContext);
         emptyView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
         emptyView.setText("请您先打开蓝牙，或者进入导购范围内！");
@@ -86,8 +86,8 @@ public class ShopGuideFragment extends BaseFragment implements View.OnClickListe
         mListView.setAdapter(mAdapter);
 
         //初次进入该fragment拿到当前的所有ibeacon的sn信息
-        Bn = mMainActivity.BeaconNumber;
-        Bd = mMainActivity.MaxBeaconRssi;
+//        Bn = mMainActivity.BeaconNumber;
+//        Bd = mMainActivity.MaxBeaconRssi;
 
         if (Bn != null) {
             Log.i("++++++++", "第一次拿到的数据: " + Bn);
@@ -103,7 +103,7 @@ public class ShopGuideFragment extends BaseFragment implements View.OnClickListe
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(NevActoin messageEvent) {
         // bs = mMainActivity.allBeacons;
-        Bn = mMainActivity.BeaconNumber;
+//        Bn = mMainActivity.BeaconNumber;
         //Log.i("++++++++", "刷新后的数据：" + bs.toString());
         Log.i("++++++++", "刷新后的数据：" + Bn);
         getGoodsFromServer();

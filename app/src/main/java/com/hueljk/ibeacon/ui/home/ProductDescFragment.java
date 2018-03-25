@@ -102,9 +102,13 @@ public class ProductDescFragment extends BaseFragment implements View.OnClickLis
         imageDetailAdapter.setData(list);
         imageRecycler.setAdapter(imageDetailAdapter);
         commentRecycler = view.findViewById(R.id.commentRecycler_detail);
-        commentRecycler.setLayoutManager(mLinearLayoutManager);
+        LinearLayoutManager mLinearLayoutManager2 = new LinearLayoutManager(getContext());
+        mLinearLayoutManager.setSmoothScrollbarEnabled(true);
+        mLinearLayoutManager.setAutoMeasureEnabled(true);
+        commentRecycler.setLayoutManager(mLinearLayoutManager2);
         commentRecycler.setHasFixedSize(true);
         commentRecycler.setNestedScrollingEnabled(false);
+        commentRecycler.addItemDecoration(new SpacesItemDecoration(1));
         commentAdapter = new CommentAdapter();
         commentAdapter.setData(list2);
         commentRecycler.setAdapter(commentAdapter);
@@ -176,6 +180,13 @@ public class ProductDescFragment extends BaseFragment implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-
+        switch (view.getId()){
+            case R.id.desc_return:
+                popSelf();
+                break;
+            default:
+                // 暂无任何处理
+                break;
+        }
     }
 }
