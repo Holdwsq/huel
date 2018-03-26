@@ -7,9 +7,12 @@ public interface UrlConstants {
      * 服务基础地址
      */
     String baseUrl = "http://192.168.43.227:8080/xgms/api";
-
-    String HomeUrl=baseUrl + "/pub/home";
+    // 主页url
+    String HomeUrl = baseUrl + "/pub/home";
+    // 商品发布页面url
     String publishGoodsUrl = baseUrl + "/pri/goods";
+    // 商品详情页面url
+    String DescUrl = baseUrl + "/pub/goods";
     String goodsListUrl = baseUrl + "/pub/goods";
     //二级页面clotingfragment中菜单栏的url
     String twoCloUrl=baseUrl+"/Clothing";
@@ -33,9 +36,6 @@ public interface UrlConstants {
     String cloPicUrl = picBaseUrl + "goods/";
    //二级搜索页面图片地址
    String SearchPicUrl = picBaseUrl + "goods/";
-   //三级页面商品详情页面url  http://localhost:8080/HuelJk/Detail
-   //String DescUrl= baseUrl+"/Detail";
-    String DescUrl=baseUrl+"/Detail";
  //三级页面商品详情页面url
    // http://localhost:8080/HuelJk/picture/image/detail/caomei.png
     String DescImgUrl=picBaseUrl+"image/";

@@ -1,5 +1,6 @@
 package com.hueljk.ibeacon.ui.home;
 
+import android.annotation.SuppressLint;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.bumptech.glide.Glide;
 import com.google.gson.reflect.TypeToken;
 import com.hueljk.ibeacon.R;
 import com.hueljk.ibeacon.constants.UrlConstants;
@@ -25,6 +27,7 @@ import com.hueljk.ibeacon.mode.DescImg;
 import com.hueljk.ibeacon.mode.DescPrameter;
 import com.hueljk.ibeacon.mode.GoodsCommentBean;
 import com.hueljk.ibeacon.mode.GoodsInfo;
+import com.hueljk.ibeacon.mode.ResponseBean;
 import com.hueljk.ibeacon.mode.Result;
 import com.hueljk.ibeacon.ui.BaseFragment;
 import com.hueljk.ibeacon.ui.adapter.CommentAdapter;
@@ -33,10 +36,14 @@ import com.hueljk.ibeacon.ui.adapter.GoodsAdapter;
 import com.hueljk.ibeacon.ui.adapter.ImageDetailAdapter;
 import com.hueljk.ibeacon.utils.JsonUtils;
 import com.hueljk.ibeacon.view.SpacesItemDecoration;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -99,7 +106,7 @@ public class ProductDescFragment extends BaseFragment implements View.OnClickLis
         List<String> list = new ArrayList<>();
         List<GoodsCommentBean> list2 = new ArrayList<>();
         initData(list, list2);
-        imageDetailAdapter.setData(list);
+//        imageDetailAdapter.setData(list);
         imageRecycler.setAdapter(imageDetailAdapter);
         commentRecycler = view.findViewById(R.id.commentRecycler_detail);
         LinearLayoutManager mLinearLayoutManager2 = new LinearLayoutManager(getContext());
@@ -141,41 +148,45 @@ public class ProductDescFragment extends BaseFragment implements View.OnClickLis
 
 
     private void show() {
-        String url = UrlConstants.DescUrl + "?goodsid=" + mGoodId;
+        String url = UrlConstants.DescUrl + "/" + mGoodId;
         Log.i("-----------", "Desc:" + url);
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-        Call call = mOkHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                final String jsonStr = response.body().string();
-                mMainActivity.runOnUiThread(new Runnable() {
+        OkGo.<String>get(url)
+                .tag(this)
+                .execute(new StringCallback() {
                     @Override
-                    public void run() {
-                        /*Log.d("------------", "descrun:" + jsonStr);
-                        Type type = new TypeToken<Result<Desc>>() {
-                        }.getType();
-                        Result<Desc> DescResult = JsonUtils.parse(jsonStr, type);
-                        if (DescResult.mCode == 200) {
-                            mDesc = DescResult.mData;
-
-
-                            Log.d("---------", "run: " + mDesc.toString());
-                            mDesc.setLength(mDesc.getDescImgs().size());
-                            mAdapter.update(mDesc, 1);
-                        }*/
+                    public void onSuccess(com.lzy.okgo.model.Response<String> response) {
+                        String data = response.body();
+                        // 转为响应数据
+                        final ResponseBean<GoodsInfo> resp = JSON.parseObject(data, new TypeReference<ResponseBean<GoodsInfo>>() {});
+                        if (response.code() == 200){
+                            mMainActivity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (ResponseBean.STATUS_SUCCESS.equals(resp.getStatus())){
+                                        GoodsInfo info = resp.getData();
+                                        userName.setText(info.getUserName());
+                                        userName2.setText(info.getUserName());
+                                        @SuppressLint("SimpleDateFormat")
+                                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                                        timeTx.setText(simpleDateFormat.format(new Date(info.getCreateTime())));
+                                        Glide.with(getContext())
+                                                .load(info.getUserPortrait())
+                                                .into(userPortrait);
+                                        Glide.with(getContext())
+                                                .load(info.getUserPortrait())
+                                                .into(userPortrait2);
+                                        price.setText(String.valueOf(info.getPrice()));
+                                        desc.setText(info.getDescription());
+                                        imageDetailAdapter.updata(info.getFileUrls());
+                                    }
+                                }
+                            });
+                        }else{
+                            Toast.makeText(getContext(), "请求失败", Toast.LENGTH_SHORT).show();
+                        }
 
                     }
                 });
-            }
-        });
     }
 
     @Override

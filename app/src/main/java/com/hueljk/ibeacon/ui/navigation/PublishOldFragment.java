@@ -1,10 +1,17 @@
 package com.hueljk.ibeacon.ui.navigation;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.goyourfly.multi_picture.MultiPictureView;
 import com.hueljk.ibeacon.R;
+import com.hueljk.ibeacon.callback.StringDialogCallback;
 import com.hueljk.ibeacon.constants.UrlConstants;
+import com.hueljk.ibeacon.mode.ResponseBean;
 import com.hueljk.ibeacon.ui.BaseFragment;
 import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Progress;
+import com.lzy.okgo.model.Response;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
@@ -13,8 +20,10 @@ import com.zhihu.matisse.filter.Filter;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -54,6 +63,10 @@ public class PublishOldFragment extends BaseFragment implements View.OnClickList
     private MultiPictureView multiPictureView;
     private static final int REQUEST_ADD_IMAGE = 2;
     /**
+     * multiPictureView 对应的文件路径
+     */
+    private List<String> pathList = new ArrayList<>();
+    /**
      * 返回按钮
      */
     private ImageView publishReturn;
@@ -65,10 +78,6 @@ public class PublishOldFragment extends BaseFragment implements View.OnClickList
      * 商品描述
      */
     private EditText desc;
-    /**
-     * 商品图片列表
-     */
-    private List<Uri> uriList;
     /**
      * 学校信息
      */
@@ -119,6 +128,14 @@ public class PublishOldFragment extends BaseFragment implements View.OnClickList
                 addImage();
             }
         });
+        multiPictureView.setDeleteClickCallback(new MultiPictureView.DeleteClickCallback() {
+            @Override
+            public void onDeleted(View view, int i) {
+                // 获取视图中的图片列表
+                multiPictureView.removeItem(i);
+                pathList.remove(i);
+            }
+        });
     }
 
     @Override
@@ -134,8 +151,10 @@ public class PublishOldFragment extends BaseFragment implements View.OnClickList
                 break;
             case R.id.publish_bt:
                 // 校验商品信息是否完整
-                checkInfo();
-                publishGoods2Server();
+                boolean flag = checkInfo();
+                if (flag){
+                    publishGoods2Server();
+                }
                 break;
             default:
                 Log.i(PublishOldFragment.class.getSimpleName(), "没有对应点击组件");
@@ -148,26 +167,57 @@ public class PublishOldFragment extends BaseFragment implements View.OnClickList
      */
     private void publishGoods2Server() {
         String publishGoodsUrl = UrlConstants.publishGoodsUrl;
+        // 参数map
         Map<String, String> map = new HashMap<>();
         map.put("title", title.getText().toString());
         map.put("description", title.getText().toString());
-        map.put("price", title.getText().toString());
         map.put("type", type.getText().toString());
+        // 将文件路径转为File类型
+        List<File> fileList = new ArrayList<>();
+        for (String pathName : pathList) {
+            fileList.add(new File(pathName));
+        }
 
-        ArrayList<Uri> list = multiPictureView.getList();
-        Uri uri = list.get(0);
-        String path = uri.getPath();
-        File file = new File(String.valueOf(list.get(0)));
         OkGo.<String>post(publishGoodsUrl)
                 .tag(this)
                 .headers("Content-Type", "multipart/form-data")
-                .params(map);
+                .params(map)
+                .params("price", Float.parseFloat(price.getText().toString()))
+                .addFileParams("files", fileList)
+                .execute(new StringDialogCallback(getActivity(), "发布中...") {
+                    @SuppressLint("ShowToast")
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        // 请求成功 处理
+                        String data = response.body();
+                        if (response.code() == 200){
+                            ResponseBean<String> resp = JSON.parseObject(data, new TypeReference<ResponseBean<String>>() {});
+                            String status = resp.getStatus();
+                            if (ResponseBean.STATUS_SUCCESS.equals(status)){
+                                clearInputInfo();
+                                Toast.makeText(getContext(), "发布成功", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(getContext(), resp.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                });
     }
 
     /**
+     * 清空输入框
+     */
+    private void clearInputInfo(){
+        title.setText("");
+        desc.setText("");
+        multiPictureView.clearItem();
+        price.setText("");
+        type.setText("");
+    }
+    /**
      * 检测商品信息
      */
-    private void checkInfo() {
+    private boolean checkInfo() {
         String titleData = title.getText().toString();
         String descData = desc.getText().toString();
         String schoolData = school.getText().toString();
@@ -192,7 +242,9 @@ public class PublishOldFragment extends BaseFragment implements View.OnClickList
             }
         }catch (RuntimeException e){
             Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            return false;
         }
+        return true;
     }
 
     void addImage() {
@@ -244,6 +296,7 @@ public class PublishOldFragment extends BaseFragment implements View.OnClickList
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_ADD_IMAGE && resultCode == Activity.RESULT_OK) {
+            pathList.addAll(Matisse.obtainPathResult(data));
             multiPictureView.addItem(Matisse.obtainResult(data));
         }
     }

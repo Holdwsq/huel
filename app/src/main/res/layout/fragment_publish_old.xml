@@ -152,7 +152,7 @@
                             android:textColorHint="#dadada"
                             android:textSize="15sp"
                             android:paddingStart="15dp"
-                            android:inputType="number"
+                            android:inputType="number|numberDecimal"
                             android:typeface="sans"
                             android:hint="输入宝贝的价格"
                             />

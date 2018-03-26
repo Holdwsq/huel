@@ -9,13 +9,13 @@ import java.util.List;
 public class Home {
     private List<BaseEntity> homeBanners;
     private List<BaseEntity> homeDiscounts;
-    private PageData<GoodsInfo> pageData;
+    private PageData<GoodsInfo> goodsInfos;
 
-    public Home(List<BaseEntity> banners, List<BaseEntity> discounts, PageData<GoodsInfo> pageData) {
+    public Home(List<BaseEntity> banners, List<BaseEntity> discounts, PageData<GoodsInfo> goodsInfos) {
         super();
         homeBanners = banners;
         homeDiscounts = discounts;
-        pageData = pageData;
+        goodsInfos = goodsInfos;
     }
     public Home(){
         super();
@@ -37,11 +37,11 @@ public class Home {
         this.homeDiscounts = homeDiscounts;
     }
 
-    public PageData<GoodsInfo> getPageData() {
-        return pageData;
+    public PageData<GoodsInfo> getGoodsInfos() {
+        return goodsInfos;
     }
 
-    public void setPageData(PageData<GoodsInfo> pageData) {
-        this.pageData = pageData;
+    public void setGoodsInfos(PageData<GoodsInfo> goodsInfos) {
+        this.goodsInfos = goodsInfos;
     }
 }

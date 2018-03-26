@@ -12,10 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,12 +55,9 @@ import com.hueljk.ibeacon.wigdet.EditTextDrawableClick;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -141,8 +135,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.addItemDecoration(new SpacesItemDecoration(30));
         adapter = new GoodsAdapter();
-        List<GoodsInfo> list = initData();
-        adapter.setData(list);
+        /*List<GoodsInfo> list = initData();
+        adapter.setData(list);*/
         recyclerView.setAdapter(adapter);
         TextView []tv = {shipin_tv,riyong_tv,clothes_tv,shengxian_tv};
         for(TextView t:tv){
@@ -429,7 +423,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     protected void setData() {
         super.setData();
 
-       /* new Thread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -438,7 +432,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                     e.printStackTrace();
                 }
             }
-        }).start();*/
+        }).start();
     }
 
     public void execute() throws Exception {
@@ -474,7 +468,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                                     if (data == null){
                                         return;
                                     }
-                                    PageData<GoodsInfo> pageData = data.getPageData();
+                                    PageData<GoodsInfo> pageData = data.getGoodsInfos();
                                     updateGoodList(pageData.getData());
                                     List<BaseEntity> homeBanners = data.getHomeBanners();
                                     setBanner(homeBanners);

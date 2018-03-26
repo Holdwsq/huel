@@ -43,6 +43,12 @@ public class ImageDetailAdapter extends RecyclerView.Adapter<ImageDetailAdapter.
 
     public void setData(List<String> list) {
         this.imageUrls = list;
+        notifyDataSetChanged();
+    }
+
+    public void updata(List<String> list) {
+        this.imageUrls = list;
+        notifyDataSetChanged();
     }
 
     static class ImageDetailViewHolder extends RecyclerView.ViewHolder{

@@ -34,6 +34,10 @@ public class GoodsInfo implements Serializable {
      */
     private String title;
     /**
+     * 商品价格
+     */
+    private Float price;
+    /**
      * 商品描述
      */
     private String description;
@@ -140,5 +144,13 @@ public class GoodsInfo implements Serializable {
 
     public void setUpdateTime(Long updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
     }
 }
