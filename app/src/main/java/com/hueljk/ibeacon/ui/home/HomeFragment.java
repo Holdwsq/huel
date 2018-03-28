@@ -4,6 +4,7 @@ package com.hueljk.ibeacon.ui.home;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -54,6 +55,8 @@ import com.hueljk.ibeacon.view.SpacesItemDecoration;
 import com.hueljk.ibeacon.wigdet.EditTextDrawableClick;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -92,6 +95,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private PreferenceManager mPreferenceManager;
     private String mSearchKeys;
     private EditTextDrawableClick mSearchET;
+    private RefreshLayout refreshLayout;
+    private boolean refreshFlag;
+    private boolean loadMore;
     /**
      * 商品发布话题列表
      */
@@ -127,6 +133,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         homeph_img = view.findViewById(R.id.homeph_img);
         mSearchET= view.findViewById(R.id.SearchEt);
         recyclerView = view.findViewById(R.id.recyclerview);
+        refreshLayout = view.findViewById(R.id.refreshLayout);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getContext());
         mLinearLayoutManager.setSmoothScrollbarEnabled(true);
         mLinearLayoutManager.setAutoMeasureEnabled(true);
@@ -135,8 +142,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.addItemDecoration(new SpacesItemDecoration(30));
         adapter = new GoodsAdapter();
-        /*List<GoodsInfo> list = initData();
-        adapter.setData(list);*/
         recyclerView.setAdapter(adapter);
         TextView []tv = {shipin_tv,riyong_tv,clothes_tv,shengxian_tv};
         for(TextView t:tv){
@@ -153,81 +158,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         mAdapter = new HomeAdapter(getContext(), null);
 //        mGridView.setAdapter(mAdapter);
         initBanner();
-    }
-
-    private List<GoodsInfo> initData() {
-        String dataStr = "[{" +
-                "\"createTime\": 1521615482250," +
-                "\"deleteFlag\": \"0\"," +
-                "\"fileUrls\": [\"http://p5khs9up1.bkt.clouddn.com/bef43e9214044e4a921e77ab08c93479.jpg\"]," +
-                "\"id\": \"1b5c990994eb4530ae3962cffe817c00\"," +
-                "\"pictureNames\": \"http://p5khs9up1.bkt.clouddn.com/bef43e9214044e4a921e77ab08c93479.jpg\"," +
-                "\"title\": \"123\"," +
-                "\"type\": \"图片\"," +
-                "\"updateTime\": 1521615482250," +
-                "\"userName\": \"无名氏\"" +
-                "}, {" +
-                "\"createTime\": 1521614591585," +
-                "\"deleteFlag\": \"0\"," +
-                "\"fileUrls\": [\"http://p5khs9up1.bkt.clouddn.com/fc9b7f81b1b44ac497c14b1fb97d3725.png\"]," +
-                "\"id\": \"5f05a975ea7d4302933f05bbd67d6c7d\"," +
-                "\"pictureNames\": \"http://p5khs9up1.bkt.clouddn.com/fc9b7f81b1b44ac497c14b1fb97d3725.png\"," +
-                "\"title\": \"中山大学\"," +
-                "\"type\": \"text\"," +
-                "\"updateTime\": 1521614591585," +
-                "\"userName\": \"无名氏\"" +
-                "}, {" +
-                "\"createTime\": 1521614277108," +
-                "\"deleteFlag\": \"0\"," +
-                "\"fileUrls\": [\"http://p5khs9up1.bkt.clouddn.com/c7fa7686dd9e4cbe84c5b6afe36e5b0a.jpg\"]," +
-                "\"id\": \"b791d645a7de49f09954765701868841\"," +
-                "\"pictureNames\": \"http://p5khs9up1.bkt.clouddn.com/c7fa7686dd9e4cbe84c5b6afe36e5b0a.jpg\"," +
-                "\"title\": \"123\"," +
-                "\"type\": \"图片\"," +
-                "\"updateTime\": 1521614277108," +
-                "\"userName\": \"无名氏\"" +
-                "}, {" +
-                "\"createTime\": 1521102129371," +
-                "\"deleteFlag\": \"0\"," +
-                "\"description\": \"这里是描述这里是描述这里是描述这里是描述这里是描述\"," +
-                "\"fileUrls\": [\"http://p5khs9up1.bkt.clouddn.com/e71766bbc4b1405eac5b1f4157440d59.jpg\", \"http://p5khs9up1.bkt.clouddn.com/51cc90217b6549e1b011b2e8331f3e8c.jpg\"]," +
-                "\"id\": \"05464845baf243b2b10d740d9ff6a6e9\"," +
-                "\"pictureNames\": \"http://p5khs9up1.bkt.clouddn.com/e71766bbc4b1405eac5b1f4157440d59.jpg,http://p5khs9up1.bkt.clouddn.com/51cc90217b6549e1b011b2e8331f3e8c.jpg\"," +
-                "\"title\": \"test\"," +
-                "\"type\": \"图片\"," +
-                "\"updateTime\": 1521102129371," +
-                "\"userId\": \"210b346cf29a4577aa51fb077b04674b\"," +
-                "\"userName\": \"Tom\"," +
-                "\"userPortrait\": \"\"" +
-                "}, {" +
-                "\"createTime\": 1521102113543," +
-                "\"deleteFlag\": \"0\"," +
-                "\"description\": \"这里是描述这里是描述这里是描述\"," +
-                "\"fileUrls\": [\"http://p5khs9up1.bkt.clouddn.com/ccea475263104390b32487930eeca884.jpg\", \"http://p5khs9up1.bkt.clouddn.com/26ae8701814e404ba7bfa455e0c2b1ad.jpg\"]," +
-                "\"id\": \"fe602db5888e4321a8642ff52b9ea5e8\"," +
-                "\"pictureNames\": \"http://p5khs9up1.bkt.clouddn.com/ccea475263104390b32487930eeca884.jpg,http://p5khs9up1.bkt.clouddn.com/26ae8701814e404ba7bfa455e0c2b1ad.jpg\"," +
-                "\"title\": \"test\"," +
-                "\"type\": \"图片\"," +
-                "\"updateTime\": 1521102113543," +
-                "\"userId\": \"210b346cf29a4577aa51fb077b04674b\"," +
-                "\"userName\": \"Tom\"," +
-                "\"userPortrait\": \"\"" +
-                "}, {" +
-                "\"createTime\": 1521102002611," +
-                "\"deleteFlag\": \"0\"," +
-                "\"description\": \"这里是描述这里是描述这里是描述这里是描述\"," +
-                "\"fileUrls\": [\"http://p5khs9up1.bkt.clouddn.com/a23c3d9d16a04f0cb39e03146075da3c.jpg\", \"http://p5khs9up1.bkt.clouddn.com/fc15f8826de24ac8a2fac546371dc0ee.jpg\"]," +
-                "\"id\": \"18b221c6f51d4629b69e8e312d262b18\"," +
-                "\"pictureNames\": \"http://p5khs9up1.bkt.clouddn.com/a23c3d9d16a04f0cb39e03146075da3c.jpg,http://p5khs9up1.bkt.clouddn.com/fc15f8826de24ac8a2fac546371dc0ee.jpg\"," +
-                "\"title\": \"test\"," +
-                "\"type\": \"图片\"," +
-                "\"updateTime\": 1521102002611," +
-                "\"userId\": \"210b346cf29a4577aa51fb077b04674b\"," +
-                "\"userName\": \"Tom\"," +
-                "\"userPortrait\": \"\"" +
-                "}]";
-        List<GoodsInfo> goodsInfos = JSON.parseObject(dataStr, new TypeReference<List<GoodsInfo>>() {});
-        return goodsInfos;
     }
 
     @Override
@@ -270,6 +200,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                     return true;
                 }
                 return false;
+            }
+        });
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                // 下拉更新
+                setData();
             }
         });
         /**
@@ -450,6 +387,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                             return;
                         }
                         if (response.code() != 200){
+                            refreshLayout.finishRefresh(false);
                             Toast.makeText(getContext(), "请求失败", Toast.LENGTH_SHORT).show();
                             return;
                         }
@@ -474,6 +412,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                                     setBanner(homeBanners);
                                     List<BaseEntity> homeDiscounts = data.getHomeDiscounts();
                                     updateDiscounts(homeDiscounts);
+                                    refreshLayout.finishRefresh(true);
+                                }else{
+                                    Toast.makeText(getContext(), responseBean.getMessage(), Toast.LENGTH_SHORT).show();
+                                    refreshLayout.finishRefresh(false);
                                 }
                             }
                         });
@@ -482,6 +424,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                     @Override
                     public void onError(com.lzy.okgo.model.Response<String> response) {
                         super.onError(response);
+                        refreshLayout.finishRefresh(false);
                         Log.e(TAG, "获取主页信息失败：" + response.body());
                     }
                 });

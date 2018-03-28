@@ -70,14 +70,14 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsListVie
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int position = viewHolder.getAdapterPosition();
+                int position = viewHolder.getLayoutPosition();
                 myItemClickListener.onItemClick(view, position, goodsInfoList.get(position).getId());
             }
         });
         viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                int position = viewHolder.getAdapterPosition();
+                int position = viewHolder.getLayoutPosition();
                 myItemClickListener.onItemLongClick(view, position, goodsInfoList.get(position).getId());
                 return true;
             }
@@ -105,11 +105,17 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.GoodsListVie
         mLinearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mLinearLayoutManager.setAutoMeasureEnabled(true);
         holder.recyclerView.setLayoutManager(mLinearLayoutManager);
-
-        ImageRecyclerAdapter imageAdapter = new ImageRecyclerAdapter();
-        imageAdapter.setData(goodsInfo.getFileUrls(), position, goodsInfo.getId());
-        imageAdapter.setOnItemClickListener(myItemClickListener);
-        holder.recyclerView.setAdapter(imageAdapter);
+        if (holder.recyclerView.getAdapter() == null){
+            ImageRecyclerAdapter imageAdapter = new ImageRecyclerAdapter();
+            imageAdapter.setData(goodsInfo.getFileUrls(), position, goodsInfo.getId());
+            imageAdapter.setOnItemClickListener(myItemClickListener);
+            holder.recyclerView.setAdapter(imageAdapter);
+        }else{
+            //第二次不为时候需要更新holder 的listener
+            ImageRecyclerAdapter adapter = (ImageRecyclerAdapter) holder.recyclerView.getAdapter();
+            adapter.setData(goodsInfo.getFileUrls(), position, goodsInfo.getId());
+            adapter.updateListener();
+        }
         holder.recyclerView.addItemDecoration(new LrItemDecoration(10));
         // 内部recyclerView 功用一个viewPool
         holder.recyclerView.setRecycledViewPool(viewPool);

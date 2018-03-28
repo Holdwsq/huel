@@ -1,1 +1,1 @@
-include ':app', ':matisse'
+include ':app', ':matisse', ':refresh-header', ':refresh-footer', ':refresh-layout'

@@ -38,11 +38,19 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ImageRecyclerAdap
      * 商品位置
      */
     private int position;
+    /**
+     * 该adapter使用的viewHolder
+     */
+    private ImageListViewHolder viewHolder;
 
     public void setData(List<String> imageUrlList, int position, String goodsId){
         this.goodsId = goodsId;
         this.position = position;
         this.imageUrlList = imageUrlList;
+        notifyDataSetChanged();
+    }
+    public void setmContext(Context context){
+        this.mContext = context;
     }
 
     public void setOnItemClickListener(GoodsAdapter.OnItemClickListener onItemClickListener){
@@ -52,8 +60,12 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ImageRecyclerAdap
     @Override
     public ImageListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         this.mContext = parent.getContext();
-        ImageListViewHolder viewHolder = new ImageListViewHolder(LayoutInflater.from(mContext)
+        viewHolder = new ImageListViewHolder(LayoutInflater.from(mContext)
                 .inflate(R.layout.item_image, parent, false));
+        setListener();
+        return viewHolder;
+    }
+    private void setListener(){
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,9 +79,7 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ImageRecyclerAdap
                 return true;
             }
         });
-        return viewHolder;
     }
-
     @Override
     public void onBindViewHolder(ImageListViewHolder holder, int position) {
         Glide.with(mContext)
@@ -80,6 +90,10 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ImageRecyclerAdap
     @Override
     public int getItemCount() {
         return imageUrlList != null ? imageUrlList.size() : 0;
+    }
+
+    public void updateListener() {
+        setListener();
     }
 
     static class ImageListViewHolder extends RecyclerView.ViewHolder {
